@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oor:node xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="Addons" oor:package="org.openoffice.Office">
+ <node oor:name="AddonUI">
+  <node oor:name="AddonMenu"> <!-- OfficeMenuBar => nécessite sous-menu -->
+   <node oor:name="org.hanoilug.openoffice.OvniConv" oor:op="replace">
+    <prop oor:name="URL" oor:type="xs:string">
+     <value>service:org.hanoilug.openoffice.OvniConv?execute</value>
+<!-- <value>macro:///OvniConv.oxt.OvniConv.OvniConv</value> -->
+<!-- <value>vnd.sun.star.script:OvniConv.OvniConv</value> -->
+    </prop>
+    <prop oor:name="Context" oor:type="xs:string">
+     <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
+    </prop>
+    <prop oor:name="Title" oor:type="xs:string">
+     <value xml:lang="en">Convert to Unicode</value>
+     <value xml:lang="fr">Conversion vers Unicode</value>
+     <value xml:lang="vi">Chuyển lên Unicode</value>
+     <value xml:lang="lo">Convert to Unicode</value>
+    </prop>
+    <prop oor:name="Target" oor:type="xs:string">
+     <value>_self</value>
+    </prop>
+    <prop oor:name="ImageIdentifier" oor:type="xs:string">
+<!-- <value>private:image/3216</value> -->
+     <value />
+    </prop>
+   </node>
+  </node>
+ </node>
+</oor:node>

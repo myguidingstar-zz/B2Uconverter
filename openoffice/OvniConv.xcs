@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oor:component-schema xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oor:name="OvniConv" oor:package="org.hanoilug.openoffice" xml:lang="en-US">
+ <info>
+  <author>Jean Christophe André</author>
+  <desc>Configuration of the OvniConv extension.</desc>
+ </info>
+ <templates>
+ </templates>
+ <component>
+  <group oor:name="General">
+   <info><desc>Data for general options.</desc></info>
+   <prop oor:name="Debug" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When true then OvniConv will save debug information (default: /tmp/ovniconv-ooo.log).</desc></info>
+    <value>false</value>
+   </prop>
+   <prop oor:name="KeepVietnameseFonts" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When true then OvniConv will change Vietnamese font names to the Unicode corresponding font (eg: .VnTime becomes .UVnTime).</desc></info>
+    <value>false</value>
+   </prop>
+   <prop oor:name="RemoveDiacritics" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When true then OvniConv will remove all diacritics (tone marks and accents).</desc></info>
+    <value>false</value>
+   </prop>
+   <prop oor:name="RemoveSoftHyphen" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When true then OvniConv will remove any soft-hyphen characters found during the conversion.</desc></info>
+    <value>false</value>
+   </prop>
+  </group>
+ </component>
+</oor:component-schema>

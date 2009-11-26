@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="AddonsDialog" dlg:left="11" dlg:top="91" dlg:width="263" dlg:height="185" dlg:help-text="&amp;38.AddonsDialog.HelpText" dlg:closeable="true" dlg:moveable="true" dlg:title="&amp;39.AddonsDialog.Title" dlg:withtitlebar="false">
+ <dlg:styles>
+  <dlg:style dlg:style-id="0" dlg:font-height="12"/>
+  <dlg:style dlg:style-id="1" dlg:border="none"/>
+ </dlg:styles>
+ <dlg:bulletinboard>
+  <dlg:text dlg:style-id="0" dlg:id="label_title" dlg:tab-index="1" dlg:left="31" dlg:top="10" dlg:width="220" dlg:height="17" dlg:help-text="&amp;40.AddonsDialog.label_title.HelpText" dlg:value="&amp;41.AddonsDialog.label_title.Label"/>
+  <dlg:img dlg:style-id="1" dlg:id="image_icon" dlg:tab-index="3" dlg:left="8" dlg:top="8" dlg:width="20" dlg:height="20" dlg:help-text="&amp;42.AddonsDialog.image_icon.HelpText"/>
+  <dlg:text dlg:id="label_description" dlg:tab-index="2" dlg:left="32" dlg:top="47" dlg:width="220" dlg:height="121" dlg:help-text="&amp;43.AddonsDialog.label_description.HelpText" dlg:value="&amp;44.AddonsDialog.label_description.Label"/>
+  <dlg:fixedline dlg:id="line_separator" dlg:tab-index="0" dlg:left="5" dlg:top="33" dlg:width="252" dlg:height="1" dlg:help-text="&amp;45.AddonsDialog.line_separator.HelpText" dlg:value="&amp;46.AddonsDialog.line_separator.Label"/>
+ </dlg:bulletinboard>
+</dlg:window>

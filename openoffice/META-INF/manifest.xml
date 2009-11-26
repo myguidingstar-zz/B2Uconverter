@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE manifest:manifest PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">
+<manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data" manifest:full-path="Addons.xcu"/>
+ <!-- <manifest:file-entry manifest:media-type="application/vnd.sun.star.framework-script" manifest:full-path="OvniConv"/> -->
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-component;type=Python" manifest:full-path="OvniConv.py"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-schema" manifest:full-path="OvniConv.xcs"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data" manifest:full-path="OptionsDialog.xcu"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-component;type=Python" manifest:full-path="DialogHandler.py"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.dialog-library" manifest:full-path="dialogs/"/>
+</manifest:manifest>
