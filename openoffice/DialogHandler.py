@@ -32,7 +32,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             self.ctx)
         node = uno.createUnoStruct("com.sun.star.beans.PropertyValue")
         node.Name = "nodepath"
-        node.Value = "/org.hanoilug.openoffice.OvniConv/General"
+        node.Value = "/vn.gov.most.openoffice.B2UConverter/General"
         self.node = node
         self.cfg_names = ("Debug", "KeepVietnameseFonts", \
                                 "RemoveDiacritics", "RemoveSoftHyphen")
@@ -55,7 +55,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         return False
 
     def getImplementationName(self):
-        return "org.hanoilug.openoffice.OvniConv.DialogHandler"
+        return "vn.gov.most.openoffice.B2UConverter.DialogHandler"
 
     def getSupportedServiceNames(self):
         return ()
@@ -128,5 +128,5 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
 # uno implementation
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation( \
-    DialogHandler, "org.hanoilug.openoffice.OvniConv.DialogHandler", \
-    ("org.hanoilug.openoffice.OvniConv.DialogHandler",),)
+    DialogHandler, "vn.gov.most.openoffice.B2UConverter.DialogHandler", \
+    ("vn.gov.most.openoffice.B2UConverter.DialogHandler",),)
