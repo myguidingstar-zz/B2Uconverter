@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-This is the UNO extension for OpenOffice.org from the OvniConv project.
-Copyright ©2008-2009  Jean Christophe André <progfou@andrele.org>
-License: GNU General Public License version 2 or later
+This is the UNO extension for OpenOffice.org from the B2UConverter project.
+Copyright ©2009  ICT Center - Ministry of Science and Technology of Vietnam
+License: GNU Lesser General Public License version 2.1
+Authors: Jean Christophe André, Lê Quốc Thái, Võ Đức Phương
 """
 
 import sys
@@ -30,9 +31,9 @@ def debug_log(str):
         return
     if str:
         _debug_log += str
-        # open('/tmp/ovniconv-ooo.debug','a').write(str.encode('utf-8'))
+        # open('/tmp/b2uconverter-ooo.debug','a').write(str.encode('utf-8'))
 
-def debug_save(filename='/tmp/ovniconv-ooo.debug'):
+def debug_save(filename='/tmp/b2uconverter-ooo.debug'):
     global _settings, _debug_log
     if not _settings["Debug"]:
         return
@@ -1565,7 +1566,7 @@ def processDocument(doc):
     # XXX: check if it really works
     #doc.RecordChanges = True
 
-class OvniConvOOoParser(object):
+class B2UConverterOOoParser(object):
     """OOo document parser."""
 
     def __init__(self):
@@ -1573,11 +1574,11 @@ class OvniConvOOoParser(object):
 
 ######################################################################
 
-def OvniConv(event=False):
+def B2UConverter(event=False):
     """Convert all document text segments from old Vietnamese encodings and fonts to Unicode encoding and fonts."""
     return processDocument(XSCRIPTCONTEXT.getDocument())
 
-g_exportedScripts = OvniConv,
+g_exportedScripts = B2UConverter,
 
 ######################################################################
 
@@ -1610,7 +1611,7 @@ def messageBox(document, message):
 
 from com.sun.star.task import XJobExecutor
 
-class OvniConvJob(unohelper.Base, XJobExecutor): 
+class B2UConverterJob(unohelper.Base, XJobExecutor): 
     def __init__(self, context):
         self._context = context
         self._cfgprov = self._context.ServiceManager.createInstanceWithContext(
@@ -1618,7 +1619,7 @@ class OvniConvJob(unohelper.Base, XJobExecutor):
             self._context)
         node = uno.createUnoStruct("com.sun.star.beans.PropertyValue")
         node.Name = "nodepath"
-        node.Value = "/org.hanoilug.openoffice.OvniConv/General"
+        node.Value = "/vn.gov.most.openoffice.B2UConverter/General"
         self._node = node
         self._cfgnames = ("Debug", "KeepVietnameseFonts", \
                                 "RemoveDiacritics", "RemoveSoftHyphen")
@@ -1653,5 +1654,5 @@ class OvniConvJob(unohelper.Base, XJobExecutor):
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation( \
-    OvniConvJob, "org.hanoilug.openoffice.OvniConv", \
+    B2UConverterJob, "vn.gov.most.openoffice.B2UConverter", \
     ("com.sun.star.task.Job",),)
