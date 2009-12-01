@@ -1652,6 +1652,40 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         finally:
             debug_save()
 
+    def convertClipboard(self, args):
+        #copy/paste from above
+        self.readconfig()
+        debug_reset()
+        desktop = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.frame.Desktop", self._context)
+        clipboard = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.datatransfer.clipboard.SystemClipboard",
+            self._context)
+        contents = clipboard.getContents()
+        debug_log(u"Contents:\n%s\n%s\n%s" % (
+            "-" * 78,
+            "* " + "\n* ".join(dir(contents)),
+            "=" * 78))
+        flavors = contents.getTransferDataFlavors()
+        debug_log(u"Flavors:\n%s\n%s\n%s" % (
+            "-" * 78,
+            "* " + "\n* ".join([flavor.MimeType for flavor in flavors]),
+            "=" * 78))
+        mimetype = \
+        'application/x-openoffice-embed-source-xml;windows_formatname="Star \
+         Embed Source (XML)"'
+        found_flavor = None
+        for flavor in contents.getTransferDataFlavors():
+            if flavor.MimeType == mimetype:
+                found_flavor = flavor
+                break
+        # No suitable flavor found, warn user that nothing has been converted
+        # if found_flavor == None:
+        data = contents.getTransferData(found_flavor)
+        open('/tmp/clipboarddata', 'w').write(data.value)
+        # Now we need to convert the data we have just received
+        # There should be a better way than open it in a new window :-/
+
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation( \
     B2UConverterJob, "vn.gov.most.openoffice.B2UConverter", \
