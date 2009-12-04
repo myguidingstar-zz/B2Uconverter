@@ -1610,6 +1610,8 @@ def messageBox(document, message):
 ######################################################################
 
 from com.sun.star.task import XJobExecutor
+from com.sun.star.beans import PropertyValue
+import tempfile
 
 class B2UConverterJob(unohelper.Base, XJobExecutor): 
     def __init__(self, context):
@@ -1679,12 +1681,31 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             if flavor.MimeType == mimetype:
                 found_flavor = flavor
                 break
+
         # No suitable flavor found, warn user that nothing has been converted
         # if found_flavor == None:
         data = contents.getTransferData(found_flavor)
-        open('/tmp/clipboarddata', 'w').write(data.value)
-        # Now we need to convert the data we have just received
-        # There should be a better way than open it in a new window :-/
+        #open('/tmp/clipboarddata', 'w').write(data.value)
+
+        # Okay, since OO.o APIs only accept an URL, we have to make a temp file
+        # in order to use it.
+        tempFile = tempfile.NamedTemporaryFile()
+        tempURL = unohelper.systemPathToFileUrl(tempFile.name)
+
+        # Open it hiddenly
+        hidden = PropertyValue()
+        hidden.name = "Hidden"
+        hidden.Value = "True"
+        document = desktop.loadComponentFromURL(tempFile, "_blank", 0,
+                (hidden,))
+
+        # Let process it, note that this doen't work yet as the font names
+        # don't get preserved -> no font information -> can't guess the
+        # encoding :(
+        processDocument(document)
+        document.store()
+
+        # Ok, now to put it back in the clipboard
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation( \
