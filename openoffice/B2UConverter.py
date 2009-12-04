@@ -7,6 +7,7 @@ Authors: Jean Christophe André, Lê Quốc Thái, Võ Đức Phương
 """
 
 import sys
+import logging
 import traceback
 
 _settings = {
@@ -14,36 +15,6 @@ _settings = {
   "RemoveDiacritics": False,
   "VNIHacks": False,
 }
-
-_debug_log = None
-
-def debug_reset():
-    global _settings, _debug_log
-    if not _settings["Debug"]:
-        return
-    _debug_log = u''
-
-def debug_log(str):
-    global _settings, _debug_log
-    if not _settings["Debug"]:
-        return
-    if str:
-        _debug_log += str
-        # open('/tmp/b2uconverter-ooo.debug','a').write(str.encode('utf-8'))
-
-def debug_save(filename='/tmp/b2uconverter-ooo.debug'):
-    global _settings, _debug_log
-    if not _settings["Debug"]:
-        return
-    logFile = open(filename, 'w')
-    if logFile:
-        logFile.write("Python version: %s\n" % sys.version)
-        logFile.write("*" * 72 + "\n")
-        if _debug_log:
-            logFile.write(_debug_log.encode('utf-8'))
-        else:
-            logFile.write('Nothing to log?!')
-        logFile.close()
 
 #############################################################################
 # PART 1 : codecs registration
@@ -761,7 +732,7 @@ def convertVietnameseString(str, real, upper=False):
     if not str: return u''
     result = u''
 
-    debug_log(u"convertString(" + str + ")\n")
+    logging.debug("convertString(%s)", str)
     # compensate for (supposedly) some VNI encoder's bug(s)
     if _settings["VNIHacks"] and real == 'internal_vni':
         # two consecutive 'Â', 'â', 'å', 'ï', 'ù', 'õ'
@@ -804,7 +775,7 @@ def convertVietnameseString(str, real, upper=False):
         # luckily there is no Vietnamese word with two consecutive 'ạ'
         while (result.find(u'\u1EA1\u1EA1') >= 0):
             result = result.replace(u'\u1EA1\u1EA1', u'\u1EA1')
-    debug_log(u"convertString -> " + result + "\n")
+    logging.debug("convertString -> %s", result)
     return result
 
 #####################################################################
@@ -819,7 +790,7 @@ def processTextPortion(text):
     old = text.getString()
     new = None
     properties = {}
-    debug_log(u"DEBUG: processing text portion [" + old + "]\n")
+    logging.debug("processing text portion [%s]", old)
     fontName = text.getPropertyValue("CharFontName")
     # XXX: sometime fontName==None ?!? see test file from IFI
     # XXX: manage situation where the fontname has got wrong letter case
@@ -828,16 +799,12 @@ def processTextPortion(text):
     if fontName.startswith('.Vn'):
         upper = fontName.endswith('H')
         new = convertVietnameseString(old, 'internal_vntime_tcvn', upper=upper)
-        global _settings
-        if _settings["KeepVietnameseFonts"]:
-            properties["CharFontName"] = '.U' + fontName[1:]
+        if fontName.startswith('.VnCourier New'):
+            properties["CharFontName"] = "Courier New"
+        elif fontName.startswith('.VnArial'):
+            properties["CharFontName"] = "Arial"
         else:
-            if fontName.startswith('.VnCourier New'):
-                properties["CharFontName"] = "Courier New"
-            elif fontName.startswith('.VnArial'):
-                properties["CharFontName"] = "Arial"
-            else:
-                properties["CharFontName"] = "Times New Roman"
+            properties["CharFontName"] = "Times New Roman"
         # FIXME: could it be some English text in Vietnamese font?
         properties["CharLocale"] = Locale('vi', 'VN', '')
     elif fontName.startswith('VNI'):
@@ -864,11 +831,11 @@ def processTextPortion(text):
         text.setPropertyValue(k, v)
 
 def processTextParagraph(paragraph):
-    #debug_log(u"dir(paragraph) = ( %s )\n" % ' '.join(dir(paragraph)))
-    #debug_log(u"  services: %s\n" % ', '.join(paragraph.getSupportedServiceNames()))
-    #debug_log(u"  hasElements: %s\n" % paragraph.hasElements())
+    #logging.debug("dir(paragraph) = ( %s )", ' '.join(dir(paragraph)))
+    #logging.debug("  services: %s", ', '.join(paragraph.getSupportedServiceNames()))
+    #logging.debug("  hasElements: %s", paragraph.hasElements())
     enum = paragraph.createEnumeration()
-    #debug_log(u"dir(enum) = ( %s )\n" % ' '.join(dir(enum)))
+    #logging.debug("dir(enum) = ( %s )", ' '.join(dir(enum)))
     # reverse process all portions, since text boundaries
     # get altered when using setString with a longer string
     portions = []
@@ -876,16 +843,17 @@ def processTextParagraph(paragraph):
         portions.append(enum.nextElement())
     for textPortion in reversed(portions):
         type = textPortion.getPropertyValue("TextPortionType")
-        debug_log(u"DEBUG: processing text paragraph element (type " + type + ") [" + textPortion.getString() + "]\n")
+        logging.debug("processing text paragraph element (type %s) [%s]",
+                                            type, textPortion.getString())
         if type == 'Text':
             processTextPortion(textPortion)
         elif type == 'SoftPageBreak':
             pass
         elif type == 'Frame':
-            # debug_log(u"DEBUG: found a Frame (ignored, parsed later)\n")
+            # logging.debug("found a Frame (ignored, parsed later)")
             pass
         else:
-            debug_log(u"WARNING: unknown text portion type '" + type + "'\n")
+            logging.warning("unknown text portion type '%s'", type)
 
 def processTextTable(table):
     for name in table.getCellNames():
@@ -897,11 +865,11 @@ def processText(text):
     while (enum.hasMoreElements()):
         paragraph = enum.nextElement()
         if paragraph.supportsService("com.sun.star.text.TextTable"):
-            debug_log(u"DEBUG: processing text element (table)\n")
+            logging.debug("processing text element (table)")
             # this is a table "paragraph"
             processTextTable(paragraph)
         else:
-            debug_log(u"DEBUG: processing text element [" + paragraph.getString() + "]\n")
+            logging.debug("processing text element [%s]", paragraph.getString())
             # this is a text paragraph
             processTextParagraph(paragraph)
 
@@ -927,11 +895,11 @@ def processShape(shape):
     elif type == "com.sun.star.presentation.OutlinerShape":
         processText(shape)
     else:
-        debug_log(u"WARNING: unknown shape type '" + type \
-                + "' for object named '" + shape.Name + "'\n")
+        logging.warning("unknown shape type '%s' for object named '%s'",
+                                                        type, shape.Name)
 
 def processPageStyle(pageStyle):
-    debug_log(u"DEBUG: processing page style '" + pageStyle.Name + "'\n")
+    logging.debug("processing page style '%s'", pageStyle.Name)
     if pageStyle.HeaderIsOn:
         if pageStyle.HeaderText:
             processText(pageStyle.HeaderText)
@@ -965,22 +933,22 @@ def processTextDocument(doc):
     footnotes = doc.getFootnotes()
     for index in range(footnotes.getCount()):
         footnote = footnotes.getByIndex(index)
-        debug_log(u"WARNING: found footnote '" + footnote.Name + "' (ignored)\n")
-        #debug_log(u"dir(footnote) : " + "|".join(dir(footnote)) + "\n\n")
+        logging.warning("found footnote '%s' (ignored)", footnote.Name)
+        #logging.debug("dir(footnote) : %s", "|".join(dir(footnote)))
         #processText(footnote)
     # convert text sections
     sections = doc.getTextSections()
-    #debug_log(u"dir(sections) : " + "|".join(dir(sections)) + "\n\n")
+    #logging.debug("dir(sections) : %s", "|".join(dir(sections)))
     for index in range(sections.getCount()):
         section = sections.getByIndex(index)
-        debug_log(u"WARNING: found section '" + section.Name + "' (ignored)\n")
-        #debug_log(u"dir(section) : " + "|".join(dir(section)) + "\n\n")
+        logging.warning("found section '%s' (ignored)", section.Name)
+        #logging.debug("dir(section) : %s", "|".join(dir(section)))
         #processText(section)
     # CONVERT PAGE STYLES (mainly for text header & footer)
     pageStyles = doc.getStyleFamilies().getByName("PageStyles")
     for index in range(pageStyles.getCount()):
         pageStyle = pageStyles.getByIndex(index)
-        debug_log(u"INFO: found page style '%s'\n" % pageStyle.Name)
+        logging.info("found page style '%s'", pageStyle.Name)
         if pageStyle.isInUse():
             processPageStyle(pageStyle)
 
@@ -991,12 +959,12 @@ def processSheet(sheet):
     rangeAddress = cursor.getRangeAddress()
     rows = rangeAddress.EndRow - rangeAddress.StartRow + 1
     columns = rangeAddress.EndColumn - rangeAddress.StartColumn + 1
-    debug_log(u"DEBUG: rows="+str(rows)+" & columns="+str(columns)+"\n")
+    logging.debug("rows=%s & columns=%s", str(rows), str(columns))
     for row in range(rows):
         for column in range(columns):
-            debug_log(u"DEBUG: cell("+str(column)+","+str(row)+")\n")
+            logging.debug("cell(%s,%s)", str(column), str(row))
             cell = cursor.getCellByPosition(column, row)
-            debug_log(u"DEBUG: dir(cell) = ( "+' '.join(dir(cell))+" )\n")
+            logging.debug("dir(cell) = ( %s )", ' '.join(dir(cell)))
             processText(cell.Text)
 
 def processSpreadsheetDocument(doc):
@@ -1017,7 +985,7 @@ def processDrawPresentationDocument(doc):
     for index in range(drawPages.getCount()):
         drawPage = drawPages.getByIndex(index)
         # convert page body
-        debug_log(u"INFO: converting draw page '" + drawPage.getName() + "'\n")
+        logging.info("converting draw page '%s'", drawPage.getName())
         for index in range(drawPage.getCount()):
             draw = drawPage.getByIndex(index)
             processShape(draw)
@@ -1032,19 +1000,19 @@ def processDocument(doc):
     #doc.RecordChanges = False
 
     if doc.supportsService("com.sun.star.text.GenericTextDocument"):
-        debug_log(u"INFO: this is a text document.\n")
+        logging.info("this is a text document")
         processTextDocument(doc)
     elif doc.supportsService("com.sun.star.sheet.SpreadsheetDocument"):
-        debug_log(u"INFO: this is a spreadsheet document.\n")
+        logging.info("this is a spreadsheet document")
         processSpreadsheetDocument(doc)
     elif doc.supportsService("com.sun.star.presentation.PresentationDocument"):
-        debug_log(u"INFO: this is a presentation document.\n")
+        logging.info("this is a presentation document")
         processDrawPresentationDocument(doc)
     elif doc.supportsService("com.sun.star.drawing.GenericDrawingDocument"):
-        debug_log(u"INFO: this is a drawing document.\n")
+        logging.info("this is a drawing document")
         processDrawPresentationDocument(doc)
     else:
-        debug_log(u"WARNING: unknown document type.\n")
+        logging.warning("unknown document type")
 
     # convert document title
     info = doc.getDocumentInfo()
@@ -1103,6 +1071,12 @@ from com.sun.star.task import XJobExecutor
 class B2UConverterJob(unohelper.Base, XJobExecutor): 
     def __init__(self, context):
         self._context = context
+
+        logging.basicConfig(level=logging.DEBUG,
+            format='%(asctime)s %(levelname)s %(message)s',
+            filename='/tmp/b2uconverter-ooo.log', filemode='w')
+        logging.info("B2UConverter loaded (Python %s)", sys.version)
+
         self._cfgprov = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.configuration.ConfigurationProvider",
             self._context)
@@ -1110,8 +1084,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         node.Name = "nodepath"
         node.Value = "/vn.gov.most.openoffice.B2UConverter/General"
         self._node = node
-        self._cfgnames = ("Debug", "KeepVietnameseFonts", \
-                                "RemoveDiacritics", "RemoveSoftHyphen")
+        self._cfgnames = ("Debug", "RemoveDiacritics")
 
     def readconfig(self):
         global _settings
@@ -1127,7 +1100,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
     def trigger(self, args):
         self.readconfig()
-        debug_reset()
+        logging.debug("B2UConverter triggered")
         desktop = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         document = desktop.getCurrentComponent()
@@ -1136,30 +1109,28 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             messageBox(document, "Unicode conversion completed.")
         except:
             err = traceback.format_exc()
-            debug_log(err)
+            logging.exception(err)
             messageBox(document, "Unicode conversion failed: " + err)
-        finally:
-            debug_save()
 
     def convertClipboard(self, args):
         #copy/paste from above
         self.readconfig()
-        debug_reset()
+        logging.debug("B2UConverter call to convertClipboard")
         desktop = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         clipboard = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.datatransfer.clipboard.SystemClipboard",
             self._context)
         contents = clipboard.getContents()
-        debug_log(u"Contents:\n%s\n%s\n%s" % (
+        logging.debug("Contents:\n%s\n%s\n%s",
             "-" * 78,
             "* " + "\n* ".join(dir(contents)),
-            "=" * 78))
+            "=" * 78)
         flavors = contents.getTransferDataFlavors()
-        debug_log(u"Flavors:\n%s\n%s\n%s" % (
+        logging.debug("Flavors:\n%s\n%s\n%s",
             "-" * 78,
             "* " + "\n* ".join([flavor.MimeType for flavor in flavors]),
-            "=" * 78))
+            "=" * 78)
         mimetype = \
         'application/x-openoffice-embed-source-xml;windows_formatname="Star \
          Embed Source (XML)"'
