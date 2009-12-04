@@ -1,14 +1,14 @@
 all: clean build remove install
 
 build:
-	rm -f OvniConv.oxt ; cd openoffice ; zip -9rpD ../OvniConv.oxt .
+	rm -f B2UConverter.oxt ; cd openoffice ; zip -9rpD ../B2UConverter.oxt .
 
 install:
-	unopkg add OvniConv.oxt
+	unopkg add B2UConverter.oxt
 
 remove:
-	unopkg remove org.hanoilug.openoffice.ovniconv
+	unopkg remove vn.gov.most.openoffice.b2uconverter
 
 clean:
-	rm -f OvniConv.oxt
+	rm -f B2UConverter.oxt
 

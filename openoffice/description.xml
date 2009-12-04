@@ -28,8 +28,8 @@
       Otherwise you may like to provide it manually.
  -->
  <publisher>
-  <name xlink:href="http://most.gov.vn/" lang="vi">Văn phòng công nghệ thông tin - Bộ Khoa học và Công nghệ Việt Nam</name>
-  <name xlink:href="http://www.most.gov.vn/index_html?set_language=en&cl=en" lang="en">ICT Center - Ministry of Science and Technology of Vietnam</name>
+  <name xlink:href="http://most.gov.vn/" lang="vi">Văn phòng CNTT - Bộ Khoa học và Công nghệ Việt Nam</name>
+  <name xlink:href="http://www.most.gov.vn/index_html?set_language=en&amp;cl=en" lang="en">ICT Center - Ministry of Science and Technology of Vietnam</name>
  </publisher>
 
  <display-name>
