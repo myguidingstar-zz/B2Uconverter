@@ -10,19 +10,11 @@
   <group oor:name="General">
    <info><desc>Data for general options.</desc></info>
    <prop oor:name="Debug" oor:type="xs:boolean" oor:localized="false">
-    <info><desc>When true then B2UConverter will save debug information (default: /tmp/b2uconverter.log).</desc></info>
-    <value>false</value>
-   </prop>
-   <prop oor:name="KeepVietnameseFonts" oor:type="xs:boolean" oor:localized="false">
-    <info><desc>When true then B2UConverter will change Vietnamese font names to the Unicode corresponding font (eg: .VnTime becomes .UVnTime).</desc></info>
+    <info><desc>When true then B2UConverter will save debug information.</desc></info>
     <value>false</value>
    </prop>
    <prop oor:name="RemoveDiacritics" oor:type="xs:boolean" oor:localized="false">
     <info><desc>When true then B2UConverter will remove all diacritics (tone marks and accents).</desc></info>
-    <value>false</value>
-   </prop>
-   <prop oor:name="RemoveSoftHyphen" oor:type="xs:boolean" oor:localized="false">
-    <info><desc>When true then B2UConverter will remove any soft-hyphen characters found during the conversion.</desc></info>
     <value>false</value>
    </prop>
   </group>

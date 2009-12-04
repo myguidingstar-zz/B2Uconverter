@@ -1,27 +1,17 @@
-#!
 # -*- coding: utf_8 -*-
+"""
+This is the UNO extension for OpenOffice.org from the B2UConverter project.
+Copyright ©2009  ICT Center - Ministry of Science and Technology of Vietnam
+License: GNU Lesser General Public License version 2.1
+Authors: Jean Christophe André, Lê Quốc Thái, Võ Đức Phương
+"""
+
 import uno
 import unohelper
 
 # interfaces
 from com.sun.star.lang import XServiceInfo
 from com.sun.star.awt import XContainerWindowEventHandler
-# listeners
-#from com.sun.star.awt import XActionListener
-
-# action listener
-#class MyActionListener(unohelper.Base, XActionListener):
-#    def __init__(self, cast, dialog):
-#        self.cast = cast
-#        self.dialog = dialog
-#    def disposing(self, eventObject):
-#        pass
-#    def actionPerformed(self, actionEvent):
-#        cmd = str(actionEvent.ActionCommand)
-#        if cmd == "clic":
-#            self.dialog.getControl("RemoveSoftHyphen").State =
-#                (1 - self.dialog.getControl("RemoveSoftHyphen").State)
-#        return
 
 # main class
 class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
@@ -34,8 +24,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         node.Name = "nodepath"
         node.Value = "/vn.gov.most.openoffice.B2UConverter/General"
         self.node = node
-        self.cfg_names = ("Debug", "KeepVietnameseFonts", \
-                                "RemoveDiacritics", "RemoveSoftHyphen")
+        self.cfg_names = ("Debug", "RemoveDiacritics")
         return
 
     # XContainerWindowEventHandler
@@ -77,14 +66,8 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         settings = self.configreader()
         if not settings:
             return
-        for name in ("Debug", "KeepVietnameseFonts", \
-                                "RemoveDiacritics", "RemoveSoftHyphen"):
+        for name in ("Debug", "RemoveDiacritics"):
             window.getControl(name).setState(int(settings[name]))
-#        if ev == "initialize":
-#            listener = MyActionListener(self, window)
-#            remove_soft_hyphen = window.getControl("RemoveSoftHyphen")
-#            remove_soft_hyphen.ActionCommand = "clic"
-#            remove_soft_hyphen.addActionListener(listener)
         return
 
     # making the save data
@@ -93,8 +76,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         if name != "GeneralDialog":
             return
         settings = []
-        for name in ("Debug", "KeepVietnameseFonts", \
-                                "RemoveDiacritics", "RemoveSoftHyphen"):
+        for name in ("Debug", "RemoveDiacritics"):
             settings.append(bool(window.getControl(name).State))
         self.configwriter(tuple(settings))
         return
