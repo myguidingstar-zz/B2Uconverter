@@ -824,7 +824,8 @@ def processTextPortion(text):
         try:
             new = convert(old, encoding, upper=upper)
         except:
-            new = old
+            new = None
+            properties = {}
             properties["CharBackColor"] = 0xFF0000
 
     # FIXME: using setString makes loose all properties!!!
