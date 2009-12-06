@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-This is the UNO extension for OpenOffice.org from the B2UConverter project.
+B2UConverter — UNO extension for OpenOffice.org
+
 Copyright ©2009  Ministry of Science and Technology of Vietnam
 License: GNU Lesser General Public License version 2.1
 Authors: Jean Christophe André, Lê Quốc Thái, Võ Đức Phương
