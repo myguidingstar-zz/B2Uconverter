@@ -7,7 +7,7 @@ install:
 	unopkg add B2UConverter.oxt
 
 remove:
-	unopkg remove vn.gov.most.openoffice.b2uconverter
+	unopkg remove vn.gov.oss.openoffice.b2uconverter
 
 clean:
 	rm -f B2UConverter.oxt

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 This is the UNO extension for OpenOffice.org from the B2UConverter project.
-Copyright ©2009  ICT Center - Ministry of Science and Technology of Vietnam
+Copyright ©2009  Ministry of Science and Technology of Vietnam
 License: GNU Lesser General Public License version 2.1
 Authors: Jean Christophe André, Lê Quốc Thái, Võ Đức Phương
 """
@@ -1082,7 +1082,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             self._context)
         node = uno.createUnoStruct("com.sun.star.beans.PropertyValue")
         node.Name = "nodepath"
-        node.Value = "/vn.gov.most.openoffice.B2UConverter/General"
+        node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
         self._node = node
         self._cfgnames = ("Debug", "RemoveDiacritics")
 
@@ -1156,5 +1156,5 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation( \
-    B2UConverterJob, "vn.gov.most.openoffice.B2UConverterJob", \
+    B2UConverterJob, "vn.gov.oss.openoffice.B2UConverterJob", \
     ("com.sun.star.task.Job",),)
