@@ -15,6 +15,7 @@ _settings = {
   "RemoveDiacritics": False,
   "VNIHacks": False,
 }
+_error_count = 0
 
 #############################################################################
 # PART 1 : codecs registration
@@ -824,6 +825,8 @@ def processTextPortion(text):
         try:
             new = convert(old, encoding, upper=upper)
         except:
+            global _error_count
+            _error_count += 1
             new = None
             properties = {}
             properties["CharBackColor"] = 0xFF0000
@@ -1117,9 +1120,17 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 "com.sun.star.frame.Desktop", self._context)
             self._document = desktop.getCurrentComponent()
         try:
+            global _error_count
+            _error_count = 0
             self._readconfig()
             processDocument(self._document)
-            logging.info("Conversion completed.")
+            if _error_count > 1:
+                self._error_msg = "with %s errors" % _error_count
+            elif _error_count > 0:
+                self._error_msg = "with %s error" % _error_count
+            else:
+                self._error_msg = "without error"
+            logging.info("Conversion completed (%s).", self._error_msg)
         except:
             logging.exception("Exception during conversion:")
             raise
@@ -1191,7 +1202,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 self.convertSelection()
             else:
                 raise ValueError, "Invalid trigger call (programming error)."
-            messageBox(self._document, "Unicode conversion completed.")
+            messageBox(self._document, "Unicode conversion completed (%s)." \
+                                                          % self._error_msg)
         except:
             err = traceback.format_exc()
             messageBox(self._document, "Unicode conversion failed:\n" + err)
