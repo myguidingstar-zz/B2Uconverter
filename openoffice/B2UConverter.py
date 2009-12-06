@@ -1109,12 +1109,12 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         try:
             self._readconfig()
             processDocument(self._document)
-            logging.info("Unicode conversion completed.")
+            logging.info("Conversion completed.")
         except:
             logging.exception("Exception during conversion:")
             raise
 
-    def convertClipboard(self, args):
+    def convertClipboard(self):
         #copy/paste from above
         self._readconfig()
         logging.debug("call to convertClipboard")
@@ -1167,16 +1167,24 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
         # Ok, now to put it back in the clipboard
 
+    def convertSelection(self):
+        self.convertClipboard()
+
     def trigger(self, args):
         logging.debug("Trigger arguments: %s", args)
         try:
-            self.convertDocument()
-            if args == 'frommenu':
-                messageBox(self._document, "Unicode conversion completed.")
+            if args == 'document':
+                self.convertDocument()
+            elif args == 'clipboard':
+                self.convertClipboard()
+            elif args == 'selection':
+                self.convertSelection()
+            else:
+                raise ValueError, "Invalid trigger call (programming error)."
+            messageBox(self._document, "Unicode conversion completed.")
         except:
-            if args == 'frommenu':
-                err = traceback.format_exc()
-                messageBox(self._document, "Unicode conversion failed:\n" + err)
+            err = traceback.format_exc()
+            messageBox(self._document, "Unicode conversion failed:\n" + err)
 
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
