@@ -1031,11 +1031,11 @@ class B2UConverterOOoParser(object):
 
 ######################################################################
 
-def B2UConverter(event=False):
+def B2UConverterScript(event=False):
     """Convert all document text segments from old Vietnamese encodings and fonts to Unicode encoding and fonts."""
     return processDocument(XSCRIPTCONTEXT.getDocument())
 
-g_exportedScripts = B2UConverter,
+g_exportedScripts = B2UConverterScript,
 
 ######################################################################
 
@@ -1068,7 +1068,7 @@ def messageBox(document, message):
 
 from com.sun.star.task import XJobExecutor
 
-class B2UConverterJob(unohelper.Base, XJobExecutor): 
+class B2UConverterJob(unohelper.Base, XJobExecutor):
     def __init__(self, context):
         self._context = context
 
@@ -1086,36 +1086,32 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         self._node = node
         self._cfgnames = ("Debug", "RemoveDiacritics")
 
-    def readconfig(self):
+    def _readconfig(self):
         global _settings
-        try:
-            ConfigReader = self._cfgprov.createInstanceWithArguments(
-                "com.sun.star.configuration.ConfigurationAccess",
-                (self._node,))
-            cfgvalues = ConfigReader.getPropertyValues(self._cfgnames)
-            for i in range(len(self._cfgnames)):
-                _settings[self._cfgnames[i]] = cfgvalues[i]
-        except:
-            raise
+        ConfigReader = self._cfgprov.createInstanceWithArguments(
+            "com.sun.star.configuration.ConfigurationAccess",
+            (self._node,))
+        cfgvalues = ConfigReader.getPropertyValues(self._cfgnames)
+        for i in range(len(self._cfgnames)):
+            _settings[self._cfgnames[i]] = cfgvalues[i]
 
-    def trigger(self, args):
-        self.readconfig()
-        logging.debug("B2UConverter triggered")
+    def convertDocument(self):
+        self._readconfig()
+        logging.debug("call to convertDocument")
         desktop = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
-        document = desktop.getCurrentComponent()
+        self._document = desktop.getCurrentComponent()
         try:
-            processDocument(document)
-            messageBox(document, "Unicode conversion completed.")
+            processDocument(self._document)
+            logging.info("Unicode conversion completed.")
         except:
             logging.exception("Exception during conversion:")
-            err = traceback.format_exc()
-            messageBox(document, "Unicode conversion failed:\n" + err)
+            raise
 
     def convertClipboard(self, args):
         #copy/paste from above
-        self.readconfig()
-        logging.debug("B2UConverter call to convertClipboard")
+        self._readconfig()
+        logging.debug("call to convertClipboard")
         desktop = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         clipboard = self._context.ServiceManager.createInstanceWithContext(
@@ -1146,7 +1142,19 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         # Now we need to convert the data we have just received
         # There should be a better way than open it in a new window :-/
 
+    def trigger(self, args):
+        logging.debug("Trigger arguments: %s", args)
+        try:
+            self.convertDocument()
+            if args == 'frommenu':
+                messageBox(self._document, "Unicode conversion completed.")
+        except:
+            if args == 'frommenu':
+                err = traceback.format_exc()
+                messageBox(self._document, "Unicode conversion failed:\n" + err)
+
+
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation( \
-    B2UConverterJob, "vn.gov.most.openoffice.B2UConverter", \
+    B2UConverterJob, "vn.gov.most.openoffice.B2UConverterJob", \
     ("com.sun.star.task.Job",),)

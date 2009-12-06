@@ -4,7 +4,7 @@
   <node oor:name="AddonMenu">
    <node oor:name="vn.gov.most.openoffice.b2uconverter" oor:op="replace">
     <prop oor:name="URL" oor:type="xs:string">
-     <value>service:vn.gov.most.openoffice.B2UConverter?execute</value>
+     <value>service:vn.gov.most.openoffice.B2UConverterJob?frommenu</value>
     </prop>
     <prop oor:name="Context" oor:type="xs:string">
      <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
