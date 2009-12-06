@@ -771,10 +771,7 @@ def convertVietnameseString(str, real, upper=False):
         # luckily there is no Vietnamese word with two consecutive 'ư'
         while (result.find(u'\u01B0\u01B0') >= 0):
             result = result.replace(u'\u01B0\u01B0', u'\u01B0')
-    elif real == 'internal_vntime_vnlabs':
-        # luckily there is no Vietnamese word with two consecutive 'ạ'
-        while (result.find(u'\u1EA1\u1EA1') >= 0):
-            result = result.replace(u'\u1EA1\u1EA1', u'\u1EA1')
+
     logging.debug("convertString -> %s", result)
     return result
 
@@ -789,34 +786,46 @@ from com.sun.star.lang import Locale
 def processTextPortion(text):
     old = text.getString()
     new = None
+    upper = False
+    convert = None
+    encoding = None
     properties = {}
-    logging.debug("processing text portion [%s]", old)
     fontName = text.getPropertyValue("CharFontName")
+    logging.debug("processing text portion [%s] with font [%s]", old, fontName)
     # XXX: sometime fontName==None ?!? see test file from IFI
     # XXX: manage situation where the fontname has got wrong letter case
     #      (eg: .vntime for .VnTime)
     if not fontName: return # XXX wrong wrong wrong
+
     if fontName.startswith('.Vn'):
         upper = fontName.endswith('H')
-        new = convertVietnameseString(old, 'internal_vntime_tcvn', upper=upper)
+        convert = convertVietnameseString
+        encoding = 'internal_vntime_tcvn'
         if fontName.startswith('.VnCourier New'):
             properties["CharFontName"] = "Courier New"
         elif fontName.startswith('.VnArial'):
             properties["CharFontName"] = "Arial"
         else:
             properties["CharFontName"] = "Times New Roman"
-        # FIXME: could it be some English text in Vietnamese font?
         properties["CharLocale"] = Locale('vi', 'VN', '')
     elif fontName.startswith('VNI'):
-        new = convertVietnameseString(old, 'internal_vni')
+        upper = False
+        convert = convertVietnameseString
+        encoding = 'internal_vni'
         if fontName == 'VNI-Couri':
             properties["CharFontName"] = "Courier New"
         elif fontName == 'VNI-Arial':
             properties["CharFontName"] = "Arial"
         else:
             properties["CharFontName"] = "Times New Roman"
-        # FIXME: could it be some English text in Vietnamese font?
         properties["CharLocale"] = Locale('vi', 'VN', '')
+
+    if convert is not None:
+        try:
+            new = convert(old, encoding, upper=upper)
+        except:
+            new = old
+            properties["CharBackColor"] = 0xFF0000
 
     # FIXME: using setString makes loose all properties!!!
     # FIXME: may be use text.getPropertyValues() & text.setPropertyValues ??
