@@ -1097,13 +1097,17 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         for i in range(len(self._cfgnames)):
             _settings[self._cfgnames[i]] = cfgvalues[i]
 
-    def convertDocument(self):
-        self._readconfig()
-        logging.debug("call to convertDocument")
-        desktop = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.frame.Desktop", self._context)
-        self._document = desktop.getCurrentComponent()
+    def convertDocument(self, document=None):
+        logging.debug("call to convertDocument (%s document)" \
+                                % (document and "with" or "without"))
+        if document:
+            self._document = document
+        else:
+            desktop = self._context.ServiceManager.createInstanceWithContext(
+                "com.sun.star.frame.Desktop", self._context)
+            self._document = desktop.getCurrentComponent()
         try:
+            self._readconfig()
             processDocument(self._document)
             logging.info("Unicode conversion completed.")
         except:
