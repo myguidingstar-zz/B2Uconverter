@@ -1108,9 +1108,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             processDocument(document)
             messageBox(document, "Unicode conversion completed.")
         except:
+            logging.exception("Exception during conversion:")
             err = traceback.format_exc()
-            logging.exception(err)
-            messageBox(document, "Unicode conversion failed: " + err)
+            messageBox(document, "Unicode conversion failed:\n" + err)
 
     def convertClipboard(self, args):
         #copy/paste from above
