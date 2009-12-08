@@ -4,7 +4,9 @@ B2UConverter — UNO extension for OpenOffice.org
 
 Copyright ©2009  Ministry of Science and Technology of Vietnam
 License: GNU Lesser General Public License version 2.1
-Authors: Jean Christophe André, Lê Quốc Thái, Võ Đức Phương
+Authors: Jean Christophe André <jcandre@hanoilug.org>
+         Lê Quốc Thái <lqthai@hanoilug.org>
+         Võ Đức Phương <vdphuong@hanoilug.org>
 """
 
 import sys
@@ -830,7 +832,10 @@ def processTextPortion(text):
             _error_count += 1
             new = None
             properties = {}
-            properties["CharBackColor"] = 0xFF0000
+            if hasattr(text, 'CharBackColor'):
+                properties["CharBackColor"] = 0xFF0000
+            elif hasattr(text, 'CharColor'):
+                properties["CharColor"] = 0xFF0000
 
     # FIXME: using setString makes loose all properties!!!
     # FIXME: may be use text.getPropertyValues() & text.setPropertyValues ??
