@@ -144,7 +144,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         hidden = PropertyValue()
         hidden.Name = "Hidden"
         hidden.Value = True
-        document = desktop.loadComponentFromURL(tempFile, "_blank", 0,
+        document = desktop.loadComponentFromURL(tempURL, "_blank", 0,
                 (hidden,))
 
         # Let process it, note that this doen't work yet as the font names
