@@ -17,6 +17,10 @@
     <info><desc>When true then B2UConverter will remove all diacritics (tone marks and accents).</desc></info>
     <value>false</value>
    </prop>
+   <prop oor:name="VNIHacks" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When true then B2UConverter will try all kind of hacks to decode corrupted data.</desc></info>
+    <value>false</value>
+   </prop>
   </group>
  </component>
 </oor:component-schema>

@@ -13,10 +13,3 @@ import sys
 import logging
 import traceback
 
-_settings = {
-  "Debug": False,
-  "RemoveDiacritics": False,
-  "VNIHacks": False,
-}
-_error_count = 0
-
