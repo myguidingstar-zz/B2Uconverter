@@ -142,8 +142,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
         # Open it hiddenly
         hidden = PropertyValue()
-        hidden.name = "Hidden"
-        hidden.Value = "True"
+        hidden.Name = "Hidden"
+        hidden.Value = True
         document = desktop.loadComponentFromURL(tempFile, "_blank", 0,
                 (hidden,))
 
@@ -154,6 +154,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         document.store()
 
         # Ok, now to put it back in the clipboard
+        # Can't get it to work yet 
+        clipboard.setContents(document)
 
     def convertSelection(self):
         self.convertClipboard()
