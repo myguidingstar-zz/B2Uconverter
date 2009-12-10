@@ -77,7 +77,17 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         for i in range(len(self._cfgnames)):
             _settings[self._cfgnames[i]] = cfgvalues[i]
 
+    def _error_message(self, error_count):
+        if error_count > 1:
+            message = "with %s errors" % error_count
+        elif _error_count > 0:
+            message = "with %s error" % error_count
+        else:
+            message = "without error"
+        return message
+
     def convertDocument(self, document=None):
+        global _error_count
         logging.debug("call to convertDocument (%s document)" \
                                 % (document and "with" or "without"))
         if document:
@@ -86,21 +96,11 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             desktop = self._context.ServiceManager.createInstanceWithContext(
                 "com.sun.star.frame.Desktop", self._context)
             self._document = desktop.getCurrentComponent()
-        try:
-            global _error_count
-            _error_count = 0
-            self._readconfig()
-            processDocument(self._document)
-            if _error_count > 1:
-                self._error_msg = "with %s errors" % _error_count
-            elif _error_count > 0:
-                self._error_msg = "with %s error" % _error_count
-            else:
-                self._error_msg = "without error"
-            logging.info("Conversion completed (%s).", self._error_msg)
-        except:
-            logging.exception("Exception during conversion:")
-            raise
+        self._readconfig()
+        _error_count = 0
+        processDocument(self._document)
+        logging.info("Conversion completed (%s).",
+                                        self._error_message(_error_count))
 
     def convertClipboard(self):
         #copy/paste from above
@@ -168,6 +168,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         self.convertClipboard()
 
     def trigger(self, args):
+        global _error_count
+        _error_count = 0
         logging.debug("Trigger arguments: %s", args)
         try:
             if args == 'document':
@@ -179,8 +181,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             else:
                 raise ValueError, "Invalid trigger call (programming error)."
             messageBox(self._document, "Unicode conversion completed (%s)." \
-                                                          % self._error_msg)
+                                        % self._error_message(_error_count))
         except:
+            logging.exception("Exception during conversion:")
             err = traceback.format_exc()
             messageBox(self._document, "Unicode conversion failed:\n" + err)
 
