@@ -154,8 +154,15 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         document.store()
 
         # Ok, now to put it back in the clipboard
-        # Can't get it to work yet 
-        clipboard.setContents(document)
+        dispatcher =
+        self._context.ServiceManager.createInstanceWithContext( \
+                "com.sun.star.frame.DispatchHelper",
+                self._context)
+        frame = document.getCurrentController().getFrame()
+        # Note that while hidden has nothing to do here, OO.o will throw a
+        # tantrum if it is not there :|
+        dispatcher.executeDispatch(frame, ".uno:SelectAll", "", 0, (hidden,))
+        dispatcher.executeDispatch(frame, ".uno:Copy", "", 0, (hidden,))
 
     def convertSelection(self):
         self.convertClipboard()
