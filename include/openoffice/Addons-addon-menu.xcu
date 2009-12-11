@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oor:node xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="Addons" oor:package="org.openoffice.Office">
+ <node oor:name="AddonUI">
+  <node oor:name="AddonMenu">
+     <node oor:name="vn.gov.oss.openoffice.b2uconverter.document" oor:op="replace">
+      <prop oor:name="URL" oor:type="xs:string">
+       <value>service:vn.gov.oss.openoffice.B2UConverterJob?document</value>
+      </prop>
+      <prop oor:name="Context" oor:type="xs:string">
+       <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
+      </prop>
+      <prop oor:name="Title" oor:type="xs:string">
+       <value xml:lang="en">Convert the document to ~Unicode</value>
+       <value xml:lang="vi">Chuyển đổi tài liệu sang ~Unicode</value>
+       <value xml:lang="fr">Convertir le document vers ~Unicode</value>
+      </prop>
+      <prop oor:name="Target" oor:type="xs:string">
+       <value>_self</value>
+      </prop>
+     </node>
+     <node oor:name="vn.gov.oss.openoffice.b2uconverter.clipboard" oor:op="replace">
+      <prop oor:name="URL" oor:type="xs:string">
+       <value>service:vn.gov.oss.openoffice.B2UConverterJob?clipboard</value>
+      </prop>
+      <prop oor:name="Context" oor:type="xs:string">
+       <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
+      </prop>
+      <prop oor:name="Title" oor:type="xs:string">
+       <value xml:lang="en">Convert the ~clipboard to Unicode</value>
+       <value xml:lang="vi">Chuyển đổi ~bảng nháp sang Unicode</value>
+       <value xml:lang="fr">Convertir le ~presse-papier vers Unicode</value>
+      </prop>
+      <prop oor:name="Target" oor:type="xs:string">
+       <value>_self</value>
+      </prop>
+   </node>
+  </node>
+ </node>
+</oor:node>

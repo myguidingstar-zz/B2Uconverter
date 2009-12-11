@@ -181,7 +181,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         os.close(tempFile)
 
     def convertSelection(self):
-        self.convertClipboard()
+        pass
 
     def trigger(self, args):
         logging.debug("Trigger arguments: %s", args)

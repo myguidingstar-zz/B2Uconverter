@@ -266,10 +266,17 @@ class OOoDocumentParser(object):
                 draw = drawPage.getByIndex(index)
                 self.processShape(draw)
             # FIXME: should process text in drawPage.getNotesPage() too
+
+            # FIXME: should detect if title has already been converted
+            #        (by testing if it's valid Vietnamese word? argl...)
             # convert page name
-            drawPage.setName(self.textConverter.convertString(
+            try:
+                drawPage.setName(self.textConverter.convertString(
                             drawPage.getName(),
                             self.textPortionConverter.mostUsedEncoding()))
+            except:
+                # XXX: don't fail on this, since it's not that important
+                pass
 
     def processDocument(self, doc):
         self._reset_stats()
@@ -295,8 +302,12 @@ class OOoDocumentParser(object):
         info = doc.getDocumentInfo()
         # FIXME: should detect if title has already been converted
         #        (by testing if it's valid Vietnamese word? argl...)
-        info.Title = self.textConverter.convertString(info.Title,
+        try:
+            info.Title = self.textConverter.convertString(info.Title,
                             self.textPortionConverter.mostUsedEncoding())
+        except:
+            # XXX: don't fail on this, since it's not that important
+            pass
 
         # XXX: check if it really works
         #doc.RecordChanges = True
