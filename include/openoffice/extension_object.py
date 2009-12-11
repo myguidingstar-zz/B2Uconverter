@@ -55,6 +55,7 @@ def messageBox(document, message):
 from com.sun.star.task import XJobExecutor
 from com.sun.star.beans import PropertyValue
 import tempfile
+import os
 
 class B2UConverterJob(unohelper.Base, XJobExecutor):
     def __init__(self, context):
@@ -141,13 +142,12 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         # No suitable flavor found, warn user that nothing has been converted
         # if found_flavor == None:
         data = contents.getTransferData(found_flavor)
-        #open('/tmp/clipboarddata', 'w').write(data.value)
 
         # Okay, since OO.o APIs only accept an URL, we have to make a temp file
         # in order to use it.
-        tempFile = tempfile.NamedTemporaryFile(delete=False)
-        tempFile.file.write(data.value)
-        tempURL = unohelper.systemPathToFileUrl(tempFile.name)
+        tempFile,path = tempfile.mkstemp()
+        os.write(tempFile, data.value)
+        tempURL = unohelper.systemPathToFileUrl(path)
 
         # Open it hiddenly
         hidden = PropertyValue()
@@ -167,7 +167,6 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         self.parser.setTextPortionConverter(oVnConverter)
         self.parser.processDocument(document)
         #document.store()
-        tempFile.unlink(tempFile.name)
 
         # Ok, now to put it back in the clipboard
         dispatcher = self._context.ServiceManager.createInstanceWithContext(
@@ -177,6 +176,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         # tantrum if it is not there :|
         dispatcher.executeDispatch(frame, ".uno:SelectAll", "", 0, (hidden,))
         dispatcher.executeDispatch(frame, ".uno:Copy", "", 0, (hidden,))
+
+        # Some clean ups
+        os.close(tempFile)
 
     def convertSelection(self):
         self.convertClipboard()
