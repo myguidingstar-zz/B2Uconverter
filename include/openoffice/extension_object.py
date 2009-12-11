@@ -131,10 +131,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         logging.debug("Clipboard flavors:\n%s",
                 "* " + "\n* ".join([flavor.MimeType for flavor in flavors]))
         mimetype = \
-        'application/x-openoffice-embed-source-xml;windows_formatname="Star \
-         Embed Source (XML)"'
+        'application/x-openoffice-embed-source-xml;windows_formatname="Star Embed Source (XML)"'
         found_flavor = None
-        for flavor in contents.getTransferDataFlavors():
+        for flavor in flavors:
             if flavor.MimeType == mimetype:
                 found_flavor = flavor
                 break
@@ -148,7 +147,6 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         # in order to use it.
         tempFile = tempfile.NamedTemporaryFile(delete=False)
         tempFile.file.write(data.value)
-        tempFile.file.close()
         tempURL = unohelper.systemPathToFileUrl(tempFile.name)
 
         # Open it hiddenly
