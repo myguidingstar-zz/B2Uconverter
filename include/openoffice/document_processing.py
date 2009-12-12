@@ -15,8 +15,9 @@ from com.sun.star.lang import Locale
 
 class OOoVietnameseTextConverter(object):
 
-    def __init__(self, textConverter):
+    def __init__(self, textConverter, removeDiacritics=False):
         self.textConverter = textConverter
+        self.removeDiacriticsFlag = removeDiacritics
         self.stats = { 'vntime_tcvn': 0, 'vni': 0 }
 
     def convertTextPortion(self, text):
@@ -52,6 +53,13 @@ class OOoVietnameseTextConverter(object):
             else:
                 properties["CharFontName"] = "Times New Roman"
             properties["CharLocale"] = Locale('vi', 'VN', '')
+
+        # remove diacritics as requested...
+        if self.removeDiacriticsFlag:
+            if new and new != old:
+                new = self.textConverter.removeDiacritics(new)
+            else:
+                new = self.textConverter.removeDiacritics(old)
 
         # FIXME: using setString makes loose all properties!!!
         # FIXME: may be use text.getPropertyValues() & text.setPropertyValues ??

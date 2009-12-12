@@ -31,10 +31,8 @@ class VietnameseTextConverter(object):
         u'uUuUuUuUuUuUuUuUuUuUyYyYyYyYyY'
     )
 
-    def __init__(self, decoderPrefix=None,
-                                removeDiacritics=False, vniHacks=False):
+    def __init__(self, decoderPrefix=None, vniHacks=False):
         self.decoderPrefix = decoderPrefix and decoderPrefix or ''
-        self.removeDiacriticsFlag = removeDiacritics
         self.vniHacksFlag = vniHacks
 
     def removeDiacritics(self, str):
@@ -74,8 +72,6 @@ class VietnameseTextConverter(object):
             j = i
             while (j < len(str) and str[j] in cp1252_decoding_table): j += 1
             segment = str[i:j].encode('cp1252').decode(prefixed_real)
-            if self.removeDiacriticsFlag:
-                segment = self.removeDiacritics(segment)
             if upper: segment = segment.upper()
             result += segment
             # find Unicode content and keep it

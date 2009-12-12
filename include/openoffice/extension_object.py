@@ -16,9 +16,11 @@ def B2UConverterScript(event=False):
     parser = OOoDocumentParser()
     vnConverter = VietnameseTextConverter(
         decoderPrefix='internal_',
-        removeDiacritics=self._settings['RemoveDiacritics'],
         vniHacks=self._settings['VNIHacks'])
-    parser.setTextPortionConverter(OOoVietnameseTextConverter(vnConverter))
+    oVnConverter = OOoVietnameseTextConverter(
+        vnConverter,
+        removeDiacritics=self._settings['RemoveDiacritics'])
+    parser.setTextPortionConverter(oVnConverter)
     return parser.processDocument(XSCRIPTCONTEXT.getDocument())
 
 g_exportedScripts = B2UConverterScript,
@@ -110,9 +112,10 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         self._readconfig()
         vnConverter = VietnameseTextConverter(
             decoderPrefix='internal_',
-            removeDiacritics=self._settings['RemoveDiacritics'],
             vniHacks=self._settings['VNIHacks'])
-        oVnConverter = OOoVietnameseTextConverter(vnConverter)
+        oVnConverter = OOoVietnameseTextConverter(
+            vnConverter,
+            removeDiacritics=self._settings['RemoveDiacritics'])
         self.parser.setTextPortionConverter(oVnConverter)
         self.parser.processDocument(self._document)
         logging.info("Conversion completed (%s).",
@@ -161,9 +164,10 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         # encoding :(
         vnConverter = VietnameseTextConverter(
             decoderPrefix='internal_',
-            removeDiacritics=self._settings['RemoveDiacritics'],
             vniHacks=self._settings['VNIHacks'])
-        oVnConverter = OOoVietnameseTextConverter(vnConverter)
+        oVnConverter = OOoVietnameseTextConverter(
+            vnConverter,
+            removeDiacritics=self._settings['RemoveDiacritics'])
         self.parser.setTextPortionConverter(oVnConverter)
         self.parser.processDocument(document)
         #document.store()
