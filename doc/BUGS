@@ -1,0 +1,19 @@
+KNOWN BUGS:
+
+
+* Problem: The document is not always fully converted at first pass.
+
+  Explanation: This is because of the current way of processing text
+  portions to reduce format loss. A new way is currently investigated.
+
+  Solution: run the conversion twice, it's usually enough.
+
+
+* Problem: Sometime the clipboard content doesn't get converted.
+
+  Explanation: We found out that OpenOffice.org doesn't always keep
+  the font information when doing a copy-to-clipboard operation.
+
+  Solution: paste the content in a new document, set the correct font
+  and then run a document convertion.
+
