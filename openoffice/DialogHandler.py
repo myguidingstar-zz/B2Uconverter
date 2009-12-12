@@ -16,6 +16,8 @@ import unohelper
 from com.sun.star.lang import XServiceInfo
 from com.sun.star.awt import XContainerWindowEventHandler
 
+_uninitialized = True
+
 # main class
 class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
     def __init__(self, ctx):
@@ -92,10 +94,17 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
                 "com.sun.star.configuration.ConfigurationAccess",
                 (self.node,))
             cfg_values = ConfigReader.getPropertyValues(self.cfg_names)
-            for i in range(len(self.cfg_names)):
-                settings[self.cfg_names[i]] = cfg_values[i]
         except:
+            print "DEBUG: configreader exception"
             raise
+        for i in range(len(self.cfg_names)):
+            settings[self.cfg_names[i]] = cfg_values[i]
+        # special case for RemoveDiacritics: always False at start
+        global _uninitialized
+        if _uninitialized:
+            _uninitialized = False
+            settings['RemoveDiacritics'] = False
+            self.configwriter(tuple(settings.values()))
         return settings
 
     # write configuration, cfg_values: tuple
@@ -108,6 +117,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             ConfigWriter.setPropertyValues(self.cfg_names, cfg_values)
             ConfigWriter.commitChanges()
         except:
+            print "DEBUG: configwriter exception"
             raise
 
 # uno implementation

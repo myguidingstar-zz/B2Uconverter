@@ -11,7 +11,7 @@
    <info><desc>Data for general options.</desc></info>
    <prop oor:name="Debug" oor:type="xs:boolean" oor:localized="false">
     <info><desc>When true then B2UConverter will save debug information.</desc></info>
-    <value>false</value>
+    <value>true</value>
    </prop>
    <prop oor:name="RemoveDiacritics" oor:type="xs:boolean" oor:localized="false">
     <info><desc>When true then B2UConverter will remove all diacritics (tone marks and accents).</desc></info>
