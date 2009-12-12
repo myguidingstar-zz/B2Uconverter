@@ -5,8 +5,8 @@
   <dlg:titledbox dlg:id="FrameControl1" dlg:tab-index="0" dlg:left="10" dlg:top="10" dlg:width="240" dlg:height="130" dlg:help-text="&amp;2.GeneralDialog.FrameControl1.HelpText">
    <dlg:title dlg:value="&amp;3.GeneralDialog.FrameControl1.Label"/>
   </dlg:titledbox>
-  <dlg:checkbox dlg:id="RemoveDiacritics" dlg:tab-index="2" dlg:left="15" dlg:top="15" dlg:width="145" dlg:height="12" dlg:help-text="&amp;22.GeneralDialog.RemoveDiacritics.HelpText" dlg:value="&amp;23.GeneralDialog.RemoveDiacritics.Label" dlg:checked="false"/>
-  <dlg:checkbox dlg:id="VNIHacks" dlg:tab-index="3" dlg:left="15" dlg:top="35" dlg:width="145" dlg:height="12" dlg:help-text="&amp;24.GeneralDialog.VNIHacks.HelpText" dlg:value="&amp;25.GeneralDialog.VNIHacks.Label" dlg:checked="false"/>
+  <dlg:checkbox dlg:id="RemoveDiacritics" dlg:tab-index="2" dlg:left="16" dlg:top="24" dlg:width="145" dlg:height="12" dlg:help-text="&amp;22.GeneralDialog.RemoveDiacritics.HelpText" dlg:value="&amp;23.GeneralDialog.RemoveDiacritics.Label" dlg:checked="false"/>
+  <dlg:checkbox dlg:id="VNIHacks" dlg:tab-index="3" dlg:left="16" dlg:top="40" dlg:width="145" dlg:height="12" dlg:help-text="&amp;24.GeneralDialog.VNIHacks.HelpText" dlg:value="&amp;25.GeneralDialog.VNIHacks.Label" dlg:checked="false"/>
   <dlg:checkbox dlg:id="Debug" dlg:tab-index="5" dlg:left="10" dlg:top="165" dlg:width="145" dlg:height="12" dlg:help-text="&amp;20.GeneralDialog.Debug.HelpText" dlg:value="&amp;21.GeneralDialog.Debug.Label" dlg:checked="false"/>
  </dlg:bulletinboard>
 </dlg:window>

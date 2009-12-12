@@ -3,9 +3,9 @@
 <node oor:name="Nodes">
  <node oor:name="vn.gov.oss.openoffice.Addons" oor:op="fuse">
   <prop oor:name="Label">
-   <value xml:lang="vi-VN">Bộ công cụ bổ trợ của Bộ KH&amp;CN</value>
    <value xml:lang="en-US">MoST's Add-ons</value>
-   <value xml:lang="en-US">Extensions du MST</value>
+   <value xml:lang="vi-VN">Bộ công cụ bổ trợ của Bộ KH&amp;CN</value>
+   <value xml:lang="fr-FR">Extensions du MST</value>
   </prop>
   <prop oor:name="OptionsPage">
    <value>%origin%/dialogs/AddonsNode/AddonsDialog.xdl</value>
