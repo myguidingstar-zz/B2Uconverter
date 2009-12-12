@@ -1,0 +1,14 @@
+This is the B2UConverter project, an UNO extension for OpenOffice.org,
+for converting documents from old encodings to Unicode.
+
+Copyright ©2009  Ministry of Science and Technology of Vietnam
+License: GNU Lesser General Public License version 2.1
+Authors: Jean Christophe André <jcandre@hanoilug.org>
+         Lê Quốc Thái <lqthai@hanoilug.org>
+         Võ Đức Phương <vdphuong@hanoilug.org>
+
+To install the extension, just run 'make' in the current directory.
+
+If you just want to build the extension, eg to deploy it later,
+then run 'make build'. It will create the extension as a file named
+'B2UConverter.oxt' which you can install with the help of 'unopkg'.

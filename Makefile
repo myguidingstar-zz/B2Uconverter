@@ -3,8 +3,8 @@ MENU_TYPE=top-menu
 
 all: uninstall install
 
-openoffice/B2UConverter.py: build-B2UConverter.py $(shell find include -type f)
-	python build-B2UConverter.py
+openoffice/B2UConverter.py: scripts/build-B2UConverter.py $(shell find include -type f)
+	python scripts/build-B2UConverter.py
 
 openoffice/Addons.xcu: include/openoffice/Addons-$(MENU_TYPE).xcu
 	cp -af include/openoffice/Addons-$(MENU_TYPE).xcu openoffice/Addons.xcu
