@@ -113,15 +113,15 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
     save & close converted document
     """
     def traverse(self, docFolder):
-        logging.debug("Converting folder: " + docFolder)
+        #logging.debug("Converting folder: " + docFolder)
+        desktop = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.frame.Desktop", self._context)
         def convertAll(junk, dirPath, nameList):
             #FIXME apply a file pattern to nameList to filter supported document formats
             for name in nameList:
                 absPath =  os.path.join(dirPath, name)
                 if os.path.isfile(absPath):
-                    logging.debug("Converting folder: " + absPath)
-                    desktop = self._context.ServiceManager.createInstanceWithContext(
-                        "com.sun.star.frame.Desktop", self._context)
+                    #logging.debug("Converting folder: " + absPath)
                     arguments = PropertyValue()
                     #FIXME Shall an opened document be hidden?
                     arguments.Name = "Hidden"
