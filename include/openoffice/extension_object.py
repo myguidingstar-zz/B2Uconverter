@@ -99,6 +99,42 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             message = "without error"
         return message
 
+    """Recursively convert the entire folder
+    by letting user select a folder to convert (file browser)
+    Traverse the given folder
+    """
+    def convertFolder(self):
+        folder = self.chooseFolder()
+        self.traverse(folder)
+
+    """if it's a file & of supported type (ODT, ODP, etc.) then
+    open it first
+    call convertDocument()
+    save & close converted document
+    """
+    def traverse(self, docFolder):
+        logging.debug("Converting folder: " + docFolder)
+        def convertAll(junk, dirPath, nameList):
+            #FIXME apply a file pattern to nameList to filter supported document formats
+            for name in nameList:
+                absPath =  os.path.join(dirPath, name)
+                if os.path.isfile(absPath):
+                    logging.debug("Converting folder: " + absPath)
+                    desktop = self._context.ServiceManager.createInstanceWithContext(
+                        "com.sun.star.frame.Desktop", self._context)
+                    arguments = PropertyValue()
+                    #FIXME Shall an opened document be hidden?
+                    arguments.Name = "Hidden"
+                    arguments.Value = True
+                    doc = desktop.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, (arguments,))
+                    self.convertDocument(doc)
+                    #FIXME do I have to save & close the document to retain changes
+        os.path.walk(docFolder, convertAll, None)
+
+    def chooseFolder(self):
+        #FIXME Replace this hardcode with GUI logic
+        return "/home/thailq/Desktop/test-input/subdir"
+
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
                                 % (document and "with" or "without"))
@@ -196,6 +232,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 self.convertClipboard()
             elif args == 'selection':
                 self.convertSelection()
+            elif args == 'folder':
+                self.convertFolder()
             else:
                 raise ValueError, "Invalid trigger call (programming error)."
             messageBox(self._document, "Unicode conversion completed (%s)." \
