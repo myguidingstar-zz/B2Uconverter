@@ -23,9 +23,9 @@
        <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
       </prop>
       <prop oor:name="Title" oor:type="xs:string">
-       <value xml:lang="en">Convert the document to ~Unicode</value>
-       <value xml:lang="vi">Chuyển đổi tài liệu sang ~Unicode</value>
-       <value xml:lang="fr">Convertir le document vers ~Unicode</value>
+       <value xml:lang="en">Convert the current document to ~Unicode</value>
+       <value xml:lang="vi">Chuyển đổi tài liệu đang mở sang ~Unicode</value>
+       <value xml:lang="fr">Convertir le document courant vers ~Unicode</value>
       </prop>
       <prop oor:name="Target" oor:type="xs:string">
        <value>_self</value>
@@ -42,6 +42,22 @@
        <value xml:lang="en">Convert the ~clipboard to Unicode</value>
        <value xml:lang="vi">Chuyển đổi ~bảng nháp sang Unicode</value>
        <value xml:lang="fr">Convertir le ~presse-papier vers Unicode</value>
+      </prop>
+      <prop oor:name="Target" oor:type="xs:string">
+       <value>_self</value>
+      </prop>
+     </node>
+     <node oor:name="vn.gov.oss.openoffice.b2uconverter.folder" oor:op="replace">
+      <prop oor:name="URL" oor:type="xs:string">
+       <value>service:vn.gov.oss.openoffice.B2UConverterJob?folder</value>
+      </prop>
+      <prop oor:name="Context" oor:type="xs:string">
+       <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
+      </prop>
+      <prop oor:name="Title" oor:type="xs:string">
+       <value xml:lang="en">Convert the entire ~directory to Unicode</value>
+       <value xml:lang="vi">Chuyển đổi sang mã Unicode cả ~thư mục</value>
+       <value xml:lang="fr">Convertir le ~dossier entier vers Unicode</value>
       </prop>
       <prop oor:name="Target" oor:type="xs:string">
        <value>_self</value>
