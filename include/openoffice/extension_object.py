@@ -57,7 +57,7 @@ def messageBox(document, message):
 from com.sun.star.task import XJobExecutor
 from com.sun.star.beans import PropertyValue
 import tempfile
-import os
+import os, fnmatch
 
 class B2UConverterJob(unohelper.Base, XJobExecutor):
     def __init__(self, context):
@@ -116,18 +116,33 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
     save & close converted document
     """
     def traverse(self, docFolder, xLoader):
-        #logging.debug("Converting folder: " + docFolder)
-        def convertAll(junk, dirPath, nameList):
-            #FIXME apply a file pattern to nameList to filter supported document formats
-            for name in nameList:
-                absPath =  os.path.join(dirPath, name)
-                if os.path.isfile(absPath):
-                    #logging.debug("Converting folder: " + absPath)
-                    doc = xLoader.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, ())
-                    self.convertDocument(doc)
-                    #FIXME do I have to save & close the document to retain changes
-        os.path.walk(docFolder, convertAll, None)
+        #FIXME Remove hardcoded pattern
+        paths = self.filter(docFolder, '*.doc;*.xls;*.ppt')
+        
+        for path in paths:
+            url = unohelper.systemPathToFileUrl(path)
+            doc = xLoader.loadComponentFromURL(url, "_blank", 0, ())
+            #FIXME do I have to save & close the document to retain changes
+            self.convertDocument(doc)
 
+    def filter(self, root, patterns='*', single_level=False, yield_folders=False):
+        """
+        Recursively get all supported documents (text, slides, spreadsheet)
+        under a given folder (param 'root')
+        """
+        # Expand patterns from semicolon-separated string to list
+        patterns = patterns.split(';')
+        for path, subdirs, files in os.walk(root):
+            if yield_folders:
+                files.extend(subdirs)
+            #files.sort( )
+            for name in files:
+                #TODO apply a file pattern to filter supported document formats
+                for pattern in patterns:
+                    if fnmatch.fnmatch(name, pattern):
+                        yield os.path.join(path, name)
+                        break
+                        
     def chooseFolder(self):
         #FIXME Replace this hardcode with GUI logic
         return "/home/thailq/Desktop/test-input/subdir"
