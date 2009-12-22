@@ -122,7 +122,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         for path in paths:
             url = unohelper.systemPathToFileUrl(path)
             doc = xLoader.loadComponentFromURL(url, "_blank", 0, ())
-            #FIXME do I have to save & close the document to retain changes
+            #FIXME It's wiser choice to save & close one document
+            # at once before processing the next
             self.convertDocument(doc)
 
     def filter(self, root, patterns='*', single_level=False, yield_folders=False):
@@ -145,7 +146,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         
     def chooseFolder(self):
         #FIXME Replace this hardcode with GUI logic
-        return "/home/thailq/Desktop/test-input/subdir"
+        return "/home/thailq/Desktop/test-input"
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
