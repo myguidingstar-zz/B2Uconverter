@@ -125,7 +125,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                     arguments = PropertyValue()
                     #FIXME Shall an opened document be hidden?
                     arguments.Name = "Hidden"
-                    arguments.Value = True
+                    arguments.Value = False
                     doc = desktop.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, (arguments,))
                     self.convertDocument(doc)
                     #FIXME do I have to save & close the document to retain changes
