@@ -1,5 +1,5 @@
-MENU_TYPE=addon-menu
-#MENU_TYPE=top-menu
+#MENU_TYPE=addon-menu
+MENU_TYPE=top-menu
 
 all: uninstall install
 
