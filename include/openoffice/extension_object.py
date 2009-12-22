@@ -122,11 +122,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 absPath =  os.path.join(dirPath, name)
                 if os.path.isfile(absPath):
                     #logging.debug("Converting folder: " + absPath)
-                    arguments = PropertyValue()
-                    #FIXME Shall an opened document be hidden?
-                    arguments.Name = "Hidden"
-                    arguments.Value = False
-                    doc = desktop.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, (arguments,))
+                    doc = desktop.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, ())
                     self.convertDocument(doc)
                     #FIXME do I have to save & close the document to retain changes
         os.path.walk(docFolder, convertAll, None)
