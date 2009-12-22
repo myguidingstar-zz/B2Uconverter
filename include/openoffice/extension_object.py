@@ -105,24 +105,25 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
     """
     def convertFolder(self):
         folder = self.chooseFolder()
-        self.traverse(folder)
+        xLoader = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.frame.Desktop", self._context)
+        # a Desktop implements XComponentLoader interface
+        self.traverse(folder, xLoader)
 
     """if it's a file & of supported type (ODT, ODP, etc.) then
     open it first
     call convertDocument()
     save & close converted document
     """
-    def traverse(self, docFolder):
+    def traverse(self, docFolder, xLoader):
         #logging.debug("Converting folder: " + docFolder)
-        desktop = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.frame.Desktop", self._context)
         def convertAll(junk, dirPath, nameList):
             #FIXME apply a file pattern to nameList to filter supported document formats
             for name in nameList:
                 absPath =  os.path.join(dirPath, name)
                 if os.path.isfile(absPath):
                     #logging.debug("Converting folder: " + absPath)
-                    doc = desktop.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, ())
+                    doc = xLoader.loadComponentFromURL(unohelper.systemPathToFileUrl(absPath), "_blank", 0, ())
                     self.convertDocument(doc)
                     #FIXME do I have to save & close the document to retain changes
         os.path.walk(docFolder, convertAll, None)
