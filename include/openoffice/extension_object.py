@@ -65,7 +65,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
         logging.basicConfig(level=logging.DEBUG,
             format='%(asctime)s %(levelname)s %(message)s',
-            filename='/tmp/b2uconverter-ooo.log', filemode='w')
+            filename=os.path.expanduser('~/b2uconverter-ooo.log'), filemode='w')
         logging.info("B2UConverter loaded (Python %s)", sys.version)
 
         self.parser = OOoDocumentParser()
