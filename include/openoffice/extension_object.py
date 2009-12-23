@@ -99,23 +99,22 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             message = "without error"
         return message
 
-    """Recursively convert the entire folder
-    by letting user select a folder to convert (file browser)
-    Traverse the given folder
-    """
     def convertFolder(self):
+        """Recursively convert the entire folder
+        by letting user select a folder to convert (file browser)
+        Traverse the given folder
+        """
         folder = self.chooseFolder()
         xLoader = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         # a Desktop implements XComponentLoader interface
         self.traverse(folder, xLoader)
 
-    """if it's a file & of supported type (ODT, ODP, etc.) then
-    open it first
-    call convertDocument()
-    save & close converted document
-    """
     def traverse(self, docFolder, xLoader):
+        """ Traverse a folder and convert all supported documents (ODT, ODP, etc.) 
+        Apply filtering to all files retrieved
+        Convert each document, save & close 
+        """
         #FIXME Remove hardcoded pattern
         paths = self.filter(docFolder, '*.doc;*.xls;*.ppt')
         
