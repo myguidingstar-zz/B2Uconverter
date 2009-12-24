@@ -109,6 +109,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             "com.sun.star.frame.Desktop", self._context)
         # a Desktop implements XComponentLoader interface
         self.traverse(folder, xLoader)
+        #FIXME A summary dialog once conversion done
 
     def traverse(self, docFolder, xLoader):
         """ Traverse a folder and convert all supported documents (ODT, ODP, etc.) 
@@ -118,12 +119,17 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         #FIXME Remove hardcoded pattern
         paths = self.filter(docFolder, '*.doc;*.xls;*.ppt')
         
+        loadProperties = PropertyValue()
+        loadProperties.Name = "Hidden"
+        loadProperties.Value = True
         for path in paths:
             url = unohelper.systemPathToFileUrl(path)
-            doc = xLoader.loadComponentFromURL(url, "_blank", 0, ())
-            #FIXME It's wiser choice to save & close one document
-            # at once before processing the next
+            doc = xLoader.loadComponentFromURL(url, "_blank", 0, (loadProperties,))
             self.convertDocument(doc)
+            #It's wiser choice to save & close one document
+            # at once before processing the next
+            doc.store()
+            doc.close(True)
 
     def filter(self, root, patterns='*', single_level=False, yield_folders=False):
         """
@@ -145,7 +151,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         
     def chooseFolder(self):
         #FIXME Replace this hardcode with GUI logic
-        return "/home/thailq/Desktop/test-input"
+        return os.path.expanduser("~/Desktop/test-input")
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
