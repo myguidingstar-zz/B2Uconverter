@@ -183,6 +183,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         clipboard = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.datatransfer.clipboard.SystemClipboard",
             self._context)
+        self._document = desktop.getCurrentComponent()
 
         # Get the contents from the clipboard, try to extract the data using
         # OpenOffice XML flavor, should add support for other flavors in the
