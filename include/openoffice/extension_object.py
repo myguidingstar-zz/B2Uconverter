@@ -176,7 +176,6 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         self._error_message(self.parser.stats['errors']))
 
     def convertClipboard(self):
-        #copy/paste from above
         self._readconfig()
         logging.debug("call to convertClipboard")
         desktop = self._context.ServiceManager.createInstanceWithContext(
@@ -184,6 +183,10 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         clipboard = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.datatransfer.clipboard.SystemClipboard",
             self._context)
+
+        # Get the contents from the clipboard, try to extract the data using
+        # OpenOffice XML flavor, should add support for other flavors in the
+        # future like richtext or utf16 plaintext
         contents = clipboard.getContents()
         flavors = contents.getTransferDataFlavors()
         logging.debug("Clipboard flavors:\n%s",
@@ -213,9 +216,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         document = desktop.loadComponentFromURL(tempURL, "_blank", 0,
                 (hidden,))
 
-        # Let process it, note that this doen't work yet as the font names
-        # don't get preserved -> no font information -> can't guess the
-        # encoding :(
+        # Let process it, this only works if the font information is supplied
+        # Must improve this in the future
         vnConverter = VietnameseTextConverter(
             decoderPrefix='internal_',
             vniHacks=self._settings['VNIHacks'])
@@ -224,16 +226,13 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             removeDiacritics=self._settings['RemoveDiacritics'])
         self.parser.setTextPortionConverter(oVnConverter)
         self.parser.processDocument(document)
-        #document.store()
 
         # Ok, now to put it back in the clipboard
         dispatcher = self._context.ServiceManager.createInstanceWithContext(
                         "com.sun.star.frame.DispatchHelper", self._context)
         frame = document.getCurrentController().getFrame()
-        # Note that while hidden has nothing to do here, OO.o will throw a
-        # tantrum if it is not there :|
-        dispatcher.executeDispatch(frame, ".uno:SelectAll", "", 0, (hidden,))
-        dispatcher.executeDispatch(frame, ".uno:Copy", "", 0, (hidden,))
+        dispatcher.executeDispatch(frame, ".uno:SelectAll", "", 0, ())
+        dispatcher.executeDispatch(frame, ".uno:Copy", "", 0, ())
 
         # Some clean ups
         os.close(tempFile)
