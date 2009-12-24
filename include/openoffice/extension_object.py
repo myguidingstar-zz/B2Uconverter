@@ -186,8 +186,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         self._document = desktop.getCurrentComponent()
 
         # Get the contents from the clipboard, try to extract the data using
-        # OpenOffice XML flavor, should add support for other flavors in the
-        # future like richtext or utf16 plaintext
+        # OpenOffice XML flavor
+        # TODO: Adding support for more flavors like richtext or plaintext
         contents = clipboard.getContents()
         flavors = contents.getTransferDataFlavors()
         logging.debug("Clipboard flavors:\n%s",
@@ -200,7 +200,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 found_flavor = flavor
                 break
 
-        # No suitable flavor found, warn user that nothing has been converted
+        # FIXME: No suitable flavor found, warn user that nothing has been
+        # converted
         # if found_flavor == None:
         data = contents.getTransferData(found_flavor)
 
@@ -217,8 +218,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         document = desktop.loadComponentFromURL(tempURL, "_blank", 0,
                 (hidden,))
 
-        # Let process it, this only works if the font information is supplied
-        # Must improve this in the future
+        # Let process it
+        # TODO: Improve encoding detection so we can convert even if the
+        # supplied font information is incorrect.
         vnConverter = VietnameseTextConverter(
             decoderPrefix='internal_',
             vniHacks=self._settings['VNIHacks'])
