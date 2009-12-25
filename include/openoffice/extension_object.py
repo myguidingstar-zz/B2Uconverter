@@ -126,10 +126,13 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             url = unohelper.systemPathToFileUrl(path)
             doc = xLoader.loadComponentFromURL(url, "_blank", 0, (loadProperties,))
             self.convertDocument(doc)
+            
             #It's wiser choice to save & close one document
             # at once before processing the next
-            doc.store()
-            doc.close(True)
+            try:
+                doc.store()
+            finally:
+                doc.close(True)
 
     def filter(self, root, patterns='*', single_level=False, yield_folders=False):
         """
