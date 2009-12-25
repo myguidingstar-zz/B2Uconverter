@@ -151,7 +151,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         
     def chooseFolder(self):
         #FIXME Replace this hardcode with GUI logic
-        return os.path.expanduser("~/Desktop/test-input")
+        return os.path.expanduser("~/convert-me")
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
