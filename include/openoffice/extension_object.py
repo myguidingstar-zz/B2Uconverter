@@ -137,7 +137,10 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 doc.store()
             finally:
                 # XXX: this could generate an exception too
-                doc.close(True)
+                try:
+                    doc.close(True)
+                except:
+                    logging.exception("Exception when closing document %s" % url)         
 
     def findFiles(self, root, patterns='*'):
         """
