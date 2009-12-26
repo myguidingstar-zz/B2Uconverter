@@ -7,8 +7,12 @@ Authors: Jean Christophe André <jcandre@hanoilug.org>
          Lê Quốc Thái <lqthai@hanoilug.org>
          Võ Đức Phương <vdphuong@hanoilug.org>
 
-To install the extension, just run 'make' in the current directory.
+To install the extension, run 'make install' in the current directory.
+To uninstall the extension, run 'make uninstall' in the current directory.
+
+WARNING: you have to quit OpenOffice.org (fully) before (un)installing.
 
 If you just want to build the extension, eg to deploy it later,
 then run 'make build'. It will create the extension as a file named
 'B2UConverter.oxt' which you can install with the help of 'unopkg'.
+Look into the 'Makefile' for an example of how to do this.

@@ -15,19 +15,19 @@ import sys
 from StringIO import StringIO
 
 if len(sys.argv) != 2:
-    print "Syntax: %s top|addon"
+    print "Syntax: %s top|addons"
     sys.exit(1)
 
 data = [
-  file('include/openoffice/Addons-%s_header.xcu' % sys.argv[1]),
+  file('include/addons-menu/%s_header.xml' % sys.argv[1]),
   StringIO("""<!--
 # WARNING: This file has been dynamically generated, don't edit it!
 # WARNING: You can edit files in the 'include' folder instead,
 # WARNING: then run 'python %s'.
 -->
 """ % sys.argv[0]),
-  file('include/openoffice/Addons_common.xcu'),
-  file('include/openoffice/Addons-%s_footer.xcu' % sys.argv[1]),
+  file('include/addons-menu/common.xml'),
+  file('include/addons-menu/%s_footer.xml' % sys.argv[1]),
 ]
 
 for d in data:

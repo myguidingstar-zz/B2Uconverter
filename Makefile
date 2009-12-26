@@ -1,17 +1,17 @@
-#MENU_TYPE=addon
+#MENU_TYPE=addons
 MENU_TYPE=top
 
 all: build
 
-openoffice/Addons.xcu: scripts/build-Addons.xcu $(shell find include -type f -name "Addons*.xcu")
+openoffice/Addons.xcu: scripts/build-Addons.xcu $(shell find include/addons-menu -type f)
 	python scripts/build-Addons.xcu $(MENU_TYPE) > openoffice/Addons.xcu
 
-openoffice/B2UConverter.py: scripts/build-B2UConverter.py $(shell find include -type f -not -name "Addons*.xcu")
+openoffice/B2UConverter.py: scripts/build-B2UConverter.py $(shell find include -type f)
 	python scripts/build-B2UConverter.py > openoffice/B2UConverter.py
 
 B2UConverter.oxt: openoffice/Addons.xcu openoffice/B2UConverter.py $(shell find openoffice -type f)
 	rm -f B2UConverter.oxt
-	cd openoffice ; zip -q9rpD ../B2UConverter.oxt .
+	cd openoffice ; zip -q9rpD -x.svn ../B2UConverter.oxt .
 
 build: B2UConverter.oxt
 
