@@ -56,17 +56,22 @@ def messageBox(document, message):
 
 from com.sun.star.task import XJobExecutor
 from com.sun.star.beans import PropertyValue
-import tempfile
-import os, fnmatch
+import os
+from tempfile import mkstemp
+from fnmatch import fnmatch
 
 class B2UConverterJob(unohelper.Base, XJobExecutor):
     def __init__(self, context):
         self._context = context
 
+        old_umask = os.umask(0077)
+        # TODO: check if it fails and take countermesure in this case
         logging.basicConfig(level=logging.DEBUG,
             format='%(asctime)s %(levelname)s %(message)s',
-            filename=os.path.expanduser('~/b2uconverter-ooo.log'), filemode='w')
+            filename=os.path.expanduser('~/b2uconverter-ooo.log'),
+            filemode='w')
         logging.info("B2UConverter loaded (Python %s)", sys.version)
+        os.umask(old_umask)
 
         self.parser = OOoDocumentParser()
 
@@ -105,36 +110,36 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         Traverse the given folder
         """
         folder = self.chooseFolder()
+        # FIXME: Remove hardcoded pattern
+        patterns = '*.doc;*.xls;*.ppt'
         xLoader = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         # a Desktop implements XComponentLoader interface
-        self.traverse(folder, xLoader)
-        #FIXME A summary dialog once conversion done
+        self.convertFolderReal(folder, patterns, xLoader)
+        # FIXME: A summary dialog once conversion done
 
-    def traverse(self, docFolder, xLoader):
-        """ Traverse a folder and convert all supported documents (ODT, ODP, etc.) 
+    def convertFolderReal(self, folder, patterns, xLoader):
+        """Traverse a folder and convert all supported documents (ODT, ODP, etc.)
         Apply filtering to all files retrieved
-        Convert each document, save & close 
+        Convert each document, save & close
         """
-        #FIXME Remove hardcoded pattern
-        paths = self.filter(docFolder, '*.doc;*.xls;*.ppt')
-        
-        loadProperties = PropertyValue()
-        loadProperties.Name = "Hidden"
-        loadProperties.Value = True
-        for path in paths:
+        loadProp = PropertyValue()
+        loadProp.Name = "Hidden"
+        loadProp.Value = True
+
+        for path in self.fileFinder(folder, patterns):
             url = unohelper.systemPathToFileUrl(path)
-            doc = xLoader.loadComponentFromURL(url, "_blank", 0, (loadProperties,))
+            doc = xLoader.loadComponentFromURL(url, "_blank", 0, (loadProp,))
             self.convertDocument(doc)
-            
-            #It's wiser choice to save & close one document
+            # It's wiser choice to save & close one document
             # at once before processing the next
             try:
                 doc.store()
             finally:
+                # XXX: this could generate an exception too
                 doc.close(True)
 
-    def filter(self, root, patterns='*', single_level=False, yield_folders=False):
+    def fileFinder(self, root, patterns='*'):
         """
         Recursively get all supported documents (text, slides, spreadsheet)
         under a given folder (param 'root')
@@ -142,18 +147,16 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         # Expand patterns from semicolon-separated string to list
         patterns = patterns.split(';')
         for path, subdirs, files in os.walk(root):
-            if yield_folders:
-                files.extend(subdirs)
             #files.sort( )
             for name in files:
-                #TODO apply a file pattern to filter supported document formats
+                # TODO: apply a file pattern to filter supported document formats
                 for pattern in patterns:
-                    if fnmatch.fnmatch(name, pattern):
+                    if fnmatch(name, pattern):
                         yield os.path.join(path, name)
                         break
-                        
+
     def chooseFolder(self):
-        #FIXME Replace this hardcode with GUI logic
+        # FIXME: Replace this hardcode with GUI logic
         return os.path.expanduser("~/convert-me")
 
     def convertDocument(self, document=None):
@@ -210,7 +213,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
         # Okay, since OO.o APIs only accept an URL, we have to make a temp file
         # in order to use it.
-        tempFile,path = tempfile.mkstemp()
+        tempFile,path = mkstemp()
         os.write(tempFile, data.value)
         tempURL = unohelper.systemPathToFileUrl(path)
 
