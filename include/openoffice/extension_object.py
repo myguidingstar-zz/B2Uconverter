@@ -115,10 +115,10 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         xLoader = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         # a Desktop implements XComponentLoader interface
-        self.convertFolderReal(folder, patterns, xLoader)
+        self.convertDocByDoc(folder, patterns, xLoader)
         # FIXME: A summary dialog once conversion done
 
-    def convertFolderReal(self, folder, patterns, xLoader):
+    def convertDocByDoc(self, folder, patterns, xLoader):
         """Traverse a folder and convert all supported documents (ODT, ODP, etc.)
         Apply filtering to all files retrieved
         Convert each document, save & close
