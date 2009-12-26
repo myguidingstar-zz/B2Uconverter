@@ -160,7 +160,12 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
     def chooseFolder(self):
         # FIXME: Replace this hardcode with GUI logic
-        return os.path.expanduser("~/convert-me")
+        folderPicker = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.ui.dialogs.FilePicker", self._context)
+        folderPicker.execute()
+        #return os.path.expanduser("~/convert-me")
+        logging.debug(folderPicker.getDisplayDirectory())
+        return unohelper.fileUrlToSystemPath(folderPicker.getDisplayDirectory())
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
