@@ -127,7 +127,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         loadProp.Name = "Hidden"
         loadProp.Value = True
 
-        for path in self.fileFinder(folder, patterns):
+        for path in self.findFiles(folder, patterns):
             url = unohelper.systemPathToFileUrl(path)
             doc = xLoader.loadComponentFromURL(url, "_blank", 0, (loadProp,))
             self.convertDocument(doc)
@@ -139,7 +139,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 # XXX: this could generate an exception too
                 doc.close(True)
 
-    def fileFinder(self, root, patterns='*'):
+    def findFiles(self, root, patterns='*'):
         """
         Recursively get all supported documents (text, slides, spreadsheet)
         under a given folder (param 'root')
