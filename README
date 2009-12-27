@@ -7,12 +7,32 @@ Authors: Jean Christophe André <jcandre@hanoilug.org>
          Lê Quốc Thái <lqthai@hanoilug.org>
          Võ Đức Phương <vdphuong@hanoilug.org>
 
-To install the extension, run 'make install' in the current directory.
-To uninstall the extension, run 'make uninstall' in the current directory.
 
-WARNING: you have to quit OpenOffice.org (fully) before (un)installing.
+Dependencies
+============
 
-If you just want to build the extension, eg to deploy it later,
-then run 'make build'. It will create the extension as a file named
-'B2UConverter.oxt' which you can install with the help of 'unopkg'.
-Look into the 'Makefile' for an example of how to do this.
+ * This extension requires the Python-UNO bridge.
+   In Debian/Ubuntu, you have to install the 'python-uno' package.
+   In Windows, you have to tick it in the installation options.
+
+ * This extension should work with OpenOffice.org 2.2 and later,
+   on GNU/Linux, Windows and probably MacOS X too (not tested).
+
+   It has been confirmed running on:
+   * OpenOffice 3.1.1 (build9420) on Ubuntu “Karmic Koala” 9.10
+
+
+Command line usage
+==================
+
+ WARNING: You have to quit OpenOffice.org (fully) before (un)installing.
+
+ * To install, run 'make install' in the current directory.
+
+ * To uninstall, run 'make uninstall' in the current directory.
+
+ * To deploy, run 'make clean build' in the current directory.
+   It will create the extension as a file named 'B2UConverter.oxt'
+   which you can install with the help of 'unopkg'.
+   Look into the 'Makefile' for an example of how to do this.
+
