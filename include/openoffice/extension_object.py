@@ -206,8 +206,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         flavors = contents.getTransferDataFlavors()
         logging.debug("Clipboard flavors:\n%s",
                 "* " + "\n* ".join([flavor.MimeType for flavor in flavors]))
-        mimetype = \
-        'application/x-openoffice-embed-source-xml;windows_formatname="Star Embed Source (XML)"'
+        mimetype = 'application/x-openoffice-embed-source-xml' \
+                    ';windows_formatname="Star Embed Source (XML)"'
         found_flavor = None
         for flavor in flavors:
             if flavor.MimeType == mimetype:

@@ -84,8 +84,12 @@ class VietnameseTextConverter(object):
         # compensate for OOo's bug on MS-Office's soft hyphen importation
         if real == 'vntime_tcvn':
             # luckily there is no Vietnamese word with two consecutive 'ư'
-            while (result.find(u'\u01B0\u01B0') >= 0):
-                result = result.replace(u'\u01B0\u01B0', u'\u01B0')
+            if upper:
+                while (result.find(u'\u01AF\u01AF') >= 0):
+                    result = result.replace(u'\u01AF\u01AF', u'\u01AF')
+            else:
+                while (result.find(u'\u01B0\u01B0') >= 0):
+                    result = result.replace(u'\u01B0\u01B0', u'\u01B0')
 
         logging.debug("convertString -> '%s'", result)
         return result
