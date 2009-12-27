@@ -7,6 +7,7 @@
   </dlg:titledbox>
   <dlg:checkbox dlg:id="RemoveDiacritics" dlg:tab-index="2" dlg:left="16" dlg:top="24" dlg:width="145" dlg:height="12" dlg:help-text="&amp;22.GeneralDialog.RemoveDiacritics.HelpText" dlg:value="&amp;23.GeneralDialog.RemoveDiacritics.Label" dlg:checked="false"/>
   <dlg:checkbox dlg:id="VNIHacks" dlg:tab-index="3" dlg:left="16" dlg:top="40" dlg:width="145" dlg:height="12" dlg:help-text="&amp;24.GeneralDialog.VNIHacks.HelpText" dlg:value="&amp;25.GeneralDialog.VNIHacks.Label" dlg:checked="false"/>
-  <dlg:checkbox dlg:id="Debug" dlg:tab-index="5" dlg:left="10" dlg:top="165" dlg:width="145" dlg:height="12" dlg:help-text="&amp;20.GeneralDialog.Debug.HelpText" dlg:value="&amp;21.GeneralDialog.Debug.Label" dlg:checked="false"/>
+  <dlg:checkbox dlg:id="Debug" dlg:tab-index="5" dlg:left="10" dlg:top="165" dlg:width="135" dlg:height="12" dlg:help-text="&amp;20.GeneralDialog.Debug.HelpText" dlg:value="&amp;21.GeneralDialog.Debug.Label" dlg:checked="false"/>
+  <dlg:textfield dlg:id="DebugFilename" dlg:tab-index="6" dlg:left="150" dlg:top="165" dlg:width="100" dlg:height="12" dlg:multiline="false" dlg:help-text="&amp;26.GeneralDialog.DebugFilename.HelpText" dlg:value="~/.B2UConverter-OOo.log"/>
  </dlg:bulletinboard>
 </dlg:window>

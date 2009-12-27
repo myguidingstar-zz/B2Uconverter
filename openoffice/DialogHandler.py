@@ -29,7 +29,8 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         node.Name = "nodepath"
         node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
         self.node = node
-        self.cfg_names = ("Debug", "RemoveDiacritics", "VNIHacks")
+        self.cfg_names = ("Debug", "RemoveDiacritics", "VNIHacks",
+            "DebugFilename", "FolderConvertDefault", "FolderConvertPatterns")
         return
 
     # XContainerWindowEventHandler
@@ -73,6 +74,10 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             return
         for name in ("Debug", "RemoveDiacritics", "VNIHacks"):
             window.getControl(name).setState(int(settings[name]))
+        for name in ("DebugFilename", "FolderConvertDefault",
+            "FolderConvertPatterns"):
+            # FIXME: to activate when the dialog's .XDL is ready
+            pass # window.getControl(name).setValue(settings[name])
         return
 
     # making the save data
@@ -83,6 +88,10 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         settings = []
         for name in ("Debug", "RemoveDiacritics", "VNIHacks"):
             settings.append(bool(window.getControl(name).State))
+        for name in ("DebugFilename", "FolderConvertDefault",
+            "FolderConvertPatterns"):
+            # FIXME: to activate when the dialog's .XDL is ready
+            pass # settings.append(window.getControl(name).Value)
         self.configwriter(tuple(settings))
         return
 
@@ -101,7 +110,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             settings[self.cfg_names[i]] = cfg_values[i]
         # special case for RemoveDiacritics: always False at start
         global _uninitialized
-        if _uninitialized:
+        if _uninitialized and settings['RemoveDiacritics']:
             _uninitialized = False
             settings['RemoveDiacritics'] = False
             self.configwriter(tuple(settings.values()))
@@ -114,7 +123,8 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             ConfigWriter = self.cp.createInstanceWithArguments( 
                 "com.sun.star.configuration.ConfigurationUpdateAccess",
                 (self.node,))
-            ConfigWriter.setPropertyValues(self.cfg_names, cfg_values)
+            # FIXME: remove the intervals when the .XLB is ready
+            ConfigWriter.setPropertyValues(self.cfg_names[0:3], cfg_values[0:3])
             ConfigWriter.commitChanges()
         except:
             print "DEBUG: configwriter exception"

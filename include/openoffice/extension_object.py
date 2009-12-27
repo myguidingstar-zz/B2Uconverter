@@ -64,17 +64,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
     def __init__(self, context):
         self._context = context
 
-        old_umask = os.umask(0077)
-        # TODO: check if it fails and take countermesure in this case
-        logging.basicConfig(level=logging.DEBUG,
-            format='%(asctime)s %(levelname)s %(message)s',
-            filename=os.path.expanduser('~/b2uconverter-ooo.log'),
-            filemode='w')
-        logging.info("B2UConverter loaded (Python %s)", sys.version)
-        os.umask(old_umask)
-
-        self.parser = OOoDocumentParser()
-
+        # load configuration settings
         self._cfgprov = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.configuration.ConfigurationProvider",
             self._context)
@@ -82,10 +72,26 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         node.Name = "nodepath"
         node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
         self._node = node
-        self._cfgnames = ("Debug", "RemoveDiacritics", "VNIHacks")
+        self._cfgnames = ("Debug", "RemoveDiacritics", "VNIHacks",
+            "DebugFilename", "FolderConvertDefault", "FolderConvertPatterns")
         self._settings = { }
         for cfgname in self._cfgnames:
             self._settings[cfgname] = None
+
+        # setup logging
+        filename = self._settings['DebugFilename']
+        if not filename: filename = '~/.B2UConverter.log'
+        old_umask = os.umask(0077)
+        # TODO: check if it fails and take countermesure in this case
+        logging.basicConfig(level=logging.DEBUG,
+            format='%(asctime)s %(levelname)s %(message)s',
+            filename=os.path.expanduser(filename),
+            filemode='w')
+        logging.info("B2UConverter loaded (Python %s)", sys.version)
+        os.umask(old_umask)
+
+        # instantiate a document parser
+        self.parser = OOoDocumentParser()
 
     def _readconfig(self):
         ConfigReader = self._cfgprov.createInstanceWithArguments(
@@ -94,6 +100,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         cfgvalues = ConfigReader.getPropertyValues(self._cfgnames)
         for i in range(len(self._cfgnames)):
             self._settings[self._cfgnames[i]] = cfgvalues[i]
+        logging.debug("settings: %s", self._settings)
 
     def _error_message(self, error_count):
         if error_count > 1:
@@ -109,14 +116,14 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         by letting user select a folder to convert (file browser)
         Traverse the given folder
         """
-        
-        folder = self.chooseFolder()
-        if not folder:  #User click on Cancel button
-            return  #FIXME uninitialized self._document causes AttributeError
-            
+        self._readconfig()
+        folder = self.chooseFolder(self._settings['FolderConvertDefault'])
+        if not folder: # User clicked on the Cancel button
+            return # FIXME: uninitialized self._document causes AttributeError
         logging.debug("Converting folder: %s" % folder)
-        # FIXME: Remove hardcoded pattern
-        patterns = '*.doc;*.xls;*.ppt'
+
+        patterns = self._settings['FolderConvertPatterns']
+        if not patterns: patterns = '*.doc;*.xls;*.ppt'
         xLoader = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
         # a Desktop implements XComponentLoader interface
@@ -145,7 +152,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 try:
                     doc.close(True)
                 except:
-                    logging.exception("Exception when closing document %s" % url)         
+                    logging.exception("Exception when closing document '%s'",
+                                                                        url)
 
     def findFiles(self, root, patterns='*'):
         """
@@ -163,17 +171,17 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         yield os.path.join(path, name)
                         break
 
-    def chooseFolder(self):
+    def chooseFolder(self, folder="~/B2UConverter"):
+        folder = unohelper.systemPathToFileUrl(os.path.expanduser(folder))
         folderPicker = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.ui.dialogs.FolderPicker", self._context)
-        #folderPicker.setDisplayDirectory(os.path.expanduser("~/convert-me"))
-        
+        folderPicker.setDisplayDirectory(folder)
         if folderPicker.execute():
             selectedFolder = folderPicker.getDirectory()
-            #folderPicker.dispose()
-            return unohelper.fileUrlToSystemPath(selectedFolder)
+            selectedFolder = unohelper.fileUrlToSystemPath(selectedFolder)
         else:
-            return None  #Cancel button pressed
+            selectedFolder = None # Cancel button pressed
+        return selectedFolder
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \

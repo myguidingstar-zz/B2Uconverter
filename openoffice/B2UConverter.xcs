@@ -9,10 +9,6 @@
  <component>
   <group oor:name="General">
    <info><desc>Data for general options.</desc></info>
-   <prop oor:name="Debug" oor:type="xs:boolean" oor:localized="false">
-    <info><desc>When true then B2UConverter will save debug information.</desc></info>
-    <value>true</value>
-   </prop>
    <prop oor:name="RemoveDiacritics" oor:type="xs:boolean" oor:localized="false">
     <info><desc>When true then B2UConverter will remove all diacritics (tone marks and accents).</desc></info>
     <value>false</value>
@@ -20,6 +16,22 @@
    <prop oor:name="VNIHacks" oor:type="xs:boolean" oor:localized="false">
     <info><desc>When true then B2UConverter will try all kind of hacks to decode corrupted data.</desc></info>
     <value>false</value>
+   </prop>
+   <prop oor:name="FolderConvertDefault" oor:type="xs:string" oor:localized="false">
+    <info><desc>Name of the default folder to show to the user for B2UConverter folder conversion (default: ~/B2UConverter).</desc></info>
+    <value>~/B2UConverter</value>
+   </prop>
+   <prop oor:name="FolderConvertPatterns" oor:type="xs:string" oor:localized="false">
+    <info><desc>Filename patterns for B2UConverter folder conversion (default: *.doc;*.xls;*.ppt).</desc></info>
+    <value>*.doc;*.xls;*.ppt</value>
+   </prop>
+   <prop oor:name="Debug" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When true then B2UConverter will save debug information.</desc></info>
+    <value>true</value>
+   </prop>
+   <prop oor:name="DebugFilename" oor:type="xs:string" oor:localized="false">
+    <info><desc>Name of the file where B2UConverter will save debug information (default: ~/.B2UConverter-OOo.log).</desc></info>
+    <value>~/.B2UConverter-OOo.log</value>
    </prop>
   </group>
  </component>
