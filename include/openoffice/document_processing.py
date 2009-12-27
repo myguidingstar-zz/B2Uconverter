@@ -68,7 +68,14 @@ class OOoVietnameseTextConverter(object):
         # TODO: - update the text string content with setString
         # TODO: - reset properties from properties array
         if new and new != old:
-            text.setString(new)
+            textStart = text.getStart()
+            textEnd = text.getEnd()
+            docText = textStart.getText()
+            textCurs = docText.createTextCursorByRange(textStart)
+            docText.insertString(textEnd, new, False)
+            textCurs.goRight(len(old), True)
+            textCurs.setString("")
+            #text.setString(new)
             #text.String = new
         for k,v in properties.items():
             text.setPropertyValue(k, v)
@@ -119,13 +126,10 @@ class OOoDocumentParser(object):
         #logging.debug("  hasElements: %s", paragraph.hasElements())
         enum = paragraph.createEnumeration()
         #logging.debug("dir(enum) = ( %s )", ' '.join(dir(enum)))
-        # reverse process all portions, since text boundaries
-        # get altered when using setString with a longer string
-        # XXX: should probably use a cursor here...
-        portions = []
+        # XXX: warning: text boundaries get altered when using setString
+        #      with a longer string; should probably use a cursor here...
         while (enum.hasMoreElements()):
-            portions.append(enum.nextElement())
-        for textPortion in reversed(portions):
+            textPortion = enum.nextElement()
             type = textPortion.getPropertyValue("TextPortionType")
             logging.debug("processing text paragraph element (type %s) [%s]",
                                                 type, textPortion.getString())
