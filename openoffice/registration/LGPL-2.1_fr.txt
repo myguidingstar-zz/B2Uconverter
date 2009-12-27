@@ -1,0 +1,596 @@
+                    LICENCE GÉNÉRALE PUBLIQUE LIMITÉE GNU
+                     (GNU LESSER GENERAL PUBLIC LICENSE)
+                          Version 2.1, février 1999.
+
+ Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ Chacun est autorisé à copier et distribuer des copies conformes de ce
+ document de licence, mais toute modification en est proscrite.
+
+[Ceci est la première version publiée de la « Licence Générale Publique
+ Limitée » (LGPL). Elle compte en tant que successeur de la « Licence
+ Générale Publique de Bibliothèque » GNU version 2, d’où le numéro de
+ version 2.1.]
+
+Traduction française par Philippe Verdy <verdy_p (à) wanadoo (point) fr>,
+le 25 août 2005 (dernière correction le 8 janvier 2008).
+
+  La présente version corrige quelques fautes mineures de français ou
+  imprécisions.
+
+Avertissement important au sujet de cette traduction française.
+
+    Ceci est une traduction en français de la licence “GNU Lesser General
+    Public License” (alias LGPL). Cette traduction est fournie ici dans
+    l’espoir qu’elle facilitera sa compréhension, mais elle ne constitue
+    pas une traduction officielle ou approuvée d’un point de vue juridique.
+
+    La Free Software Foundation (FSF) ne publie pas cette traduction et
+    ne l’a pas approuvée en tant que substitut valide au plan légal pour
+    la licence authentique “GNU Lesser General Public Licence”. Cette
+    traduction n’a pas encore été passée en revue attentivement par un
+    juriste et donc le traducteur ne peut garantir avec certitude qu’elle
+    représente avec exactitude la signification légale des termes de la
+    licence authentique “GNU Lesser General Public License” publiée en
+    anglais.
+
+    Cette traduction n’établit légalement aucun des termes de distribution
+    d’un logiciel utilisant la licence GNU LGPL — seul le texte original
+    en anglais le fait. Si vous souhaitez être sûr que les activités que
+    vous projetez seront autorisées par la “GNU Lesser General Public
+    License”, veuillez vous référer à la seule version anglaise
+    authentique.
+
+    La Free Software Foundation vous recommande fermement de ne pas
+    utiliser cette traduction en tant que termes officiels pour vos
+    propres programmes ; veuillez plutôt utiliser la version anglaise
+    authentique telle que publiée par la Free Software Foundation.
+
+    Si vous choisissez de publier cette traduction de licence en même
+    temps qu’une bibliothèque sous licence LGPL, cela ne vous dispense
+    pas de l’obligation de fournir en même temps une copie de la licence
+    authentique en Anglais, et de conserver cet avertissement important
+    en Français et sa traduction en Anglais ci-dessous.
+
+Important Warning About This French Translation.
+
+    This is a translation of the GNU Lesser General Public License into
+    French. This translation is distributed in the hope that it will
+    facilitate understanding, but it is not an official or legally
+    approved translation.
+
+    The Free Software Foundation is not the publisher of this translation
+    and has not approved it as a legal substitute for the authentic GNU
+    Lesser General Public License. The translation has not been reviewed
+    carefully by lawyers, and therefore the translator cannot be sure that
+    it exactly represents the legal meaning of the authentic GNU Lesser
+    General Public License published in English.
+
+    This translation does not legally state the distribution terms for
+    software that uses the GNU LGPL — only the original English text of
+    the GNU LGPL does that. If you wish to be sure whether your planned
+    activities are permitted by the GNU Lesser General Public License,
+    please refer to the authentic English version.
+
+    The Free Software Foundation strongly urges you not to use this
+    translation as the official distribution terms for your programs;
+    instead, please use the authentic English version published by the
+    Free Software Foundation.
+
+    If you choose to publish this translated licence with a library
+    covered by the LGPL Licence, this does not remove your obligation to
+    provide at the same time a copy of the authentic LGPL Licence in
+    English, and you must keep this important warning in English and its
+    French translation above.
+
+                              Préambule
+
+  Les licences de la plupart des logiciels sont conçues pour vous ôter
+toute liberté de les partager et de les modifier. À l’opposé, les Licences
+Générales Publiques GNU ont pour but de vous garantir votre liberté de
+partager et modifier un logiciel libre — pour être sûr que le logiciel
+est bien libre pour tous les utilisateurs.
+
+  Cette licence, la « Licence Générale Publique Limitée » (“Lesser
+General Public License”), s’applique à certains paquets logiciels désignés
+spécifiquement — typiquement des bibliothèques — de la Free Software
+Foundation et d’autres auteurs qui décident de l’utiliser. Vous pouvez
+l’utiliser aussi, mais nous vous suggérons de considérer d’abord si la
+présente licence ou la « Licence Générale Publique GNU » (“GNU General
+Public License”) ordinaire est la meilleure stratégie à utiliser dans
+chaque cas particulier, suivant les explications données ci-dessous.
+
+  Quand nous parlons de logiciel libre, nous parlons de la liberté de
+l’utiliser, pas de son prix. Nos Licences Générales Publiques sont
+conçues pour s’assurer que vous disposerez de la liberté de distribuer
+des copies du logiciel libre (et de facturer ce service si vous le
+désirez) ; que vous recevrez le code source ou pouvez l’obtenir chaque
+fois que vous le souhaitez ; que vous pouvez modifier le logiciel et en
+utilisez tout ou partie dans de nouveaux programmes libres ; et que vous
+êtes informés que vous pouvez faire tout ceci.
+
+  Pour protéger vos droits, nous devons émettre des restrictions qui
+interdisent aux distributeurs de vous refuser ces droits ou de vous
+demander d’abandonner ces droits. Ces restrictions se traduisent par
+certaines responsabilités pour vous si vous distribuez des copies de la
+bibliothèque ou si vous la modifiez.
+
+  Par exemple, si vous distribuez des copies de la bibliothèque, que ce
+soit à titre gratuit ou contre un paiement, vous devez donner aux
+concessionnaires tous les droits que nous vous avons concédés. Si vous
+liez d’autres codes avec la bibliothèque, vous devez fournir des fichiers
+objets complets aux concessionnaires, de sorte qu’ils peuvent les lier à
+nouveau avec la bibliothèque après l’avoir modifiée et recompilée. Et
+vous devez leur montrer ces termes de sorte qu’ils puissent connaître
+leurs droits.
+
+  Nous protégeons vos droits par une méthode en deux étapes : (1) nous
+libellons la Bibliothèque avec une notice de propriété intellectuelle
+(“copyright”) et (2) nous vous offrons cette Licence, qui vous donne le
+droit de copier, distribuer ou modifier la bibliothèque.
+
+  Pour protéger chaque distributeur, nous voulons établir de façon très
+claire qu’il n’y a aucune garantie pour la Bibliothèque libre. Aussi, si
+la Bibliothèque est modifiée par quelqu’un d’autre qui la redistribue
+ensuite, ses concessionnaires devraient savoir que ce qu’ils ont n’est
+pas la version originale, de sorte que la réputation de l’auteur original
+ne sera pas affectée à cause de problèmes introduits par d’autres.
+
+  Enfin, les brevets logiciels constituent une menace constante contre
+l’existence même de tout logiciel libre. Nous voulons être sûr qu’une
+société ne peut pas effectivement restreindre les utilisateurs d’un
+programme libre en obtenant une licence restrictive d’un titulaire de
+brevet. Par conséquent, nous insistons pour que toute licence de brevet
+obtenue pour une version de la Bibliothèque soit cohérente avec sa
+pleine liberté d’utilisation spécifiée dans la présente Licence.
+
+  La plupart des logiciels GNU, y compris certaines bibliothèques, sont
+couverts par la « Licence Générale Publique GNU » (“GNU General Public
+License”). La présente licence s’applique à certaines bibliothèques
+désignées et est assez différente de la « Licence Générale Publique ».
+Nous utilisons la présente licence pour certaines bibliothèques afin de
+permettre de lier ces bibliothèques, sous certaines conditions, à des
+programmes non libres.
+
+  Quand un programme est lié avec une bibliothèque, que ce soit
+statiquement ou avec une bibliothèque partagée, la combinaison des deux
+constitue, en termes légaux, un « travail combiné », un « dérivé » de la
+bibliothèque originale. Il s’ensuit que la « Licence Générale Publique »
+ordinaire ne permet une telle liaison que si l’entière combinaison
+remplie ses critères et conditions de liberté. La « Licence Générale
+Publique Limitée » permet de desserrer les critères permettant de lier
+d’autres codes avec la bibliothèque.
+
+  Nous appelons cette licence la Licence Générale Publique « Limitée »
+(“Lesser” General Public License) car elle offre en fait une protection
+plus limitée de la liberté de l’utilisateur que celle offerte par la
+« Licence Générale Publique » ordinaire. Elle offre aux autres
+développeurs de logiciels libres un avantage plus limité face aux
+programmes concurrents non libres. Ces désavantages sont la raison pour
+laquelle nous utilisons la « Licence Générale Publique » ordinaire pour
+de nombreuses bibliothèques. Cependant la licence limitée offre des
+avantages dans certaines circonstances spéciales.
+
+  Par exemple, en de rares occasions, il peut exister le besoin
+particulier d’encourager l’utilisation la plus large possible d’une
+certaine bibliothèque, afin qu’elle devienne un standard de facto. Pour
+parvenir à cette fin, des programmes non libres doivent pouvoir être
+autorisés à utiliser la bibliothèque. Un cas plus fréquent est qu’une
+bibliothèque libre effectue les mêmes tâches que des bibliothèques non
+libres largement utilisées. Dans ce cas, il n’y a pas grand chose à gagner
+à limiter la bibliothèque libre aux seuls logiciels libres, aussi nous
+utilisons la Licence Générale Publique Limitée.
+
+  Dans d’autres cas, l’autorisation d’utiliser une bibliothèque
+particulière dans des programmes non libres permet à un plus grand nombre
+de personnes d’utiliser un corpus très large de logiciels libres. Par
+exemple, l’autorisation d’utiliser la bibliothèque C GNU dans des programmes
+non libres permet à plus de personnes d’utiliser le système d’exploitation
+GNU tout entier, de même que sa variante, le système d’exploitation
+GNU/Linux.
+
+  Bien que la « Licence Générale Publique Limitée » semble limiter la
+protection de la liberté de l’utilisateur, elle assure que l’utilisateur
+d’un programme lié avec la bibliothèque dispose de la liberté et du choix
+d’exécuter ce programme en utilisant une version modifiée de la
+bibliothèque.
+
+  Les termes et conditions précis concernant la copie, la distribution et
+la modification suivent. Prenez une attention tout particulière aux
+différences entre un « travail basé sur la Bibliothèque » et un « travail
+utilisant la Bibliothèque ». Le premier contient du code dérivé de la
+bibliothèque, tandis que le second doit être combiné avec la bibliothèque
+afin de pouvoir être exécuté.
+
+                LICENCE GÉNÉRALE PUBLIQUE LIMITÉE GNU
+       TERMES ET CONDITIONS CONCERNANT LA COPIE, LA DISTRIBUTION
+                          ET LA MODIFICATION
+
+  0. Cet Accord de Licence s’applique à toute bibliothèque logicielle ou
+tout programme contenant une notice placée par le titulaire de la
+réservation de droits (“copyright”) ou toute autre partie autorisée
+indiquant que ce logiciel peut être distribué suivant les termes de cette
+Licence Générale Publique Limitée (appelée ci-dessous « cette Licence »).
+Chacun des concessionnaires de cette Licence sera désigné en tant que
+« Vous ».
+
+  Une « bibliothèque » signifie une collection de fonctions logicielles
+ou de données préparées de façon à être liée facilement à des programmes
+applicatifs (utilisant tout ou partie de ces fonctions et données) afin
+de former des exécutables.
+
+  La « Bibliothèque », ci-dessous, se réfère à toute bibliothèque
+logicielle ou travail qui a été distribué suivant ces termes. Un
+« travail basé sur la Bibliothèque » signifie soit la Bibliothèque ou
+tout travail dérivé pouvant être soumis aux lois de propriété
+intellectuelle : c’est-à-dire un travail contenant la Bibliothèque ou
+une portion de celle-ci, soit en copie conforme, soit avec des
+modifications ou traduit directement dans une autre langue. (Dans la
+suite ci-dessous, les traductions sont incluses sans limitation dans le
+terme « modification ».)
+
+  Le « code source » d’un travail signifie la forme préférée du travail
+permettant d’y effectuer des modifications. Pour une bibliothèque, le
+code source complet signifie tout le code source de tous les modules
+qu’elle contient, plus tous les fichiers de définition d’interface
+associés, plus les scripts utilisés pour contrôler la compilation et
+l’installation de la bibliothèque.
+
+  Les activités autres que la copie, la distribution et la modification
+ne sont pas couvertes par cette Licence ; elles sont en dehors de son
+étendue. L’action d’exécuter un programme utilisant la Bibliothèque
+n’est pas restreinte et les résultats produits par un tel programme ne
+sont couverts que si leur contenu constitue un travail basé sur la
+Bibliothèque (indépendamment de l’utilisation de la Bibliothèque dans
+un outil utilisé pour l’écrire). Que ce soit ou non le cas dépend de ce
+que réalise la Bibliothèque, et de ce que fait le programme utilisant la
+Bibliothèque.
+
+  1. Vous pouvez copier et distribuer des copies conformes du code source
+complet de la Bibliothèque que vous recevez, sur tout support, pourvu que
+vous publiiez scrupuleusement et de façon appropriée sur chaque copie la
+notice de réservation de droit (“copyright”) et un « déni de garantie » ;
+gardez intactes toutes les notices qui se réfèrent à cette Licence et à
+l’absence de toute garantie ; et distribuez une copie de cette Licence en
+même temps que la Bibliothèque.
+
+  Vous pouvez demander un paiement pour l’action physique de transfert
+d’une copie et vous pouvez à volonté offrir une protection de garantie en
+échange d’un paiement.
+
+  2. Vous pouvez modifier votre ou vos copie(s) de la Bibliothèque ou
+toute portion de celle-ci et ainsi créer un travail basé sur la
+Bibliothèque et copier ou distribuer de telles modifications suivant les
+termes de la Section 1 ci-dessus, pourvu que vous satisfassiez également
+à chacune de ces conditions :
+
+  a) Le travail modifié doit être lui-même une bibliothèque logicielle.
+
+  b) Vous devez assurer que les fichiers modifiés comportent des notices
+  évidentes établissant que vous avez changé les fichiers et la date de
+  ces changements.
+
+  c) Vous devez assurer que l’ensemble du travail pourra être licencié
+  sans frais à toute tierce partie suivant les termes de cette Licence.
+
+  d) Si une facilité dans la bibliothèque modifiée se réfère à une fonction
+  ou une table de données devant être fournie par une application utilisant
+  la facilité, autre qu’un argument passé quand la facilité est invoquée,
+  alors vous devez faire un effort en toute bonne foi pour vous assurer
+  que, dans l’éventualité où une application ne fournirait pas une telle
+  fonction ou table, la facilité restera opérationnelle et effectuera une
+  partie quelconque de sa finalité de façon sensée.
+
+  (Par exemple, une fonction dans une bibliothèque pour calculer des
+  racines carrées a une finalité qui est totalement bien définie
+  indépendamment de l’application. Par conséquent, la Sous-section 2d
+  requiert que toute fonction fournie par l’application ou table
+  utilisée par cette fonction doit être optionnelle : si l’application
+  n’en fournit pas, la fonction racine carrée doit encore pouvoir
+  calculer des racines carrées.)
+
+  Ces obligations s’appliquent au travail modifié dans son entier. Si des
+sections identifiables de ce travail ne sont pas dérivées dans la
+Bibliothèque, et peuvent être raisonnablement considérées comme des
+travaux indépendants et séparés par eux-mêmes, alors cette Licence et ses
+termes, ne s’appliquent pas à ces sections, dès lors que vous les
+distribuez en tant que travaux séparés. Mais quand vous distribuez les
+mêmes sections en tant que composants d’un ensemble constituant un
+travail basé sur la Bibliothèque, la distribution de l’ensemble doit se
+faire suivant les termes de cette Licence, dont les autorisations
+accordées à d’autres obtenteurs de licences s’étendent à la totalité de
+l’ensemble et donc pour chacun des composants indépendamment de qui les a
+écrits.
+
+  Aussi, ce n’est pas l’intention de cette section de clamer des droits ou
+de contester vos droits sur des travaux écrits entièrement par vous ;
+l’intention est plutôt d’exercer le droit de contrôler la distribution
+des travaux dérivés ou collectifs basés sur la Bibliothèque.
+
+  De plus, la simple agrégation avec la Bibliothèque (ou avec un travail
+basé sur la Bibliothèque) d’un autre travail non basé sur la Bibliothèque
+sur un même volume de stockage ou un support de distribution n’amène pas
+cet autre travail dans le champ d’application de cette Licence.
+
+  3. Vous pouvez choisir d’appliquer les termes de la Licence Générale
+Publique GNU ordinaire au lieu de ceux de cette Licence à une copie
+donnée de cette Bibliothèque. Pour le faire, vous devez modifier les
+notices qui se réfèrent à cette Licence, de sorte qu’ils se réfèrent
+plutôt à la Licence Générale Publique GNU version 2, au lieu de cette
+Licence. (Si une version officielle plus récente que la version 2 de la
+Licence Générale Publique GNU ordinaire a été publiée, alors vous pouvez
+spécifier plutôt cette version si vous le souhaitez.) N’effectuez aucun
+autre changement à ces notices.
+
+  Dès que ce changement a été fait dans une copie donnée, il est
+irréversible pour cette copie et donc la Licence Générale Publique GNU
+ordinaire s’appliquera à toutes les copies suivantes et à tous travaux
+dérivés effectués à partir de cette copie.
+
+  Cette option est utile quand vous souhaitez copier une partie du code de
+la Bibliothèque en un programme qui n’est pas une bibliothèque.
+
+  4. Vous pouvez copier et distribuer la Bibliothèque (ou une portion ou un
+dérivé de celle-ci, suivant les termes de la Section 2 sous forme de code
+objet ou exécutable suivant les termes des Sections 1 et 2 ci-dessus,
+pourvu que vous l’accompagniez avec le code source correspondant sous
+forme lisible par une machine, qui doit être distribué suivant les termes
+des Sections 1 et 2 ci-dessus sur un support utilisé habituellement pour
+l’échange de logiciels.
+
+  Si la distribution du code objet se fait en offrant l’accès à la copie
+depuis un emplacement désigné, alors une offre d’accès équivalente pour
+copier le code source depuis le même emplacement satisfait à l’obligation
+de distribuer le code source, même si des parties tierces ne sont pas
+obligées de copier simultanément le code source en même temps que le code
+objet.
+
+  5. Un programme qui ne contient aucun dérivé d’une quelconque portion de
+la Bibliothèque, mais est conçu pour travailler avec la Bibliothèque en
+étant compilé ou lié avec cette Bibliothèque, est appelé un « travail
+utilisant la Bibliothèque ». Un tel travail, pris isolément, n’est pas un
+travail dérivé de la Bibliothèque et tombe par conséquent hors du champ
+d’application de cette Licence.
+
+  Cependant, la liaison avec la Bibliothèque d’un « travail utilisant la
+Bibliothèque » crée un exécutable qui est un « dérivé de la Bibliothèque »
+(car il contient des portions de la Bibliothèque), plutôt qu’un « travail
+utilisant la Bibliothèque ». L’exécutable est par conséquent couvert par
+cette Licence. La Section 6 établit les termes de distribution de tels
+exécutables.
+
+  Quand un « travail utilisant la Bibliothèque » utilise des éléments d’un
+fichier d’entête faisant partie de la Bibliothèque, le code objet de ce
+travail peut être un travail « dérivé de la Bibliothèque » même si son
+code source ne l’est pas. Cette définition prendra son sens tout
+particulièrement si le travail peut être lié sans la Bibliothèque ou si
+le travail est lui-même une bibliothèque. Les délimitations de ce cas ne
+sont pas définies de façon précise par la loi.
+
+  Si un tel fichier objet utilise uniquement des paramètres numériques, des
+schémas et accesseurs de structures de données et de petites macros et
+petites fonctions en ligne (dix lignes de source ou moins en longueur),
+alors l’utilisation du fichier objet est non restreinte, indépendamment
+du fait que cela constitue légalement un travail « dérivé » (Les règles
+de la Section 6 s’appliqueront tout de même aux exécutables contenant ce
+code objet plus des portions de la Bibliothèque).
+
+  Autrement, si le travail est un « dérivé de la Bibliothèque, » vous
+pouvez distribuer le code objet pour le travail suivant les termes de la
+Section 6. Les règles de la section 6 s’appliquent alors à tout
+exécutable contenant ce travail, que ce dernier soit ou ne soit pas lié
+directement avec la Bibliothèque elle-même.
+
+  6. Par exception aux Sections ci-dessus, vous pouvez aussi combiner ou
+lier un « travail utilisant la Bibliothèque » avec la Bibliothèque pour
+produire un travail contenant des portions de la Bibliothèque et
+distribuer ce travail suivant les termes de votre choix, pourvu que ces
+termes permettent la modification du travail pour les besoins propres du
+client et l’ingénierie inverse permettant le déboguage de telles
+modifications.
+
+  Vous devez donner une notice explicite et évidente avec chaque copie du
+travail montrant que la Bibliothèque est utilisée dans celui-ci et que la
+Bibliothèque et son utilisation sont couvertes par cette Licence. Vous devez
+fournir une copie de cette Licence. Si le travail lors de son exécution
+affiche des notices de droits et propriétés intellectuelles, vous devez
+inclure la notice pour la Bibliothèque parmi celles-ci, ainsi qu’une
+référence adressée à l’utilisateur vers une copie de cette Licence. Vous
+devez aussi effectuer l’une des tâches suivantes :
+
+  a) Accompagner le travail avec le code source complet correspondant
+  lisible par une machine pour la Bibliothèque incluant tout changement
+  quelconque qui ont étés effectués dans le travail (qui doit être
+  distribué suivant les Sections 1 et 2 ci-dessus) ; et, si le travail est
+  un exécutable lié avec la Bibliothèque, fournir la totalité du « travail
+  utilisant la Bibliothèque » lisible par une machine, sous forme de code
+  objet ou source, de sorte que l’utilisateur puisse modifier la
+  Bibliothèque et la relier pour produire un exécutable modifié contenant
+  la Bibliothèque modifiée.
+  (Il est admis que l’utilisateur qui change le contenu de fichiers
+  de définition dans la Bibliothèque ne sera pas nécessairement
+  capable de recompiler l’application pour utiliser les définitions
+  modifiées.)
+
+  b) Utiliser un mécanisme approprié de bibliothèque partagée pour lier
+  avec la Bibliothèque. Un mécanisme approprié est celui qui (1) utilise à
+  l’exécution une copie de la Bibliothèque déjà présente sur le système de
+  l’ordinateur de l’utilisateur, plutôt que de copier les fonctions de
+  Bibliothèque dans l’exécutable et (2) fonctionnera correctement avec une
+  version modifiée de la Bibliothèque, si l’utilisateur en installe une,
+  tant que la version modifiée est compatible au niveau de l’interface
+  avec la version avec laquelle le travail a été réalisé.
+
+  c) Accompagner le travail d’une offre écrite, valide pour au moins trois
+  ans, de donner au même utilisateur les éléments spécifiés dans la
+  Sous-section 6a, ci-dessus, contre un paiement n’excédant pas le coût
+  requis pour effectuer cette distribution.
+
+  d) Si la distribution du travail est faite en offrant l’accès à une
+  copie depuis un emplacement désigné, offrir un accès équivalent depuis
+  le même emplacement pour copier les éléments spécifiés ci-dessus.
+
+  e) Vérifier que l’utilisateur a déjà reçu une copie de ces éléments ou
+  que vous en avez déjà envoyé une copie à cet utilisateur.
+
+  Pour un exécutable, la forme requise du « travail utilisant la
+Bibliothèque » doit inclure toutes les données et programmes utilitaires
+nécessaires permettant de reproduire l’exécutable à partir de ceux-ci.
+Cependant, par exception, les matériels à distribuer n’ont pas besoin
+d’inclure tout ce qui est normalement distribué (sous forme source ou
+binaire) avec les composants majeurs (compilateur, noyau et autres
+composants similaires) du système d’exploitation sur lequel l’exécutable
+fonctionne, à moins que ce composant lui-même accompagne l’exécutable.
+
+  Il peut arriver que ces conditions nécessaires contredisent les
+restrictions de licence d’autres bibliothèques propriétaires qui
+n’accompagnent pas normalement le système d’exploitation. Une telle
+contradiction signifie que vous ne pouvez pas les utiliser en même temps
+que la Bibliothèque dans un exécutable que vous distribuez.
+
+  7. Vous pouvez placer les facilités de bibliothèque qui sont un travail
+basé sur la Bibliothèque côte à côte dans une unique bibliothèque avec
+d’autres facilités de bibliothèque non couvertes par cette Licence et
+distribuer une telle bibliothèque combinée, pourvu que la distribution
+séparée du travail basé sur la Bibliothèque et des autres facilités de
+bibliothèque soient autrement permises et pourvu que vous effectuiez
+chacune des deux tâches suivantes :
+
+  a) Accompagner la bibliothèque combinée avec une copie du même travail
+  basé sur la Bibliothèque, non combinée avec d’autres facilités de la
+  Bibliothèque. Cela doit être distribué suivant les termes des Sections
+  ci-dessus.
+
+  b) Donner une notice évidente avec la bibliothèque combinée du fait
+  qu’une partie de celle-ci est un travail basé sur la Bibliothèque et
+  expliquant où trouver la forme non combinée accompagnante du même
+  travail.
+
+  8. Vous ne pouvez pas copier, modifier, accorder des sous-licences, lier
+ou distribuer la Bibliothèque autrement que d’une façon décrite
+expressément par cette Licence. Autrement, toute tentative de copier,
+modifier, accorder des sous-licences, lier ou distribuer la Bibliothèque
+est invalide et mettra fin automatiquement à vos droits accordés sous
+cette Licence. Toutefois, toute autre tierce partie qui a reçu des copies
+ou des droits par vous, suivant les termes de cette Licence, ne verra pas sa
+licence résiliée, aussi longtemps que cette partie tierce continuera de
+s’y conformer pleinement.
+
+  9. Vous n’êtes pas obligé d’accepter cette Licence, puisque vous ne l’avez
+pas signée. Cependant, rien d’autre ne vous accorde l’autorisation de
+modifier ou distribuer la Bibliothèque ou ses travaux dérivés. Ces actions
+sont légalement prohibées si vous n’acceptez pas cette Licence. Par
+conséquent, en modifiant ou distribuant la Bibliothèque (ou tout travail
+basé sur la Bibliothèque), vous indiquez votre acceptation de cette
+Licence pour le faire, ainsi que tous ses termes et conditions pour la
+copie, la distribution ou la modification de la Bibliothèque ou des
+travaux basés sur elle.
+
+  10. Chaque fois que vous redistribuez la Bibliothèque (ou tout travail
+basé sur la Bibliothèque), le destinataire reçoit automatiquement une
+licence par l’émetteur d’origine de la licence, permettant de copier,
+distribuer, lier ou modifier la Bibliothèque en accord avec les présents
+termes et conditions. Vous ne pouvez pas imposer davantage de
+restrictions sur l’exercice par le concessionnaire de cette licence des
+droits accordés dans la présente licence. Vous êtes dégagé de la
+responsabilité de contrôler la conformité d’usage de cette Licence par
+des parties tierces.
+
+  11. Si, par suite d’une décision judiciaire ou d’une allégation
+d’infraction à un brevet ou pour toute autre raison (non limitée aux
+problèmes de brevets), des conditions vous sont imposées (que ce soit par
+une ordonnance de justice, une transaction amiable ou contractuelle ou
+toute autre raison) qui contredisent les conditions de cette Licence,
+elles ne vous dégagent pas des obligations de cette Licence. Si vous ne
+pouvez pas effectuer une distribution de façon à satisfaire simultanément
+vos obligations sous cette Licence et toute autre obligation pertinente,
+alors vous ne pouvez en aucun cas distribuer la Bibliothèque. Par
+exemple, si une licence de brevet ne permettait pas une redistribution de
+la Bibliothèque sans paiement de royalties par tous ceux qui en reçoivent
+des copies directement ou indirectement à travers vous, alors la seule
+façon pour vous de satisfaire à la fois les conditions imposées et cette
+Licence sera de vous abstenir complètement de toute distribution de la
+Bibliothèque.
+
+  Si toute portion de cette section est jugée invalide ou inapplicable de
+plein droit dans une quelconque circonstance particulière, tout le reste
+de cette section est supposé s’appliquer et la section dans son ensemble est
+supposée toujours être applicable dans toutes les autres circonstances.
+
+  Le but de cette section n’est pas de vous obliger à enfreindre un
+quelconque brevet ou d’autres prétentions à des droits de propriété ou de
+contester la validité de telles prétentions ; cette section a pour seul
+but de protéger l’intégrité du système de distribution des logiciels
+libres tel qu’il fonctionne au moyen de pratiques de licences publiques.
+De nombreuses personnes ont fait des contributions généreuses à la gamme
+très étendue de logiciels distribués via ce système, en comptant sur
+l’application rigoureuse et cohérente de ce système ; il appartient
+seulement à l’auteur ou au donateur de décider si il ou elle désire
+distribuer un logiciel via un autre système et le concessionnaire de
+licence ne peut pas imposer ce choix.
+
+  Cette section a pour but d’établir de façon très claire ce que l’on croit
+être une conséquence nécessaire du reste de cette Licence.
+
+  12. Si la distribution ou l’usage de la Bibliothèque est restreinte
+dans certains pays, que ce soit par des brevets ou des interfaces soumises
+au droit de propriété intellectuelle, le titulaire original de ce droit de
+propriété qui place la Bibliothèque sous la couverture de cette Licence
+peut ajouter une limitation géographique explicite de distribution
+excluant ces pays, afin que la distribution soit permise seulement dans
+ou parmi les pays non exclus. Dans un tel cas, cette Licence incorpore la
+limitation comme si elle était réputée écrite dans le corps de cette
+Licence.
+
+  13. La Free Software Foundation peut publier des versions révisées ou
+nouvelles de la Licence Générale Publique Limitée de temps en temps. De
+telles nouvelles versions resteront similaires à l’esprit de la présente
+version, mais peut différer dans son détail afin de traiter de nouveaux
+problèmes ou préoccupations.
+
+  Chaque version reçoit un numéro de version distinctif. Si la Bibliothèque
+spécifie un numéro de version de cette Licence qui s’applique à celle-ci
+et à « toute autre version future », vous avez l’option de suivre les
+termes et conditions de cette version ou de toute version ultérieure
+publiées par la Free Software Foundation. Si la Bibliothèque ne spécifie
+pas un numéro de version de licence, vous pouvez choisir n’importe quelle
+version publiée par la Free Software Foundation.
+
+  14. Si vous souhaitez incorporer des parties de la Bibliothèque dans
+tout autre programme libre dont les conditions de distribution sont
+incompatibles avec ces termes, écrivez à l’auteur ou demandez son
+autorisation. Pour les logiciels dont les droits de propriété sont
+détenus par la Free Software Foundation, écrivez à la Free Software
+Foundation ; nous faisons parfois des exceptions pour celui-ci. Notre
+décision sera guidée par les deux finalités de préserver le statut libre
+de tous les dérivés de nos logiciels libres et de promouvoir le partage
+et la réutilisation des logiciels en général.
+
+                           ABSENCE DE GARANTIE
+
+  15. PUISQUE CETTE BIBLIOTHÈQUE FAIT L’OBJET D’UNE LICENCE QUI VOUS EST
+ACCORDÉE SANS FRAIS, IL N’Y A AUCUNE GARANTIE POUR LA BIBLIOTHÈQUE, DANS
+LES LIMITES AUTORISÉES PAR LA LOI APPLICABLE. À MOINS QUE CELA NE SOIT
+ÉTABLI DIFFÉREMMENT PAR ÉCRIT, LES TITULAIRES DE DROITS DE PROPRIÉTÉ
+OU LES AUTRES PARTIES FOURNISSENT LA BIBLIOTHÈQUE « EN L’ÉTAT » SANS
+GARANTIE D’AUCUNE SORTE, QU’ELLE SOIT EXPRIMÉE OU IMPLICITE, CECI
+INCLUANT, MAIS SANS LIMITATION, LES GARANTIES IMPLICITES DE
+MARCHANDABILITÉ ET D’ADÉQUATION À UN OBJECTIF PARTICULIER. VOUS ASSUMEZ
+SEUL LE RISQUE TOUT ENTIER CONCERNANT LA QUALITÉ ET LA PERFORMANCE DE LA
+BIBLIOTHÈQUE. DANS L’ÉVENTUALITÉ OÙ LA BIBLIOTHÈQUE S’AVÉRERAIT
+DÉFECTUEUSE, VOUS ASSUMEREZ VOUS-MÊME LE COÛT DE TOUS LES SERVICES,
+RÉPARATIONS OU CORRECTIONS NÉCESSAIRES.
+
+  16. EN AUCUNE AUTRE CIRCONSTANCE QUE CELLES REQUISES PAR LA LOI
+APPLICABLE OU ACCORDÉES PAR ÉCRIT, UN TITULAIRE DE DROIT DE PROPRIÉTÉ, OU
+TOUT AUTRE PARTIE QUI PEUT MODIFIER OU REDISTRIBUER LA BIBLIOTHÈQUE COMME
+PERMIS CI-DESSUS, NE POURRA ÊTRE TENU POUR RESPONSABLE ENVERS VOUS POUR
+LES DOMMAGES, INCLUANT TOUS DOMMAGE GÉNÉRAL, SPÉCIAL, ACCIDENTEL OU
+INDUIT SURVENU PAR SUITE DE L’UTILISATION OU DE L’INCAPACITÉ D’UTILISER
+LA BIBLIOTHÈQUE (CECI INCLUANT MAIS SANS LIMITATION LA PERTE DE DONNÉES
+OU L’INEXACTITUDE DES DONNÉES RETOURNÉES OU LES PERTES SUBIES PAR VOUS OU
+DES PARTIES TIERCES OU L’INCAPACITÉ DE LA BIBLIOTHÈQUE À FONCTIONNER AVEC
+TOUT AUTRE LOGICIEL), MÊME SI UN TEL TITULAIRE OU TOUTE AUTRE PARTIE A ÉTÉ
+AVISÉ DE LA POSSIBILITÉ DE TELS DOMMAGES.
+
+                      FIN DES TERMES ET CONDITIONS.

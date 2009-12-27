@@ -1,0 +1,58 @@
+       Comment appliquer ces termes à Vos nouvelles bibliothèques
+
+  Si vous développez une nouvelle bibliothèque et voulez qu’elle soit le
+plus possible utilisable par le public, nous recommandons d’en faire un
+logiciel libre que chacun peut redistribuer et changer. Vous pouvez le
+faire en permettant la redistribution suivant ces termes (ou
+éventuellement les termes de la Licence Générale Publique GNU ordinaire).
+
+  Pour appliquer ces termes, attachez les notices suivantes à la
+bibliothèque. Il est plus sûr de les attacher au début de chacun des
+fichiers sources afin de transporter de façon la plus effective possible
+l’exclusion de garantie ; et chaque fichier devrait comporter au moins la
+ligne de réservation de droit (“copyright”) et une indication permettant
+de savoir où la notice complète peut être trouvée :
+
+    <une ligne donnant le nom de la bibliothèque et une idée de ce qu’elle fait.>
+    Copyright (C) <année> <nom de l’auteur> — Tous droits réservés.
+
+    Cette bibliothèque est un logiciel libre ; vous pouvez la redistribuer ou
+    la modifier suivant les termes de la Licence Générale Publique Limitée
+    GNU telle que publiée par la Free Software Foundation ; soit la
+    version 2.1 de la License, soit (à votre gré) toute version ultérieure.
+
+    Cette bibliothèque est distribuée dans l’espoir qu’elle sera utile, mais
+    SANS AUCUNE GARANTIE : sans même la garantie implicite de
+    COMMERCIALISABILITÉ ou d’ADÉQUATION À UN OBJECTIF PARTICULIER. Consultez
+    la Licence Générale Publique Limitée pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la Licence Générale Publique Limitée
+    GNU avec cette bibliothèque ; si ce n’est pas le cas, écrivez à la :
+    Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA 02110-1301, USA.
+
+  Ajoutez également les informations permettant de vous contacter par
+courrier électronique ou papier :
+
+    Pour toute demande d’information au sujet de la bibliothèque « Frob »,
+    vous pouvez contacter son auteur :
+
+    Li-Jean Kodeur-Untel <li-jean.kodeur-untel@domaine.exemple>,
+    1 place du Desseim Inconnu, 012345 Lhuile, République de Nulle Part.
+    Téléphone : +800(555)0X0-0XX0 — Télécopie : +800(555)0X0-0XX1
+    Site Internet : http://www.domaine.exemple/frob
+
+  Vous devriez également obtenir de votre employeur (si vous travaillez en
+tant que programmeur) ou de votre école un « renoncement aux droits de
+propriété » pour la Bibliothèque, si nécessaire. Voici un exemple où il
+vous suffit d’en modifier les noms, descriptions ou dates variables :
+
+    Yoyodyne S.A., déclare par la présente renoncer à tous droits et intérêts
+    de propriété intellectuelle sur la bibliothèque « Frob » (une bibliothèque
+    destinée à déplier les coudes) écrite par Li-Jean Kodeur-Untel.
+
+    Fait à Lhuile, le 1er avril 1001 :   <signature de Ti Coun>
+
+    Ti Coun, Président de Yoyodyne S.A.
+
+  Voilà tout ce qui est nécessaire !
