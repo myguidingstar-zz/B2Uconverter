@@ -173,7 +173,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             #folderPicker.dispose()
             return unohelper.fileUrlToSystemPath(selectedFolder)
         else:
-            return  #Cancel button pressed
+            return None  #Cancel button pressed
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
