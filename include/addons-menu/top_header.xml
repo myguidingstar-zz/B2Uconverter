@@ -3,6 +3,9 @@
  <node oor:name="AddonUI">
   <node oor:name="OfficeMenuBar">
    <node oor:name="vn.gov.oss.openoffice.b2uconverter.menu" oor:op="replace">
+    <prop oor:name="Context" oor:type="xs:string">
+     <value>com.sun.star.text.TextDocument,com.sun.star.sheet.SpreadsheetDocument,com.sun.star.presentation.PresentationDocument</value>
+    </prop>
     <prop oor:name="Title" oor:type="xs:string">
      <value>B2~UConverter</value>
     </prop>
