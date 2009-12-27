@@ -1,0 +1,10 @@
+B2UConverter — Extension UNO pour OpenOffice.org
+
+Copyright ©2009  Ministère des Sciences et des Technologies du Viêt-Nam
+Licence : GNU Lesser General Public License version 2.1
+Auteurs : Jean Christophe André <jcandre@hanoilug.org>
+          Lê Quốc Thái <lqthai@hanoilug.org>
+          Võ Đức Phương <vdphuong@hanoilug.org>
+
+Extension pour convertir les documents utilisant de vieux encodages vers
+Unicode.

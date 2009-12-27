@@ -1,0 +1,9 @@
+B2UConverter — UNO extension cho OpenOffice.org
+
+Copyright ©2009  Bộ Khoa học và Công nghệ của Việt Nam
+Giấy phép : GNU Lesser General Public License version 2.1
+Tác giả : Jean Christophe André <jcandre@hanoilug.org>
+          Lê Quốc Thái <lqthai@hanoilug.org>
+          Võ Đức Phương <vdphuong@hanoilug.org>
+
+Extension để chuyển đổi tài liệu từ sử dụng mã cũ sang sử dụng mã Unicode.

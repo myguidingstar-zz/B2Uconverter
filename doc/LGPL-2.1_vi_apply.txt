@@ -1,0 +1,6 @@
+Cách áp dụng điều kiện này cho các chương trình mới của bạn
+
+Nếu bạn phát triển thư viện mới, và muốn làm cho nó có ích nhiều nhất cho mọi người, phương pháp tốt nhất đạt được mục đích này là làm cho nó là phần mềm tự do mà mọi người có thể phát hành lại và sửa đổi với điều kiện này. Có thể làm như thế bằng cách cho phép phát hành lại dưới những điều kiện này (hoặc dưới những điều kiện của Giấy phép Công cộng chuẩn).
+
+Để làm như thế, hãy đính các thông báo theo đây kèm thư viện Cách an toàn nhất là đính chúng vào đầu của mỗi tập tin mã nguồn, để thể hiện cách thông báo không có bảo hành một cách hữu hiệu nhất; và mỗi tập tin nên chứa ít nhất đoạn « Tác quyền » và thông tin chỉ tới nơi tìm được thông báo đầy đủ.
+

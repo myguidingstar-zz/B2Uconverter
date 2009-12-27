@@ -9,26 +9,26 @@ This is an unofficial translation of the GNU Lesser General Public License into 
 Tác quyền © năm 1991, 1999 của Tổ chức Phần mềm Tự do.<br>
 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA (Mỹ)
 
-Mọi người đều đuợc quyền sao chép và phân phối nguyên văn tài liệu giấy phép 
+Mọi người đều đuợc quyền sao chép và phân phối nguyên văn tài liệu giấy phép
 này, nhưng không được phép thay đổi nó.
 
 [Đây là phiên bản đã phát hành thứ nhất của Giấy phép Công cộng Phụ GNU. Nó cũng thừa tự Giấy phép Công cộng Thư viện GNU, phiên bản 2, thì số hiệu phiên bản 2.1.]
 
 LỜI MỞ ĐẦU
-			    
-Giấy phép sử dụng của hầu hết các phần mềm được thiết kế để bạn không được 
-tự do chia sẻ và thay đổi phần mềm đó. Trái lại, các Giấy phép Công cộng GNU dự 
-định đảm bảo cho bạn được tự do chia sẻ và thay đổi phần mềm một cách tự do, 
+
+Giấy phép sử dụng của hầu hết các phần mềm được thiết kế để bạn không được
+tự do chia sẻ và thay đổi phần mềm đó. Trái lại, các Giấy phép Công cộng GNU dự
+định đảm bảo cho bạn được tự do chia sẻ và thay đổi phần mềm một cách tự do,
 và đảm bảo phần mềm tự do cho mọi người sử dụng.
 
 Giấy phép này, Giấy phép Công cộng Phụ, áp dụng cho một số gói phần mềm đã chỉ rõ đặc biệt — thường thư viện — của Tổ chức Phần mềm Tự do và các tác giả khác chọn sử dụng nó. Bạn cũng có thể sử dụng nó, nhưng trước tiên đề nghị bạn nghĩ cẩn thận nếu giấy phép này hay Giấy phép Công cộng chuẩn là chiến lược tốt hơn trong trường hợp riêng nào, dựa vào các lời giải thích bên dưới.
 
-Khi chúng tôi nói về phần mềm tự do, chúng tôi đề cập đến sự tự do sử dụng, 
-chứ không phải là giá cả. Giấy phép Công cộng GNU của chúng tôi được thiết 
-kế để đảm bảo bạn có quyền tự do phát hành bản sao của phần mềm tự do (và 
-thu tiền dịch vụ này nếu muốn), nhận mã nguồn hoặc có khả năng lấy nó nếu 
-bạn muốn, bạn có thể thay đổi phần mềm hay sử dụng bất kỳ đoạn nào của nó 
-trong chương trình tự do mới; và để giúp bạn biết rõ là bạn có thể làm những 
+Khi chúng tôi nói về phần mềm tự do, chúng tôi đề cập đến sự tự do sử dụng,
+chứ không phải là giá cả. Giấy phép Công cộng GNU của chúng tôi được thiết
+kế để đảm bảo bạn có quyền tự do phát hành bản sao của phần mềm tự do (và
+thu tiền dịch vụ này nếu muốn), nhận mã nguồn hoặc có khả năng lấy nó nếu
+bạn muốn, bạn có thể thay đổi phần mềm hay sử dụng bất kỳ đoạn nào của nó
+trong chương trình tự do mới; và để giúp bạn biết rõ là bạn có thể làm những
 điều này.
 
 Để bảo vệ quyền lợi của bạn, chúng tôi cần đưa ra những hạn chế để cấm bất cứ ai phủ nhận bạn có những quyền này hay đòi hỏi bạn từ bỏ nó. Những sự hạn chế này được hiểu là một số trách nhiệm nhất thiết của bạn nếu bạn phát hành bản sao của thư viện hoặc sửa đổi nó.
@@ -57,11 +57,11 @@ Theo đây có những điều kiện chính xác để sao chép, phát hành v
 
 GIẤY PHÉP CÔNG CỘNG PHỤ GNU
 ĐIỀU KIỆN SAO CHÉP, PHÁT HÀNH VÀ SỬA ĐỔI
-        
+
 0. Điều kiện Quyền này áp dụng cho bất kỳ thư viện phần mềm hay chương trình khác mà chứa một thông báo được chèn vào bởi người giữ tác quyền hay bất kỳ bên được quyền nói rằng có thể được phát hành theo các điều khoản của Giấy phép Công cộng Phụ này (cũng được gợi như là « Giấy phép này »). Mỗi người được cầp bản quyền được gọi là « bạn ».
- 
+
 Một « thư viện »  nghĩa là một tập hợp các hàm phần mềm và/hay dữ liệu được chuẩn bị để được liên kết tiện lợi với chương trình ứng dụng (mà sử dụng một số hàm và dữ liệu trong tập hợp này) để xây dựng tập tin có khả năng thực hiện.
- 
+
 « Thư viện » dưới đây có nghĩa là bất kỳ thư viện phần mềm hay sản phẩm như vậy đã được phát hành theo các điều khoản này. Một « sẩn phẩm dựa trên Thư viện » có nghĩa là Thư viện hay bất kỳ sản phẩm nào bắt nguồn từ nó dưới luật bản quyền: tức là, sản phẩm chứa Thư viện đó hay một phần của nó, hoặc đúng nguyên văn hoặc với sự sửa đổi và/hoặc được dịch sang một ngôn ngữ khác. (Kể từ câu này, việc dịch ngôn ngữ được bao gồm vô hạn trong thuật ngữ « sự sửa đổi ».)
 
 « Mã nguồn » của sản phẩm có nghĩa là dạng thức sản phẩm được ưa thích khi sửa đổi nó. Đối với thư viện, toàn bộ mã nguồn có nghĩa là tất cả các mã nguồn cho mọi mô-đun đã chứa, cộng với bất cứ tập tin xác định giao diện tương ứng, cộng với các văn lệnh được dùng để điều khiển tiến trình biên dịch và cài đặt thư viện.
@@ -70,30 +70,30 @@ Những hoạt động khác ngoài sự sao chép, phát hành và sửa đổi
 
 1. Bạn có quyền sao chép và phát hành bản sao đúng nguyên văn của toàn bộ mã nguồn của Thư viện như bạn đã nhận nó, bằng bất kỳ cách nào, miễn là bạn công bố rõ ràng và thích đáng trên mỗi bản sao một thông báo tác quyền thích hợp và miễn trừ bảo hành; giữ nguyên vẹn mọi thông báo liên quan đến Giấy phép này và miễn trừ bảo hành; và đưa cho những người nhận Chương trình khác một bản sao của Giấy phép cùng với Thư viện.
 
-Bạn có thể thu phí cho việc gởi bản sao, và bạn có thể tùy ý đề nghị cung 
+Bạn có thể thu phí cho việc gởi bản sao, và bạn có thể tùy ý đề nghị cung
 cấp dịch vụ bảo hành có thu phí.
 
-2. Bạn có quyền sửa đổi bản sao của mình hay của Thư viện hoặc đoạn nào của nó để tạo một sản phẩm dựa vào Thư viện, và sao chép và phát hành sự sửa đổi hay sản phẩm như vậy theo điều khoản của Phần 1 nêu trên, miễn là bạn cũng tuân theo tất cả các điều kiện sau: 
- 
+2. Bạn có quyền sửa đổi bản sao của mình hay của Thư viện hoặc đoạn nào của nó để tạo một sản phẩm dựa vào Thư viện, và sao chép và phát hành sự sửa đổi hay sản phẩm như vậy theo điều khoản của Phần 1 nêu trên, miễn là bạn cũng tuân theo tất cả các điều kiện sau:
+
 (a) Sản phẩm đã sửa đổi phải chính nó là thư viện phần mềm.
-    
+
 (b) Bạn phải làm cho mỗi tập tin đã sửa đổi chứa thông báo dễ thấy nói rằng bạn đã thay đổi tập tin đó và hiển thị ngày tháng của sự thay đổi nào.
-    
+
 (c) Bạn phải làm cho toàn bộ sản phẩm được cấp miễn phí cho người khác với điều kiện của Giấy phép này.
-    
+
 (d) Nếu một chức năng trong Thư viện đã sửa đổi tham chiếu đến một hàm hay bảng dữ liệu cần phải được cung cấp bởi một chương trình ứng dụng sử dụng chức năng này, khác với như đối số được gửi qua khi chức năng được gọi, thì bạn phải cố gắng thiện ý chắc chắn là, trong trường hợp ứng dụng không cung cấp hàm hay bảng như vậy, chức năng vẫn còn hoạt động được, cũng thực hiện phần nào của mục đích còn lại hữu ích.
-    
+
 (Chẳng hạn, một hàm trong thư viện để tính căn bậc hai có mục đích được xác định hoàn toàn, không phụ thuộc vào ứng dụng. Vì vậy, Phần phụ 2d cần thiết bất cứ hàm hay bảng do ứng dụng cung cấp được sử dụng bởi hàm này phải là tùy chọn: nếu ứng dụng không cung cấp, hàm căn bậc hai vẫn còn phải tính được căn bậc hai.)
-    
-Những điều kiện này áp dụng cho toàn bộ sản phẩm bị sửa đổi. Nếu có thể nhận ra phần riêng của sản phẩm đó không bắt nguồn từ Thư viện, và các phần này có thể được xem một cách hợp lý là sản phẩm riêng và không phụ thuộc, thì Giấy phép này, và các điều kiện của nó, không áp dụng cho những phần riêng đó khi bạn phát hành chúng là sản phẩm riêng. Tuy nhiên, khi bạn phát hành những phần đó cùng với toàn bộ sản phẩm dựa vào Thư viện, sự phát hành toàn bộ này phải tuân theo điều kiện của Giấy phép này, cung cấp cho 
+
+Những điều kiện này áp dụng cho toàn bộ sản phẩm bị sửa đổi. Nếu có thể nhận ra phần riêng của sản phẩm đó không bắt nguồn từ Thư viện, và các phần này có thể được xem một cách hợp lý là sản phẩm riêng và không phụ thuộc, thì Giấy phép này, và các điều kiện của nó, không áp dụng cho những phần riêng đó khi bạn phát hành chúng là sản phẩm riêng. Tuy nhiên, khi bạn phát hành những phần đó cùng với toàn bộ sản phẩm dựa vào Thư viện, sự phát hành toàn bộ này phải tuân theo điều kiện của Giấy phép này, cung cấp cho
 mọi người có quyền bao trùm toàn bộ sản phẩm, bao quát tất cả mọi phần của nó, bất kể ai đã tạo nó.
 
-Như thế thì phần này không đự định yêu cầu quyền hay không thừa nhận quyền 
-của bạn về sản phẩm mà toàn bộ là do bạn tạo ra; mà phần này định nói về 
-quyền hạn trong điều khiển sự phát hành sản phẩm bắt nguồn từ hay sản phẩm 
+Như thế thì phần này không đự định yêu cầu quyền hay không thừa nhận quyền
+của bạn về sản phẩm mà toàn bộ là do bạn tạo ra; mà phần này định nói về
+quyền hạn trong điều khiển sự phát hành sản phẩm bắt nguồn từ hay sản phẩm
 hợp tác tập thể dựa vào Thư viện.
 
-Hơn nữa, việc chứa các sản phẩm khác không dựa vào Thư viện cùng với 
+Hơn nữa, việc chứa các sản phẩm khác không dựa vào Thư viện cùng với
 Thư viện (hay với sản phẩm dựa vào Thư viện) trên thiết bị lưu trữ hay vật phát hành không nằm trong phạm vi của Giấy phép này.
 
 3. Bạn có thể chọn áp dụng các điều kiện của Giấy phép Công cộng GNU chuẩn, thay cho Giấy phép này, cho một bản sao nào đó của Thư viện. Để làm như thế, bạn phải thay đổi mọi thông báo đề cập Giấy phép này, để đề cập Giấy phép Công cộng GNU chuẩn, phiên bản 2, thay cho Giấy phép này. (Có phiên bản mới hơn của Giấy phép Công cộng GNU chuẩn thì bạn có thể ghi rõ phiên bản đó thay thế, nếu bạn muốn.) Đừng thay đổi gì khác trong những thông báo này.
@@ -103,57 +103,57 @@ Một khi làm thay đổi này trong bản sao nào, không thể đảo ngư�
 Tùy chọn này không có ích khi bạn muốn sao chép phần mã nguồn của Thư viện vào một chương trình không phải là thư viện.
 
 4. Bạn có quyền sao chép và phát hành Thư viện (hoặc đoạn nào của nó hoặc sản phẩm dựa vào nó, dưới Phần 2) trong dạng thức mã đối tượng hay tập tin chạy được với điều kiện của Phần 1 và 2 bên trên, miễn là bạn kèm theo toàn bộ mã nguồn tương ứng mà máy có thể đọc được, được phát hành với điều kiện của Phần 1 và 2 bên trên, trên thiết bị lưu trữ thường dùng để trao đổi phần mềm.
- 
+
 Nếu việc phát hành mã đối tượng được làm bằng cách trao truy cập sao chép từ một nơi đã xác định, thì việc trao các truy cập sao chép tương đương đến mã nguồn đó từ cùng nơi đó được tính là sự phát hành mã nguồn, mặc dù người khác không bắt buộc phải sao chép mã nguồn cùng với mã đối tượng.
- 
+
 5. Một chương trình không chứa sản phẩm bắt nguồn từ bất cứ đoạn nào của Thư viện, còn được thiết kế để làm việc với Thư viện bằng cách được biên dịch hay liên kết với nó, được gọi là « sản phẩm sử dụng Thư viện ». Sản phẩm như vậy, độc lập không phải là sản phẩm bắt nguồn từ Thư viện thì nằm ở ngoại phạm vi của Giấy phép này.
-  
+
 Tuy nhiên, việc liên kết một « sản phẩm sử dụng Thư viện » với Thư viện thì tạo một tập tin chạy được bắt nguồn từ Thư viện (vì nó chứa đoạn của Thư viện), hơn là một « sản phẩm sử dụng Thư viện ». Tập tin chạy được thì được bao quát bởi Giấy phép này. Phần 6 phát biểu các điều kiện phát hành tập tin chạy được như vậy.
-  
+
 Khi một « sản phẩm sử dụng Thư viện » cũng sử dụng đoạn nào của tập tin phần đầu thuộc về Thư viện, mã đối tượng cho sản phẩm này có thể là một sản phẩm bắt nguồn từ Thư viện, mặc dù mã nguồn không phải. Điều đó đúng hay không là quan trọng đặc biệt nếu sản phẩm này có thể được liên kết không có Thư viện, hoặc nếu sản phẩm này chính nó là thư viện. Pháp luật chưa xác định chính xác ngưỡng đúng của trường hợp này.
-  
+
 Tập tin đối tượng như vậy sử dụng chỉ các tham số kiểu số, bố trí cấu trúc dữ liệu, và vĩ lệnh nhỏ và hàm trực tiếp nhỏ (mỗi điều có độ dài tối đa 10 dòng) thì cách sử dụng tập tin đối tượng là vô hạn, bất chấp nó hợp lý là sản phẩm bắt nguồn. (Tập tin chạy được chứa mã đối tượng này cộng với đoạn của Thư viện vẫn còn nằm dưới Phần 6.)
-  
+
 Không thì, nếu sản phẩm bắt nguồn từ Thư viện, bạn có thể phát hành mã đối tượng của sản phẩm theo điều kiện của Phần 6. Bất kỳ tập tin chạy được chứa sản phẩm đó cũng nằm dưới Section 6, bất chấp nó được liên kết trực tiếp với Thư viện chính nó.
-  
+
 6. Ngoại lệ những Phần trên là bạn cũng có thể kết hợp hay liên kết một « sản phẩm sử dụng Thư viện » với Thư viện để tạo một sản phẩm chứa đoạn của Thư viện, rồi phát hành sản phẩm đó dưới các điều khoản bạn chọn, miễn là điều khoản này cho phép sửa đổi sản phẩm cho người khách sử dụng riêng, và cho phép thiết kế đối chiếu để gỡ lỗi trong sự sửa đổi như vậy.
- 
+
 Bạn phải công bố rõ ràng trên mỗi bản sao của sản phẩm một thông báo rằng Thư viện được dùng trong nó, và rằng Thư viện và cách sử dụng nó được bao quát bởi Giấy phép này. Bạn phải cung cấp một bản sao của Giấy phép này. Nếu sản phẩm trong khi thực hiện cũng hiển thị thông báo tác quyền, bạn phải chèn thông báo tác quyền cho Thư viện vào trong các thông báo như vậy, cũng như một tham chiếu chỉ người dùng tới bản sao của Giấy phép này. Hơn nữa, bạn phải làm một của những việc này:
- 
+
 (a) Kèm theo toàn bộ mã nguồn Thư viện tương ứng mà máy có thể đọc được, gồm thay đổi nào được làm trong sản phẩm đó (mà phải được phát hành dưới Phần 1 và 2 bên trên); và nếu sản phẩm là một tập tin có khả năng chạy được liên kết với Thư viện, kèm theo toàn bộ « sản phẩm sử dụng Thư viện » cho máy đọc được, theo định dạng mã đối tượng và/hay mã nguồn, để người dùng có khả năng sửa đổi Thư viện rồi liên kết nó để tạo một tập tin chạy được chứa Thư viện đã sửa đổi. (Hiểu được rằng người dùng thay đổi nội dung của tập tin xác định trong Thư viện sẽ không nhất thiết có khả năng biên dịch lại ứng dụng để sử dụng lời xác định đã sửa đổi.)
-  
+
 (b) Dùng một cơ chế thư viện dùng chung thích hợp để liên kết với Thư viện. Cơ chế thích hợp (1) dùng vào lúc chạy một bản sao thư viện đã nằm trên hệ thống máy tính của người dùng, thay vào sao chép các hàm thư viện vào tập tin chạy được, và (2) sẽ hoạt động cho đúng với một phiên bản thư viện đã sửa đổi, nếu người dùng cài đặt nó, miễn là phiên bản đã sửa đổi có giao diện tương thích với giao diện của phiên bản trong đó sản phẩm được tạo.
-  
+
 (c) Kèm theo lời mời ghi trên giấy, hợp lệ trong ít nhất ba năm sau, cung cấp cho cùng người dùng những nguyên liệu được xác định trong Phần phụ 6a trên, với giá không lớn hơn giá cần thiết để phân phát sản phẩm này.
-  
+
 (d) Nếu việc phát hành được làm bằng cách trao truy cập sao chép từ một nơi đã xác định, thì trao các truy cập sao chép tương đương đến những nguyên liệu đã xác định trên từ cùng nơi đó.
-  
+
 (e) Kiểm tra xem người dùng đã nhận một bản sao của những nguyên liệu này, hoặc bạn đã gửi một bản sao cho người dùng này.
-  
+
 Đối với tập tin chạy được, dạng thức cần thiết của « sản phẩm sử dụng Thư viện » phải chứa chương trình nào kiểu dữ liêu hay tiện ích cần thiết để tạo lại tập tin chạy được từ nó. Tuy nhiên, ngoại lệ đặc biệt là các nguyên liệu được phát hành không cần phải bao gồm những gì được phát hành bình thường (trong dạng thức hoặc nguồn hoặc nhị phân) với các thành phần chính (bộ biên dịch, hạt nhân v.v.) của hệ điều hành nơi tập tin chạy được hoạt động, trừ khi thành phần kèm theo cần thiết để chạy tập tin.
 
 Có thể xảy ra rằng điều kiện này mâu thuẫn sự hạn chế giấy phép của thư viện sở hữu khác không bình thường kèm theo hệ điều hành. Sự mâu thuẫn như vậy có nghĩa là bạn không thể sử dụng cả thư viện như vậy và Thư viện đều trong tập tin chạy được bạn phát hành.
 
 7. Bạn có thể để chức năng thư viện là sản phẩm dựa vào Thư viện cạnh nhau trong một thư viện riêng lẻ, cộng với các chức năng thư viện không được bao quát bởi Giấy phép này, và phát hành thư viện đã kết hợp như vậy, miễn là cho phép phát hành riêng « sản phẩm sử dụng Thư viện » và chức năng thư viện khác, và miễn là bạn làm hai việc này:
- 
+
 (a) Kèm theo thư viện đã kết hợp một bản sao của cùng « sản phẩm sử dụng Thư viện », riêng với chức năng thư viện khác nào. Nó phải được phát hành với các điều khoản của những Phần trên.
-  
+
 (b) Công bố rõ ràng trên thư viện đã kết hợp thông báo rằng phần của nó là « sản phẩm sử dụng Thư viện », cũng chỉ tới nơi chứa dạng thức riêng của cùng sản phẩm kèm theo.
-  
+
 8. Không cho phép bạn sao chép, sửa đổi, liên kết với hay phát hành Thư viện, trừ với điều kiện được diễn tả dứt khoát trong Giấy phép này. Bất kỳ sự cố gắng nào trong việc sao chép, sửa đổi, cấp giấy phép phụ, liên kết với hay phát hành Thư viện bằng cách khác bị bãi bỏ, và sẽ tự động kết thúc các quyền của bạn dưới Giấy phép này. Tuy nhiên, người khác đã nhận bản sao hay quyền từ bạn dưới Giấy phép này sẽ không bị ảnh hưởng, miễn là họ tiếp tục tuân theo hoàn toàn.
- 
+
 9. Bạn không bắt buộc phải chấp nhận Giấy phép này, vì bạn chưa ký tên vào nó. Tuy nhiên, không có gì khác cho phép bạn sửa đổi hay phát hành Thư viện hay sản phẩm bắt nguồn từ nó. Các hành động này bị pháp luật cấm nếu bạn không chấp nhận Giấy phép này. Vì vậy, bằng cách sửa đổi hay phát hành Thư viện (hay sản phẩm dựa vào nó), bạn ngụ ý sự chấp nhận Giấy phép này để làm như thế, gồm mọi điều kiện sao chép, phát hành hay sửa đổi Thư viện hay sản phẩm dựa vào nó.
- 
+
 10. Mỗi lần bạn phát hành lại Thư viện (hay sản phẩm dựa vào Thư viện), người nhận có thể nhận tự động một giấy phép từ người cấp gốc, để sao chép, phát hành, liên kết với hay sửa đổi Thư viện với điều kiện này. Không cho phép bạn hạn chế thêm cách người dùng sử dụng các quyền đã được cấp trong Giấy phép này. Bạn cũng không phải chịu trách nhiệm về việc ép buộc người khác tuân theo điều kiện của Giấy phép này.
- 
+
 11. Nếu, do kết quả của quyết định của toà án hay các cáo buộc vi phạm bằng sáng chế hay vì bất cứ lý do nào (không bị giới hạn trong vấn đề bằng sáng chế), bạn bị ép buộc chấp nhận điều kiện (hoặc vì quyết định của toà án, sự thoả thuận hoặc cách khác nào) mà mâu thuẫn điều kiện của Giấy phép này, trường hợp này không miễn cho bạn không phải thỏa mãn điều kiện của Giấy phép này. Nếu bạn không thể phát hành bằng cách thỏa mãn đồng thời các giao ước của bạn dưới Giấy phép này và bất kỳ giao ước thích hợp khác, thì kết quả là không cho phép bạn phát hành Thư viện bằng cách nào cả. Lấy thí dụ, nếu một bằng sáng chế nào đó không cho phép sự phát hành lại Thư viện một cách miễn tiền bản quyền phát minh cho mọi người nhận bản sao từ bạn một cách trực tiếp hay gián tiếp, thì cách duy nhất bạn có thể thỏa cả bằng đó và Giấy phép này là hoàn toàn không phát hành Thư viện.
 
 Nếu đoạn nào trong phần này được quyết định là không hợp lệ hay không thể được ép buộc trong bất kỳ trường hợp riêng nào, đoạn còn lại dự định áp dụng được, và toàn bộ phần dự định áp dụng trong các trường hợp khác.
 
-Không phải là mục đích của phần này để xúi giục bạn vi phạm bằng sáng chế nào hay lời yêu sách quyền tài sản khác, hoặc để không thừa nhận sự hợp lệ của lời yêu sách như vậy; phần này có mục đích duy nhất là bảo vệ tình trạng nguyên vẹn của hệ thống phát hành phần mềm tự do, mà được thực thi bởi các áp dụng giấy phép công cộng. Nhiều người đã đóng góp rộng lượng cho một phạm vị rộng của các phần mềm được phát hành qua hệ thống đó, nhờ sự thực thi nền bỉ hệ thống đó: tùy tác giả / người tặng quyết định nếu họ muốn phát hành phần mềm qua hệ thống khác nào, và người được cấp Giấy phép không thể điều 
+Không phải là mục đích của phần này để xúi giục bạn vi phạm bằng sáng chế nào hay lời yêu sách quyền tài sản khác, hoặc để không thừa nhận sự hợp lệ của lời yêu sách như vậy; phần này có mục đích duy nhất là bảo vệ tình trạng nguyên vẹn của hệ thống phát hành phần mềm tự do, mà được thực thi bởi các áp dụng giấy phép công cộng. Nhiều người đã đóng góp rộng lượng cho một phạm vị rộng của các phần mềm được phát hành qua hệ thống đó, nhờ sự thực thi nền bỉ hệ thống đó: tùy tác giả / người tặng quyết định nếu họ muốn phát hành phần mềm qua hệ thống khác nào, và người được cấp Giấy phép không thể điều
 khiển cách quyết định đó.
 
-Phần này dự định diễn tả rõ ràng hoàn toàn kết quả được hiểu của phần còn 
+Phần này dự định diễn tả rõ ràng hoàn toàn kết quả được hiểu của phần còn
 lại của Giấy phép này.
 
 12. Nếu sự phát hành và/hay cách sử dụng Thư viện bị hạn chế trong một số quốc gia nào đó, hoặc bởi bằng sáng chế hoặc bởi giao diện có bản quyền tác giả, người giữ tác quyền gốc đã đặt Thư viện dưới Giấy phép này có khả năng thêm sự hạn chế phát hành địa lý riêng loại trừ những quốc gia đó, để cho phép phát hành chỉ trong hay giữa các quốc gia không bị loại trừ như thế. Trong trường hợp như vậy, Giấy phép này hợp nhất sự hạn chế đó như là nó được ghi trong thân của Giấy phép này.
@@ -162,21 +162,15 @@ lại của Giấy phép này.
 
 Mỗi phiên bản được gán một số hiệu phân biệt phiên bản đó. Nếu Thư viện xác định số phiên bản riêng của Giấy phép này áp dụng cho nó, « và bất kỳ phiên bản sau nào », bạn có tùy chọn thỏa điều kiện hoặc của phiên bản đó, hoặc của bất kỳ phiên bản sau nào được xuất bản bởi Tổ chức Phần mềm Tự do. Nếu Thư viện không xác định số phiên bản riêng của Giấy phép này, bạn có khả năng chọn bất kỳ phiên bản nào của Giấy phép này đã được xuất bản bởi Tổ chức Phần mềm Tự do.
 
-14. Nếu bạn muốn hợp nhất phần nào của Thư viện vào chương trình tự do khác có điều kiện phát hành không tương thích với Giấy phép này, hãy xin phép tác giả. Đối với phần mềm có 
+14. Nếu bạn muốn hợp nhất phần nào của Thư viện vào chương trình tự do khác có điều kiện phát hành không tương thích với Giấy phép này, hãy xin phép tác giả. Đối với phần mềm có
 bản quyền tác giả của Tổ chức Phần mềm Tự do, hãy viết thư cho Tổ chức Phần mềm Tự do : thỉng thoảng chúng tôi cho phép ngoại lệ trong trường hợp này. Quyết định của chúng tôi sẽ được hướng dẫn bởi hai mục đích là sự bảo tồn trạng thái tự do của mọi điều bắt nguồn từ phần mềm tự do của chúng tôi, và sự đẩy mạnh sự chia sẻ và sử dụng lại phần mềm một cách chung.
 
 KHÔNG CÓ BẢO HÀNH
-            
+
 VÌ THƯ VIỆN ĐÃ ĐƯỢC CẤP PHÉP MIỄN PHÍ, KHÔNG CÓ BẢO HÀNH ĐỐI VỚI THƯ VIỆN NÀY, VỚI ĐIỀU KIỆN ĐƯỢC PHÁP LUẬT CHO PHÉP. TRỪ KHI XÁC ĐỊNH KHÁC BẰNG TÀI LIỆU GIẤY TỜ, CÁC NGƯỜI GIỮ BẢN QUYỀN TÁC GIẢ VÀ/HAY NGƯỜI KHÁC CUNG CẤP THƯ VIỆN NÀY « NHƯ THẾ », KHÔNG CÓ BẢO HÀNH GÌ CẢ, KHÔNG PHÁT BIỂU NÓ, CŨNG KHÔNG NGỤ Ý NÓ, GỒM, NHƯNG KHÔNG BỊ HẠN CHẾ BỞI, SỰ BẢO ĐẢM ĐÃ NGỤ Ý TÌNH TRẠNG CÓ THỂ BÁN ĐƯỢC VÀ SỰ THÍCH HỢP VỚI MỘT MỤC ĐÍCH DỨT KHOÁT. MỌI RỦI RO VỀ CHẤT LƯỢNG, ĐỘ CHÍNH XÁC VÀ HIỆU SUẤT CỦA THƯ VIỆN NÀY BẠN SẼ TỰ CHỊU. NẾU THƯ VIỆN NÀY GÂY RA HƯ HỎNG, BẠN GÁNH VÁC HOÀN TOÀN TRÁCH NGHIỆM TRẢ TIỀN DỊCH VỤ GIÚP ĐỠ HAY SỪA CHỮA.
 
-KHÔNG CÓ TRƯỜNG HỢP NÀO (TRỪ KHI PHÁP LUẬT YÊU CẦU HAY KHI ĐƯỢC THỎA THUẬN 
-BẰNG TÀI LIỆU GIẤY TỜ) MÀ BẤT KỲ NGƯỜI GIỮ BẢN QUYỀN TÁC GIẢ NÀO, HAY BẤT KỲ 
+KHÔNG CÓ TRƯỜNG HỢP NÀO (TRỪ KHI PHÁP LUẬT YÊU CẦU HAY KHI ĐƯỢC THỎA THUẬN
+BẰNG TÀI LIỆU GIẤY TỜ) MÀ BẤT KỲ NGƯỜI GIỮ BẢN QUYỀN TÁC GIẢ NÀO, HAY BẤT KỲ
 NGƯỜI KHÁC NÀO CÓ THỂ SỬA ĐỔI VÀ/HAY PHÁT HÀNH LẠI THƯ VIỆN NHƯ ĐƯỢC PHÉP BÊN TRÊN, SẼ CÓ TRÁCH NHIỆM VỀ PHÁP LÝ BỒI THƯỜNG, GỒM BẤT KỲ BỒI THƯỜNG KIỂU TỔNG QUÁT, ĐẶC BIỆT, NGẪU NHIÊN HAY DO HẬU QUẢ DO SỬ DỤNG HAY SỰ KHÔNG CÓ KHẢ NĂNG SỬ DỤNG THƯ VIỆN NÀY (GỒM NHƯNG KHÔNG PHẢI BỊ HẠN THẾ BỞI SỰ MẤT DỮ LIỆU HAY DỮ LIỆU BỊ LÀM CHO KHÔNG CHÍNH XÁC HAY CÁC MẤT MÁT CỦA BẠN HAY NGƯỜI KHÁC HAY SỰ KHÔNG HOẠT ĐỘNG ĐƯỢC THƯ VIỆN NÀY VỚI CHƯƠNG TRÌNH KHÁC), THẬM CHÍ NẾU BẠN HAY NGƯỜI KHÁC ĐÃ ĐƯỢC BÁO BIẾT CÓ KHẢ NĂNG THIỆT HẠI NHƯ VẬY.
 
 KẾT THÚC CỦA ĐIỀU KIỆN
-               
-Cách áp dụng điều kiện này cho các chương trình mới của bạn
-            
-Nếu bạn phát triển thư viện mới, và muốn làm cho nó có ích nhiều nhất cho mọi người, phương pháp tốt nhất đạt được mục đích này là làm cho nó là phần mềm tự do mà mọi người có thể phát hành lại và sửa đổi với điều kiện này. Có thể làm như thế bằng cách cho phép phát hành lại dưới những điều kiện này (hoặc dưới những điều kiện của Giấy phép Công cộng chuẩn).
-
-Để làm như thế, hãy đính các thông báo theo đây kèm thư viện Cách an toàn nhất là đính chúng vào đầu của mỗi tập tin mã nguồn, để thể hiện cách thông báo không có bảo hành một cách hữu hiệu nhất; và mỗi tập tin nên chứa ít nhất đoạn « Tác quyền » và thông tin chỉ tới nơi tìm được thông báo đầy đủ.

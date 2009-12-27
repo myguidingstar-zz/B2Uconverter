@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE manifest:manifest PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">
 <manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
- <manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description" manifest:full-path="description.txt"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description" manifest:full-path="description/description_vi.txt;locale=vi"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description" manifest:full-path="description/description_fr.txt;locale=fr"/>
+ <manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description" manifest:full-path="description/description_en.txt"/>
  <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data" manifest:full-path="Addons.xcu"/>
  <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-component;type=Python" manifest:full-path="B2UConverter.py"/>
  <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-schema" manifest:full-path="B2UConverter.xcs"/>
