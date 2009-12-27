@@ -109,7 +109,12 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         by letting user select a folder to convert (file browser)
         Traverse the given folder
         """
+        
         folder = self.chooseFolder()
+        if None == folder:  #User click on Cancel button
+            return  #FIXME self._document is not initialized 
+            
+        logging.debug("Converting folder: %s" % folder)
         # FIXME: Remove hardcoded pattern
         patterns = '*.doc;*.xls;*.ppt'
         xLoader = self._context.ServiceManager.createInstanceWithContext(
@@ -159,13 +164,17 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         break
 
     def chooseFolder(self):
-        # FIXME: Replace this hardcode with GUI logic
         folderPicker = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.ui.dialogs.FilePicker", self._context)
+        #folderPicker.setDisplayDirectory(os.path.expanduser("~/convert-me"))
         folderPicker.execute()
-        #return os.path.expanduser("~/convert-me")
-        logging.debug(folderPicker.getDisplayDirectory())
-        return unohelper.fileUrlToSystemPath(folderPicker.getDisplayDirectory())
+
+        try:
+            selectedFolder = folderPicker.getDirectory()
+        except:
+            # FIXME: Detect if the user click on Cancel or Open button
+            return
+        return unohelper.fileUrlToSystemPath(selectedFolder)
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
