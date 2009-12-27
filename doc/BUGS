@@ -3,7 +3,7 @@ KNOWN BUGS:
 * Problem: Sometime the clipboard content doesn't get converted.
 
   Explanation: We found out that OpenOffice.org doesn't always keep
-  the font information when doing a copy-to-clipboard operation.
+  the font information when doing its copy-to-clipboard operation.
 
   Solution: Paste the content into a new document, select the content,
   then set the correct font, and finally run a document convertion.
@@ -11,14 +11,14 @@ KNOWN BUGS:
 * Problem: Sometime the header/footer content doesn't get converted.
 
   Explanation: We found out that OpenOffice.org doesn't correctly
-  headers/footers in the 2nd section and the followings. You can see
-  that when saving such document as ODT, it will loose header/footer
-  from 2nd section and followings. We reported that as a bug here:
-    http://www.openoffice.org/issues/show_bug.cgi?id=107200
+  manage headers/footers in the 2nd section and the followings.
+  You can see that when saving such document as ODT: it will loose
+  header/footer from 2nd section and followings. We reported this
+  as a bug: http://www.openoffice.org/issues/show_bug.cgi?id=107200
 
-  Solution: We don't know of a good and easy solution currently.
-  For now, you have to go in every concerned header/footer to select
-  the unconverted text and use the clipboard conversion function.
+  Solution: We currently don't know any good and/or easy solution.
+  For now, you have to go to every concerned header/footer, select
+  the still-not-converted text and use the clipboard conversion.
   Still, because of this OpenOffice.org bug, you will loose either
   the sections (saving as DOC) or the header/footer (saving as ODT).
 
