@@ -111,8 +111,8 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         """
         
         folder = self.chooseFolder()
-        if None == folder:  #User click on Cancel button
-            return  #FIXME self._document is not initialized 
+        if not folder:  #User click on Cancel button
+            return  #FIXME uninitialized self._document causes AttributeError
             
         logging.debug("Converting folder: %s" % folder)
         # FIXME: Remove hardcoded pattern
@@ -165,16 +165,15 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
     def chooseFolder(self):
         folderPicker = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.ui.dialogs.FilePicker", self._context)
+            "com.sun.star.ui.dialogs.FolderPicker", self._context)
         #folderPicker.setDisplayDirectory(os.path.expanduser("~/convert-me"))
-        folderPicker.execute()
-
-        try:
+        
+        if folderPicker.execute():
             selectedFolder = folderPicker.getDirectory()
-        except:
-            # FIXME: Detect if the user click on Cancel or Open button
-            return
-        return unohelper.fileUrlToSystemPath(selectedFolder)
+            #folderPicker.dispose()
+            return unohelper.fileUrlToSystemPath(selectedFolder)
+        else:
+            return  #Cancel button pressed
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
