@@ -12,6 +12,6 @@
   <dlg:text dlg:id="FolderConvertPatternsLabel" dlg:tab-index="0" dlg:left="10" dlg:top="150" dlg:width="135" dlg:height="12" dlg:value="&amp;31.GeneralDialog.FolderConvertPatterns.Label"/>
   <dlg:textfield dlg:id="FolderConvertPatterns" dlg:tab-index="4" dlg:left="150" dlg:top="150" dlg:width="100" dlg:height="12" dlg:multiline="false" dlg:help-text="&amp;30.GeneralDialog.FolderConvertPatterns.HelpText" dlg:value="*.doc;*.xls;*.ppt"/>
   <dlg:checkbox dlg:id="Debug" dlg:tab-index="5" dlg:left="10" dlg:top="165" dlg:width="135" dlg:height="12" dlg:help-text="&amp;20.GeneralDialog.Debug.HelpText" dlg:value="&amp;21.GeneralDialog.Debug.Label" dlg:checked="false"/>
-  <dlg:textfield dlg:id="DebugFilename" dlg:tab-index="6" dlg:left="150" dlg:top="165" dlg:width="100" dlg:height="12" dlg:multiline="false" dlg:help-text="&amp;26.GeneralDialog.DebugFilename.HelpText" dlg:value="~/.B2UConverter-OOo.log"/>
+  <dlg:textfield dlg:id="LogFilename" dlg:tab-index="6" dlg:left="150" dlg:top="165" dlg:width="100" dlg:height="12" dlg:multiline="false" dlg:help-text="&amp;26.GeneralDialog.LogFilename.HelpText" dlg:value="~/.B2UConverter-OOo.log"/>
  </dlg:bulletinboard>
 </dlg:window>

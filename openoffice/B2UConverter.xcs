@@ -29,8 +29,8 @@
     <info><desc>When true then B2UConverter will save debug information.</desc></info>
     <value>true</value>
    </prop>
-   <prop oor:name="DebugFilename" oor:type="xs:string" oor:localized="false">
-    <info><desc>Name of the file where B2UConverter will save debug information (default: ~/.B2UConverter-OOo.log).</desc></info>
+   <prop oor:name="LogFilename" oor:type="xs:string" oor:localized="false">
+    <info><desc>Name of the file where B2UConverter will save logging information (default: ~/.B2UConverter-OOo.log).</desc></info>
     <value>~/.B2UConverter-OOo.log</value>
    </prop>
   </group>

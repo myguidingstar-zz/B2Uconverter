@@ -75,7 +75,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         ConfigReader = cfgprov.createInstanceWithArguments(
             "com.sun.star.configuration.ConfigurationAccess", (node,))
         cfgnames = ("Debug", "RemoveDiacritics", "VNIHacks",
-            "DebugFilename", "FolderConvertDefault", "FolderConvertPatterns")
+            "LogFilename", "FolderConvertDefault", "FolderConvertPatterns")
         cfgvalues = ConfigReader.getPropertyValues(cfgnames)
         if not cfgvalues:
             raise RuntimeError, "Unable to read the configuration."
@@ -85,7 +85,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
     def _setupLogging(self):
         self._readConfig()
-        filename = self._settings.get('DebugFilename')
+        filename = self._settings.get('LogFilename')
         if not filename: filename = '~/.B2UConverter-OOo.log'
         old_umask = os.umask(0077)
         # TODO: check if it fails and take countermesure in this case

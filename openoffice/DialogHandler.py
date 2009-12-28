@@ -30,7 +30,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
         self.node = node
         self.cfg_names = ("Debug", "RemoveDiacritics", "VNIHacks",
-            "DebugFilename", "FolderConvertDefault", "FolderConvertPatterns")
+            "LogFilename", "FolderConvertDefault", "FolderConvertPatterns")
         return
 
     # XContainerWindowEventHandler
@@ -74,7 +74,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             return
         for name in ("Debug", "RemoveDiacritics", "VNIHacks"):
             window.getControl(name).setState(int(settings[name]))
-        for name in ("DebugFilename", "FolderConvertDefault",
+        for name in ("LogFilename", "FolderConvertDefault",
             "FolderConvertPatterns"):
             window.getControl(name).setText(settings[name])
         return
@@ -87,7 +87,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         settings = []
         for name in ("Debug", "RemoveDiacritics", "VNIHacks"):
             settings.append(bool(window.getControl(name).State))
-        for name in ("DebugFilename", "FolderConvertDefault",
+        for name in ("LogFilename", "FolderConvertDefault",
             "FolderConvertPatterns"):
             settings.append(window.getControl(name).Text)
         self.configwriter(tuple(settings))
