@@ -63,44 +63,39 @@ from fnmatch import fnmatch
 class B2UConverterJob(unohelper.Base, XJobExecutor):
     def __init__(self, context):
         self._context = context
+        self._setupLogging()
+        self.parser = OOoDocumentParser()
 
-        # load configuration settings
-        self._cfgprov = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.configuration.ConfigurationProvider",
-            self._context)
-        node = uno.createUnoStruct("com.sun.star.beans.PropertyValue")
+    def _readConfig(self):
+        cfgprov = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.configuration.ConfigurationProvider", self._context)
+        node = PropertyValue()
         node.Name = "nodepath"
         node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
-        self._node = node
-        self._cfgnames = ("Debug", "RemoveDiacritics", "VNIHacks",
+        ConfigReader = cfgprov.createInstanceWithArguments(
+            "com.sun.star.configuration.ConfigurationAccess", (node,))
+        cfgnames = ("Debug", "RemoveDiacritics", "VNIHacks",
             "DebugFilename", "FolderConvertDefault", "FolderConvertPatterns")
-        self._settings = { }
-        for cfgname in self._cfgnames:
-            self._settings[cfgname] = None
+        cfgvalues = ConfigReader.getPropertyValues(cfgnames)
+        if not cfgvalues:
+            raise RuntimeError, "Unable to read the configuration."
+        self._settings = dict(zip(cfgnames, cfgvalues))
+        loglevel = (self._settings['Debug'] and logging.DEBUG or logging.INFO)
+        logging.root.setLevel(loglevel)
 
-        # setup logging
-        filename = self._settings['DebugFilename']
-        if not filename: filename = '~/.B2UConverter.log'
+    def _setupLogging(self):
+        self._readConfig()
+        filename = self._settings.get('DebugFilename')
+        if not filename: filename = '~/.B2UConverter-OOo.log'
         old_umask = os.umask(0077)
         # TODO: check if it fails and take countermesure in this case
-        logging.basicConfig(level=logging.DEBUG,
+        logging.basicConfig(
             format='%(asctime)s %(levelname)s %(message)s',
             filename=os.path.expanduser(filename),
             filemode='w')
-        logging.info("B2UConverter loaded (Python %s)", sys.version)
         os.umask(old_umask)
-
-        # instantiate a document parser
-        self.parser = OOoDocumentParser()
-
-    def _readconfig(self):
-        ConfigReader = self._cfgprov.createInstanceWithArguments(
-            "com.sun.star.configuration.ConfigurationAccess",
-            (self._node,))
-        cfgvalues = ConfigReader.getPropertyValues(self._cfgnames)
-        for i in range(len(self._cfgnames)):
-            self._settings[self._cfgnames[i]] = cfgvalues[i]
-        logging.debug("settings: %s", self._settings)
+        logging.info("B2UConverter loaded (Python %s)", sys.version)
+        logging.debug("Settings: %s", self._settings)
 
     def _error_message(self, error_count):
         if error_count > 1:
@@ -116,7 +111,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         by letting user select a folder to convert (file browser)
         Traverse the given folder
         """
-        self._readconfig()
+        self._readConfig()
         folder = self.chooseFolder(self._settings['FolderConvertDefault'])
         if not folder: # User clicked on the Cancel button
             return # FIXME: uninitialized self._document causes AttributeError
@@ -193,7 +188,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 "com.sun.star.frame.Desktop", self._context)
             self._document = desktop.getCurrentComponent()
 
-        self._readconfig()
+        self._readConfig()
         vnConverter = VietnameseTextConverter(
             decoderPrefix='internal_',
             vniHacks=self._settings['VNIHacks'])
@@ -206,7 +201,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         self._error_message(self.parser.stats['errors']))
 
     def convertClipboard(self):
-        self._readconfig()
+        self._readConfig()
         logging.debug("call to convertClipboard")
         desktop = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self._context)
@@ -291,6 +286,11 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         except:
             logging.exception("Exception during conversion:")
             err = traceback.format_exc()
+            try:
+                import re
+                err = re.sub('File "([^"]*/)+','File ".../', err)
+            except:
+                pass
             messageBox(self._document, "Unicode conversion failed:\n\n" + err)
 
 

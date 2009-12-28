@@ -18,7 +18,7 @@
     <value>false</value>
    </prop>
    <prop oor:name="FolderConvertDefault" oor:type="xs:string" oor:localized="false">
-    <info><desc>Name of the default folder to show to the user for B2UConverter folder conversion (default: ~/B2UConverter).</desc></info>
+    <info><desc>Name of the default folder to show the user for B2UConverter folder conversion (default: ~/B2UConverter).</desc></info>
     <value>~/B2UConverter</value>
    </prop>
    <prop oor:name="FolderConvertPatterns" oor:type="xs:string" oor:localized="false">
