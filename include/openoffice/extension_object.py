@@ -47,7 +47,7 @@ def messageBox(document, message):
 
     tk = window.getToolkit()
     msgbox = tk.createWindow(aDescriptor)
-    msgbox.setCaptionText("Convert to Unicode")
+    msgbox.setCaptionText("Conversion to Unicode")
     msgbox.setMessageText(message)
 
     return msgbox.execute()
@@ -111,21 +111,18 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         by letting user select a folder to convert (file browser)
         Traverse the given folder
         """
-        self._readConfig()
-        folder = self.chooseFolder(self._settings['FolderConvertDefault'])
+        folder = self._chooseFolder(self._settings['FolderConvertDefault'])
         if not folder: # User clicked on the Cancel button
-            return # FIXME: uninitialized self._document causes AttributeError
-        logging.debug("Converting folder: %s" % folder)
+            return
+        logging.debug("Converting folder: %s", folder)
 
         patterns = self._settings['FolderConvertPatterns']
         if not patterns: patterns = '*.doc;*.xls;*.ppt'
-        xLoader = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.frame.Desktop", self._context)
         # a Desktop implements XComponentLoader interface
-        self.convertDocByDoc(folder, patterns, xLoader)
+        self._convertDocByDoc(folder, patterns, self._desktop)
         # FIXME: A summary dialog once conversion done
 
-    def convertDocByDoc(self, folder, patterns, xLoader):
+    def _convertDocByDoc(self, folder, patterns, xLoader):
         """Traverse a folder and convert all supported documents (ODT, ODP, etc.)
         Apply filtering to all files retrieved
         Convert each document, save & close
@@ -134,7 +131,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         loadProp.Name = "Hidden"
         loadProp.Value = True
 
-        for path in self.findFiles(folder, patterns):
+        for path in self._findFiles(folder, patterns):
             url = unohelper.systemPathToFileUrl(path)
             doc = xLoader.loadComponentFromURL(url, "_blank", 0, (loadProp,))
             self.convertDocument(doc)
@@ -147,10 +144,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 try:
                     doc.close(True)
                 except:
-                    logging.exception("Exception when closing document '%s'",
-                                                                        url)
+                    logging.exception("Exception closing document '%s'", url)
 
-    def findFiles(self, root, patterns='*'):
+    def _findFiles(self, root, patterns='*'):
         """
         Recursively get all supported documents (text, slides, spreadsheet)
         under a given folder (param 'root')
@@ -166,10 +162,10 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                         yield os.path.join(path, name)
                         break
 
-    def chooseFolder(self, folder="~/B2UConverter"):
+    def _chooseFolder(self, folder="~/B2UConverter"):
         folder = unohelper.systemPathToFileUrl(os.path.expanduser(folder))
         folderPicker = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.ui.dialogs.FolderPicker", self._context)
+            "com.sun.star.ui.dialogs.OfficeFolderPicker", self._context)
         folderPicker.setDisplayDirectory(folder)
         if folderPicker.execute():
             selectedFolder = folderPicker.getDirectory()
@@ -180,43 +176,27 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
 
     def convertDocument(self, document=None):
         logging.debug("call to convertDocument (%s document)" \
-                                % (document and "with" or "without"))
-        if document:
-            self._document = document
-        else:
-            desktop = self._context.ServiceManager.createInstanceWithContext(
-                "com.sun.star.frame.Desktop", self._context)
-            self._document = desktop.getCurrentComponent()
-
-        self._readConfig()
-        vnConverter = VietnameseTextConverter(
-            decoderPrefix='internal_',
-            vniHacks=self._settings['VNIHacks'])
-        oVnConverter = OOoVietnameseTextConverter(
-            vnConverter,
-            removeDiacritics=self._settings['RemoveDiacritics'])
-        self.parser.setTextPortionConverter(oVnConverter)
-        self.parser.processDocument(self._document)
-        logging.info("Conversion completed (%s).",
-                        self._error_message(self.parser.stats['errors']))
+                                % (document and "given" or "current"))
+        if not document:
+            document = self._document
+        self.parser.processDocument(document)
+        errmsg = self._error_message(self.parser.stats['errors'])
+        logging.info("Conversion completed (%s).", errmsg)
 
     def convertClipboard(self):
-        self._readConfig()
         logging.debug("call to convertClipboard")
-        desktop = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.frame.Desktop", self._context)
-        clipboard = self._context.ServiceManager.createInstanceWithContext(
-            "com.sun.star.datatransfer.clipboard.SystemClipboard",
-            self._context)
-        self._document = desktop.getCurrentComponent()
 
         # Get the contents from the clipboard, try to extract the data using
         # OpenOffice XML flavor
-        # TODO: Adding support for more flavors like richtext or plaintext
+        clipboard = self._context.ServiceManager.createInstanceWithContext(
+            "com.sun.star.datatransfer.clipboard.SystemClipboard",
+            self._context)
         contents = clipboard.getContents()
         flavors = contents.getTransferDataFlavors()
         logging.debug("Clipboard flavors:\n%s",
                 "* " + "\n* ".join([flavor.MimeType for flavor in flavors]))
+
+        # TODO: Adding support for more flavors like richtext or plaintext
         mimetype = 'application/x-openoffice-embed-source-xml' \
                     ';windows_formatname="Star Embed Source (XML)"'
         found_flavor = None
@@ -240,19 +220,12 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         hidden = PropertyValue()
         hidden.Name = "Hidden"
         hidden.Value = True
-        document = desktop.loadComponentFromURL(tempURL, "_blank", 0,
-                (hidden,))
+        document = self._desktop.loadComponentFromURL(
+                                            tempURL, "_blank", 0, (hidden,))
 
         # Let process it
         # TODO: Improve encoding detection so we can convert even if the
         # supplied font information is incorrect.
-        vnConverter = VietnameseTextConverter(
-            decoderPrefix='internal_',
-            vniHacks=self._settings['VNIHacks'])
-        oVnConverter = OOoVietnameseTextConverter(
-            vnConverter,
-            removeDiacritics=self._settings['RemoveDiacritics'])
-        self.parser.setTextPortionConverter(oVnConverter)
         self.parser.processDocument(document)
 
         # Ok, now to put it back in the clipboard
@@ -263,12 +236,28 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         dispatcher.executeDispatch(frame, ".uno:Copy", "", 0, ())
 
         # Some clean ups
+        document.close(True)
         os.close(tempFile)
+        os.unlink(path)
 
     def convertSelection(self):
         pass
 
     def trigger(self, args):
+        # preparing environment
+        self._readConfig()
+        self._desktop = self._context.ServiceManager.createInstanceWithContext(
+                                "com.sun.star.frame.Desktop", self._context)
+        self._document = self._desktop.getCurrentComponent()
+
+        # preparing converter
+        vnConverter = VietnameseTextConverter(
+            decoderPrefix='internal_', vniHacks=self._settings['VNIHacks'])
+        oVnConverter = OOoVietnameseTextConverter(
+            vnConverter, removeDiacritics=self._settings['RemoveDiacritics'])
+        self.parser.setTextPortionConverter(oVnConverter)
+
+        # running requested operation
         logging.debug("Trigger arguments: %s", args)
         try:
             if args == 'document':
@@ -281,8 +270,9 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 self.convertFolder()
             else:
                 raise ValueError, "Invalid trigger call (programming error)."
-            messageBox(self._document, "Unicode conversion completed (%s)." \
-                        % self._error_message(self.parser.stats['errors']))
+            errmsg = self._error_message(self.parser.stats['errors'])
+            logging.info("Conversion completed (%s).", errmsg)
+            messageBox(self._document, "Conversion completed (%s)." % errmsg)
         except:
             logging.exception("Exception during conversion:")
             err = traceback.format_exc()
@@ -291,7 +281,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
                 err = re.sub('File "([^"]*/)+','File ".../', err)
             except:
                 pass
-            messageBox(self._document, "Unicode conversion failed:\n\n" + err)
+            messageBox(self._document, "Conversion failed:\n\n" + err)
 
 
 g_ImplementationHelper = unohelper.ImplementationHelper()

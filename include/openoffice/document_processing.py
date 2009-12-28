@@ -265,7 +265,6 @@ class OOoDocumentParser(object):
             for column in range(columns):
                 logging.debug("Sheet cell(col=%d,row=%d)", column, row)
                 cell = cursor.getCellByPosition(column, row)
-                logging.debug("dir(cell): ( %s )", ' '.join(dir(cell)))
                 self.processText(cell.Text)
 
     def processSpreadsheetDocument(self, doc):
