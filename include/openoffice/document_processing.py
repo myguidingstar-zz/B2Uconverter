@@ -161,6 +161,17 @@ class OOoDocumentParser(object):
                 # this is a text paragraph
                 self.processTextParagraph(paragraph)
 
+    def processTableShape(self, shape):
+        model = shape.Model
+        rows = model.RowCount
+        columns = model.ColumnCount
+        logging.debug("TableShape columns=%d & rows=%d", columns, rows)
+        for row in range(rows):
+            for column in range(columns):
+                logging.debug("TableShape cell(col=%d,row=%d)", column, row)
+                cell = model.getCellByPosition(column, row)
+                self.processText(cell.Text)
+
     def processShape(self, shape):
         type = shape.getShapeType()
         if type == "com.sun.star.drawing.TextShape":
@@ -168,14 +179,16 @@ class OOoDocumentParser(object):
         elif type == "com.sun.star.drawing.GroupShape":
             for index in range(shape.getCount()):
                 self.processShape(shape.getByIndex(index))
-        #elif type == "FrameShape":
-        #    pass
-        #elif type == "com.sun.star.drawing.LineShape":
-        #    pass
+        elif type == "FrameShape":
+            pass
+        elif type == "com.sun.star.drawing.LineShape":
+            pass
         #elif type == "com.sun.star.drawing.RectangleShape":
         #    pass
         elif type == "com.sun.star.drawing.CustomShape":
             self.processText(shape)
+        elif type == "com.sun.star.drawing.TableShape":
+            self.processTableShape(shape)
         elif type == "com.sun.star.presentation.TitleTextShape":
             self.processText(shape)
         elif type == "com.sun.star.presentation.SubtitleShape":
@@ -236,7 +249,7 @@ class OOoDocumentParser(object):
         pageStyles = doc.getStyleFamilies().getByName("PageStyles")
         for index in range(pageStyles.getCount()):
             pageStyle = pageStyles.getByIndex(index)
-            logging.info("found page style '%s'", pageStyle.Name)
+            logging.debug("found page style '%s'", pageStyle.Name)
             if pageStyle.isInUse():
                 self.processPageStyle(pageStyle)
 
@@ -247,12 +260,12 @@ class OOoDocumentParser(object):
         rangeAddress = cursor.getRangeAddress()
         rows = rangeAddress.EndRow - rangeAddress.StartRow + 1
         columns = rangeAddress.EndColumn - rangeAddress.StartColumn + 1
-        logging.debug("rows=%s & columns=%s", str(rows), str(columns))
+        logging.debug("Sheet columns=%d & rows=%d", columns, rows)
         for row in range(rows):
             for column in range(columns):
-                logging.debug("cell(%s,%s)", str(column), str(row))
+                logging.debug("Sheet cell(col=%d,row=%d)", column, row)
                 cell = cursor.getCellByPosition(column, row)
-                logging.debug("dir(cell) = ( %s )", ' '.join(dir(cell)))
+                logging.debug("dir(cell): ( %s )", ' '.join(dir(cell)))
                 self.processText(cell.Text)
 
     def processSpreadsheetDocument(self, doc):
@@ -273,7 +286,7 @@ class OOoDocumentParser(object):
         for index in range(drawPages.getCount()):
             drawPage = drawPages.getByIndex(index)
             # convert page body
-            logging.info("converting draw page '%s'", drawPage.getName())
+            logging.debug("converting draw page '%s'", drawPage.Name)
             for index in range(drawPage.getCount()):
                 draw = drawPage.getByIndex(index)
                 self.processShape(draw)
@@ -284,11 +297,11 @@ class OOoDocumentParser(object):
             # convert page name
             try:
                 drawPage.setName(self.textConverter.convertString(
-                            drawPage.getName(),
+                            drawPage.Name,
                             self.textPortionConverter.mostUsedEncoding()))
             except:
-                # XXX: don't fail on this, since it's not that important
-                pass
+                logging.info("unable to convert draw page name")
+                pass # don't fail on this, since it's not that important
 
     def processDocument(self, doc):
         self._reset_stats()
@@ -318,8 +331,8 @@ class OOoDocumentParser(object):
             info.Title = self.textConverter.convertString(info.Title,
                             self.textPortionConverter.mostUsedEncoding())
         except:
-            # XXX: don't fail on this, since it's not that important
-            pass
+            logging.info("unable to convert document title")
+            pass # don't fail on this, since it's not that important
 
         # XXX: check if it really works
         #doc.RecordChanges = True
