@@ -1,6 +1,18 @@
-* 2009-12-29 (TO-BE-DONE)
+* 2009-12-31
 - version 9.12.2-rc uploaded to OpenOffice.org's extensions repository:
     http://extensions.services.openoffice.org/project/b2uconverter
+
+- Here is a summary of the most important changes since the 1st release:
+  * now runs on Windows too
+  * default debug filename relative to the home directory
+  * option to choose the debug filename
+  * no need to run the conversion twice any more
+  * no more lost format while converting text portions
+  * double [ƯƯ] catching (specific to capital letters)
+  * support for Impress/Draw tables (new in OOo 3.0)
+  * batch conversion function, with folder selection
+  * better documentation (a bit)
+  * French localization
 
 * 2009-12-23
 - version 9.12.1-rc uploaded to OpenOffice.org's extensions repository:
