@@ -43,12 +43,10 @@
   <name lang="en">Tool for converting to Unicode</name>
  </display-name>
 
- <!--
  <icon>
-  <default xlink:href="images/icon.png" />
-  <high-contrast xlink:href="images/icon_hc.png" />
+  <default xlink:href="images/B2UConverter-42x42.png" />
+  <!-- <high-contrast xlink:href="images/icon_hc.png" /> -->
  </icon>
- -->
 
  <extension-description>
   <src xlink:href="description/description_vi.txt" lang="vi" />
