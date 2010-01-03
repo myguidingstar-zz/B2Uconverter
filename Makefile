@@ -1,6 +1,9 @@
 #MENU_TYPE=addons
 MENU_TYPE=top
 
+#IMAGES_TYPE=yellow-red
+IMAGES_TYPE=white-red
+
 all: build
 
 openoffice/Addons.xcu: scripts/build-Addons.xcu $(shell find include/addons-menu -type f)
@@ -10,6 +13,7 @@ openoffice/B2UConverter.py: scripts/build-B2UConverter.py $(shell find include -
 	python scripts/build-B2UConverter.py > openoffice/B2UConverter.py
 
 B2UConverter.oxt: openoffice/Addons.xcu openoffice/B2UConverter.py $(shell find openoffice -type f)
+	cp -a include/images/$(IMAGES_TYPE)/* openoffice/images/
 	rm -f B2UConverter.oxt
 	cd openoffice ; zip -q9rpD -x.svn ../B2UConverter.oxt .
 
