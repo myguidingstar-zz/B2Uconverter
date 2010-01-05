@@ -1,0 +1,43 @@
+Cài đặt
+=======
+
+- Tải gói phần mềm tiện ích B2UConverter (tệp .oxt) xuống từ địa chỉ: 
+http://extensions.services.openoffice.org/project/b2uconverter
+- Chạy OpenOffice.
+- Vào thực đơn "Tools" > "Extension Manager" > "Add"
+hoặc "Công cụ" > "Bộ quản lý phần mở rộng" > "Thêm..."
+- Chọn tệp .oxt đã tải xuống để cài đặt.
+- Khởi động lại OpenOffice để kích hoạt công cụ.
+
+Sử dụng
+=======
+
+Công cụ B2UConverter có 3 chức năng chính: 
+
+1) Chuyển đổi mã cho 1 tài liệu đang mở:
+
+- Mở sẵn tài liệu cần chuyển đổi mã
+- Chọn 1 trong 2 mục trên thực đơn: "Tools" >
+"Add-Ons" > "Convert the current document to Unicode"
+
+Nếu dùng bản OpenOffice tiếng Việt thì trình tự sẽ là "Công cụ" > "Bổ sung" >
+"Chuyển đổi tài liệu đang mở sang Unicode"
+
+Lưu ý:
+Tài liệu chuyển đổi xong vẫn được mở. Vì vậy, khi đóng tài liệu, nếu muốn 
+- lưu lại thì cần chon "Save" hoặc "Save as..."
+- hủy bỏ những thay đổi thì chọn "File" > "Close" > "Discard", hoặc 
+"File" > "Reload" để lấy lại nguyên trạng tài liệu như trước khi chuyển đổi.
+
+2) Chuyển đổi mã cho cả thư mục
+
+Tất cả tài liệu (văn bản, bảng tính, trình chiếu) đều được chuyển đổi.
+
+Lưu ý:
+- Nên sao lưu dự phòng 1 bản cho toàn bộ thư mục, vì quá trình chuyển đổi mã
+sẽ mở và ghi đè lên tài liệu cũ.
+- Thời gian xử lý dài hay ngắn phục thuộc vào số lượng tài liệu có trong thư mục
+
+3) Chuyển đổi văn bản trong clipboard
+
+
