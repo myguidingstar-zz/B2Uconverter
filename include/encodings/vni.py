@@ -318,8 +318,7 @@ def vni_decode(input, errors='strict'):
     assert errors == 'strict'
     output = u''
     _decoding_table = _vni_secondhalf_decoding_table
-    for i in range(len(input)):
-        c = input[i]
+    for i,c in enumerate(input):
         if ord(c) < 0x80:
             output += c
         elif type(_decoding_table[c]) == dict:
@@ -327,7 +326,7 @@ def vni_decode(input, errors='strict'):
                 output = output[:-1] + _decoding_table[c][input[i-1]]
             except KeyError:
                 # TODO: return more informative values? (error,position)
-                raise ValueError, "bad encoded data at position %d" % i
+                raise ValueError("bad encoded data at position %d" % i)
         else:
             output += _decoding_table[c]
     return (output, len(input))

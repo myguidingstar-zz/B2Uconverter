@@ -78,7 +78,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             "LogFilename", "FolderConvertDefault", "FolderConvertPatterns")
         cfgvalues = ConfigReader.getPropertyValues(cfgnames)
         if not cfgvalues:
-            raise RuntimeError, "Unable to read the configuration."
+            raise RuntimeError("Unable to read the configuration.")
         self._settings = dict(zip(cfgnames, cfgvalues))
         loglevel = (self._settings['Debug'] and logging.DEBUG or logging.INFO)
         logging.root.setLevel(loglevel)
@@ -269,7 +269,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
             elif args == 'folder':
                 self.convertFolder()
             else:
-                raise ValueError, "Invalid trigger call (programming error)."
+                raise ValueError("Invalid trigger call (programming error).")
             errmsg = self._error_message(self.parser.stats['errors'])
             logging.info("Conversion completed (%s).", errmsg)
             messageBox(self._document, "Conversion completed (%s)." % errmsg)
