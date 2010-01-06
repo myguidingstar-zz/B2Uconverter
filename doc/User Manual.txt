@@ -6,7 +6,7 @@ http://extensions.services.openoffice.org/project/b2uconverter
 - Chạy OpenOffice.
 - Vào thực đơn "Công cụ" > "Bộ quản lý phần mở rộng" > "Thêm..."
 hoặc "Tools" > "Extension Manager" > "Add..."
-- Chọn tệp .oxt đã tải xuống để cài đặt.
+- Chọn tệp .oxt đã tải xuống để cài đặt > "Mở" > "Chấp nhận" > "Đóng"
 - Khởi động lại OpenOffice để kích hoạt công cụ.
 
 Sử dụng
@@ -29,6 +29,9 @@ Tài liệu chuyển đổi xong vẫn được mở. Vì vậy, khi đóng tài
 - hủy bỏ những thay đổi thì chọn "Tập tin" > "Đóng" > "Hủy", hoặc 
 "Tập tin" > "Nạp lại" để lấy lại nguyên trạng tài liệu như trước khi chuyển đổi.
 
+Với một số tài liệu, nhất là với bảng tính, thời gian xử lý có thể hơi lâu 
+(khoảng một vài phút) vì vậy xin bạn cứ bình tĩnh chờ.
+
 2) Chuyển đổi mã cho cả thư mục
 
 Tất cả tài liệu (văn bản, bảng tính, trình chiếu) đều được chuyển đổi.
@@ -36,8 +39,19 @@ Tất cả tài liệu (văn bản, bảng tính, trình chiếu) đều đượ
 Lưu ý:
 - Nên sao lưu dự phòng 1 bản cho toàn bộ thư mục, vì quá trình chuyển đổi mã
 sẽ mở và ghi đè lên tài liệu cũ.
-- Thời gian xử lý dài hay ngắn phục thuộc vào số lượng tài liệu có trong thư mục
+- Thời gian xử lý dài hay ngắn phục thuộc vào số lượng tài liệu có trong thư mục.
+Hơn nữa, cũng tùy thuộc vào loại tài liệu: văn bản (tốc độ xử lý trung bình), 
+bảng tính (tốc độ chậm), trình chiếu (tốc độ nhanh). Nguyên nhân là độ phức tạp
+trong cấu trúc mỗi loại tài liệu khác nhau. Vì thế, với các tài liệu dù là văn bản
+nhưng nếu có nhiều bảng dữ liệu thì độ phức tạp cũng gần như tài liệu bảng tính.
 
 3) Chuyển đổi văn bản trong clipboard
+- Chọn văn bản (tô sáng) rồi chép vào clipboard
+- Chạy chức năng chuyển đổi trên thực đơn "B2UConverter" > "Chuyển đổi bảng nháp
+sang Unicode"
+- Dán văn bản (đã được chuyển đổi) vào nơi bạn muốn.
 
-
+Lưu ý: Nếu chức năng này không chạy, có thể là do văn bản được chọn thiếu thông tin
+về phông chữ. Giải pháp là hãy chỉ định cụ thể phông chữ cho đoạn văn bản đó bằng
+cách gõ trực tiếp tên phông chữ (.VnTime, chẳng hạn) vào ô phông chữ trên thanh
+công cụ định dạng rồi hãy tiến hành chuyển đổi.
