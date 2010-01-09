@@ -104,8 +104,8 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         except:
             print "DEBUG: configreader exception"
             raise
-        for i in range(len(self.cfg_names)):
-            settings[self.cfg_names[i]] = cfg_values[i]
+        for i, n in enumerate(self.cfg_names):
+            settings[n] = cfg_values[i]
         # special case for RemoveDiacritics: always False at start
         global _uninitialized
         if _uninitialized and settings['RemoveDiacritics']:

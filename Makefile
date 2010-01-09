@@ -13,6 +13,7 @@ openoffice/B2UConverter.py: scripts/build-B2UConverter.py $(shell find include -
 	python scripts/build-B2UConverter.py > openoffice/B2UConverter.py
 
 B2UConverter.oxt: openoffice/Addons.xcu openoffice/B2UConverter.py $(shell find openoffice -type f)
+	mkdir -p openoffice/images
 	cp -a include/images/$(IMAGES_TYPE)/* openoffice/images/
 	rm -f B2UConverter.oxt
 	cd openoffice ; zip -q9rpD -x.svn ../B2UConverter.oxt .
