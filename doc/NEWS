@@ -1,4 +1,12 @@
+* 2011-03-14
+
+- version 10.01 uploaded to OpenOffice.org's extensions repository:
+    http://extensions.services.openoffice.org/project/b2uconverter
+
+- Added logo/icons, more documentation and corrected some typos.
+
 * 2009-12-31
+
 - version 9.12.2-rc uploaded to OpenOffice.org's extensions repository:
     http://extensions.services.openoffice.org/project/b2uconverter
 
@@ -15,10 +23,12 @@
   * French localization
 
 * 2009-12-23
+
 - version 9.12.1-rc uploaded to OpenOffice.org's extensions repository:
     http://extensions.services.openoffice.org/project/b2uconverter
 
 * 2009-12-13
+
 - version 9.12.1rc uploaded to MoST's Subversion repository:
     http://openoffice.oss.gov.vn/websvn/listing.php?repname=B2UConverter
 
