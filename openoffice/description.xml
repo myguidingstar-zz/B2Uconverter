@@ -2,7 +2,7 @@
 <description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
 
  <identifier value="vn.gov.oss.openoffice.b2uconverter" />
- <version value="10.01.1" />
+ <version value="10.01.2" />
  <platform value="all" />
 
  <dependencies>
@@ -18,7 +18,7 @@
  -->
 
  <registration>
-  <simple-license accept-by="admin" default-license-id="default" suppress-on-update="true" >
+  <simple-license accept-by="admin" default-license-id="default" suppress-on-update="true" suppress-if-required="true">
    <license-text xlink:href="registration/LGPL-2.1_vi.txt" lang="vi" license-id="default" />
    <license-text xlink:href="registration/LGPL-2.1_fr.txt" lang="fr" />
    <license-text xlink:href="registration/LGPL-2.1_en.txt" lang="en" />

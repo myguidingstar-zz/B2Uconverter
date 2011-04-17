@@ -4,6 +4,7 @@
     http://extensions.services.openoffice.org/project/b2uconverter
 
 - Adapted Addons.xcu to allow installation in LibreOffice.
+- Got rid of this license confirmation hassle when deploying, yeah!
 
 * 2011-03-14
 
