@@ -1,5 +1,5 @@
 """
-B2UConverter — UNO extension for OpenOffice.org
+B2UConverter — UNO extension for OpenOffice.org and LibreOffice
 File: include/vietnamese_recoding.py
 
 Copyright ©2009  Ministry of Science and Technology of Vietnam

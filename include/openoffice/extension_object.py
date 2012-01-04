@@ -1,5 +1,5 @@
 """
-B2UConverter — UNO extension for OpenOffice.org
+B2UConverter — UNO extension for OpenOffice.org and LibreOffice
 File: include/openoffice/extension_object.py
 
 Copyright ©2009  Ministry of Science and Technology of Vietnam
@@ -187,7 +187,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         logging.debug("call to convertClipboard")
 
         # Get the contents from the clipboard, try to extract the data using
-        # OpenOffice XML flavor
+        # OpenOffice.org XML flavor
         clipboard = self._context.ServiceManager.createInstanceWithContext(
             "com.sun.star.datatransfer.clipboard.SystemClipboard",
             self._context)
