@@ -3,9 +3,10 @@ and LibreOffice, for converting documents from old encodings to Unicode.
 
 Copyright ©2009  Ministry of Science and Technology of Vietnam
 License: GNU Lesser General Public License version 2.1
-Authors: Jean Christophe André <jcandre@hanoilug.org>
-         Lê Quốc Thái <lqthai@hanoilug.org>
-         Võ Đức Phương <vdphuong@hanoilug.org>
+Authors: Jean Christophe André <jcandre(at)hanoilug(dot here)org>
+         Lê Quốc Thái <lqthai(at)hanoilug(dot here)org>
+         Võ Đức Phương <vdphuong(at)hanoilug(dot here)org>
+         Hoàng Minh Thắng <hoangminhthang(at)ktqd(dot here)org>
 
 
 Dependencies
@@ -23,6 +24,7 @@ Dependencies
    * OpenOffice.org 3.1.1 (build9420) on Ubuntu 9.10
    * LibreOffice 3.3 on Ubuntu 11.04
    * LibreOffice 3.4 on Ubuntu 11.10
+   * LibreOffice 3.4.5 on Gentoo Linux
 
 
 Command line usage
