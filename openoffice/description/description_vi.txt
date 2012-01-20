@@ -1,4 +1,4 @@
-B2UConverter — UNO extension cho OpenOffice.org
+B2UConverter — UNO extension cho OpenOffice.org và LibreOffice
 
 Copyright ©2009  Bộ Khoa học và Công nghệ của Việt Nam
 Giấy phép : GNU Lesser General Public License version 2.1

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 """
-B2UConverter — UNO extension for OpenOffice.org
+B2UConverter — UNO extension for OpenOffice.org and LibreOffice
 File: scripts/build-B2UConverter.py
 
 Copyright ©2009  Ministry of Science and Technology of Vietnam
