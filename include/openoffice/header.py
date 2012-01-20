@@ -7,6 +7,7 @@ License: GNU Lesser General Public License version 2.1
 Authors: Jean Christophe André <jcandre@hanoilug.org>
          Lê Quốc Thái <lqthai@hanoilug.org>
          Võ Đức Phương <vdphuong@hanoilug.org>
+         Hoàng Minh Thắng <hoangminhthang@ktqd.org>
 """
 
 import sys

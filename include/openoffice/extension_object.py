@@ -7,6 +7,7 @@ License: GNU Lesser General Public License version 2.1
 Authors: Jean Christophe André <jcandre@hanoilug.org>
          Lê Quốc Thái <lqthai@hanoilug.org>
          Võ Đức Phương <vdphuong@hanoilug.org>
+         Hoàng Minh Thắng <hoangminhthang@ktqd.org>
 """
 
 ######################################################################
@@ -19,7 +20,8 @@ def B2UConverterScript(event=False):
         vniHacks=self._settings['VNIHacks'])
     oVnConverter = OOoVietnameseTextConverter(
         vnConverter,
-        removeDiacritics=self._settings['RemoveDiacritics'])
+        removeDiacritics=self._settings['RemoveDiacritics'],
+        normalizeDiacritics=self._settings['NormalizeDiacritics'])
     parser.setTextPortionConverter(oVnConverter)
     return parser.processDocument(XSCRIPTCONTEXT.getDocument())
 
@@ -74,7 +76,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
         ConfigReader = cfgprov.createInstanceWithArguments(
             "com.sun.star.configuration.ConfigurationAccess", (node,))
-        cfgnames = ("Debug", "RemoveDiacritics", "VNIHacks",
+        cfgnames = ("Debug", "RemoveDiacritics", "NormalizeDiacritics", "VNIHacks",
             "LogFilename", "FolderConvertDefault", "FolderConvertPatterns")
         cfgvalues = ConfigReader.getPropertyValues(cfgnames)
         if not cfgvalues:
@@ -254,7 +256,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         vnConverter = VietnameseTextConverter(
             decoderPrefix='internal_', vniHacks=self._settings['VNIHacks'])
         oVnConverter = OOoVietnameseTextConverter(
-            vnConverter, removeDiacritics=self._settings['RemoveDiacritics'])
+            vnConverter, removeDiacritics=self._settings['RemoveDiacritics'], normalizeDiacritics=self._settings['NormalizeDiacritics'])
         self.parser.setTextPortionConverter(oVnConverter)
 
         # running requested operation

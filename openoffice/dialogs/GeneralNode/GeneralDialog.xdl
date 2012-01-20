@@ -7,6 +7,7 @@
   </dlg:titledbox>
   <dlg:checkbox dlg:id="RemoveDiacritics" dlg:tab-index="1" dlg:left="16" dlg:top="24" dlg:width="145" dlg:height="12" dlg:help-text="&amp;22.GeneralDialog.RemoveDiacritics.HelpText" dlg:value="&amp;23.GeneralDialog.RemoveDiacritics.Label" dlg:checked="false"/>
   <dlg:checkbox dlg:id="VNIHacks" dlg:tab-index="2" dlg:left="16" dlg:top="40" dlg:width="145" dlg:height="12" dlg:help-text="&amp;24.GeneralDialog.VNIHacks.HelpText" dlg:value="&amp;25.GeneralDialog.VNIHacks.Label" dlg:checked="false"/>
+  <dlg:checkbox dlg:id="NormalizeDiacritics" dlg:tab-index="1" dlg:left="16" dlg:top="56" dlg:width="145" dlg:height="12" dlg:help-text="&amp;32.GeneralDialog.NormalizeDiacritics.HelpText" dlg:value="&amp;33.GeneralDialog.NormalizeDiacritics.Label" dlg:checked="false"/>
   <dlg:text dlg:id="FolderConvertDefaultLabel" dlg:tab-index="0" dlg:left="10" dlg:top="135" dlg:width="135" dlg:height="12" dlg:value="&amp;29.GeneralDialog.FolderConvertDefault.Label"/>
   <dlg:textfield dlg:id="FolderConvertDefault" dlg:tab-index="3" dlg:left="150" dlg:top="135" dlg:width="100" dlg:height="12" dlg:multiline="false" dlg:help-text="&amp;28.GeneralDialog.FolderConvertDefault.HelpText" dlg:value="~/B2UConverter"/>
   <dlg:text dlg:id="FolderConvertPatternsLabel" dlg:tab-index="0" dlg:left="10" dlg:top="150" dlg:width="135" dlg:height="12" dlg:value="&amp;31.GeneralDialog.FolderConvertPatterns.Label"/>

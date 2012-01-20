@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <oor:component-schema xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oor:name="B2UConverter" oor:package="vn.gov.oss.openoffice" xml:lang="en-US">
  <info>
-  <author>Jean Christophe André, Lê Quốc Thái, Võ Đức Phương</author>
+  <author>Jean Christophe André, Lê Quốc Thái, Võ Đức Phương, Hoàng Minh Thắng</author>
   <desc>Configuration of the B2UConverter extension.</desc>
  </info>
  <templates>
@@ -11,6 +11,10 @@
    <info><desc>Data for general options.</desc></info>
    <prop oor:name="RemoveDiacritics" oor:type="xs:boolean" oor:localized="false">
     <info><desc>When true then B2UConverter will remove all diacritics (tone marks and accents).</desc></info>
+    <value>false</value>
+   </prop>
+   <prop oor:name="NormalizeDiacritics" oor:type="xs:boolean" oor:localized="false">
+    <info><desc>When ticked then B2UConverter will move all diacritics to position of classic style.</desc></info>
     <value>false</value>
    </prop>
    <prop oor:name="VNIHacks" oor:type="xs:boolean" oor:localized="false">

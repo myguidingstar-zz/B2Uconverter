@@ -7,18 +7,35 @@ License: GNU Lesser General Public License version 2.1
 Authors: Jean Christophe André <jcandre@hanoilug.org>
          Lê Quốc Thái <lqthai@hanoilug.org>
          Võ Đức Phương <vdphuong@hanoilug.org>
+         Hoàng Minh Thắng <hoangminhthang@ktqd.org>
 """
 
 import uno
 import unohelper
 from com.sun.star.lang import Locale
+import unicodedata
+import re
 
 class OOoVietnameseTextConverter(object):
 
-    def __init__(self, textConverter, removeDiacritics=False):
+    def __init__(self, textConverter, removeDiacritics=False, normalizeDiacritics=False):
         self.textConverter = textConverter
         self.removeDiacriticsFlag = removeDiacritics
+        self.normalizeDiacriticsFlag = normalizeDiacritics
         self.stats = { 'vntime_tcvn': 0, 'vni': 0 }
+
+    def normalizeDiacritics(self, source, diacriticsPosClassicOn=False):
+        TONE = '(['+u'\u0300'+u'\u0309'+u'\u0303'+u'\u0301'+u'\u0323'+'])'
+        result = unicodedata.normalize('NFD',source.replace(u'\u0110', u'\u00D0').replace(u'\u0111', u'\u00F0'))
+        result = re.sub('(?i)' + TONE + '([aeiouy' + u'\u0306'+u'\u0302'+u'\u031B]'+'+)', "\\2\\1", result)
+        result = re.sub('(?i)(?<=['+u'\u0306'+u'\u0302'+u'\u031B'+'])(.)' + TONE + '\\B', "\\2\\1", result)
+        result = re.sub('(?i)(?<=[ae])([iouy])' + TONE, "\\2\\1", result)
+        result = re.sub('(?i)(?<=[oy])([iuy])' + TONE, "\\2\\1", result)
+        result = re.sub('(?i)(?<!q)(u)([aeiou])' + TONE, "\\1\\3\\2", result)
+        result = re.sub('(?i)(?<!g)(i)([aeiouy])' + TONE, "\\1\\3\\2", result)
+        if diacriticsPosClassicOn:
+            result = re.sub('(?i)(?<!q)([ou])([aeoy])' + TONE + '(?!\\w)', "\\1\\3\\2", result)
+        return unicodedata.normalize('NFC',result).replace(u'\u00D0', u'\u0110').replace(u'\u00F0', u'\u0111');
 
     def convertTextPortion(self, text):
         old = text.getString()
@@ -60,6 +77,18 @@ class OOoVietnameseTextConverter(object):
                 new = self.textConverter.removeDiacritics(new)
             else:
                 new = self.textConverter.removeDiacritics(old)
+        else:
+	        #normalize diacritics
+	        if self.normalizeDiacriticsFlag:
+	            if new and new != old:
+	                new = self.normalizeDiacritics(new,True)
+	            else:
+	                new = self.normalizeDiacritics(old,True)
+	        else:
+	            if new and new != old:
+	                new = self.normalizeDiacritics(new)
+	            else:
+	                new = self.normalizeDiacritics(old)    
 
         # FIXME: using setString makes loose all properties!!!
         # FIXME: may be use text.getPropertyValues() & text.setPropertyValues ??
@@ -79,7 +108,7 @@ class OOoVietnameseTextConverter(object):
             #text.String = new
         for k,v in properties.items():
             text.setPropertyValue(k, v)
- 
+	 
     def mostUsedEncoding(self):
         if self.stats['vntime_tcvn'] > self.stats['vni']:
             return 'vntime_tcvn'

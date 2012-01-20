@@ -1,12 +1,12 @@
-This is the B2UConverter project, an UNO extension for OpenOffice.org,
+This is the B2UConverter project, an UNO extension for LibreOffice.org,
 for converting documents from old encodings to Unicode.
 
 Copyright ©2009  Ministry of Science and Technology of Vietnam
 License: GNU Lesser General Public License version 2.1
-Authors: Jean Christophe André <jcandre@hanoilug.org>
-         Lê Quốc Thái <lqthai@hanoilug.org>
-         Võ Đức Phương <vdphuong@hanoilug.org>
-
+Authors: Jean Christophe André <jcandre(at)hanoilug(dot here)org>
+         Lê Quốc Thái <lqthai(at)hanoilug(dot here)org>
+         Võ Đức Phương <vdphuong(at)hanoilug(dot here)org>
+         Hoàng Minh Thắng <hoangminhthang(at)ktqd(dot here)org>
 
 Dependencies
 ============
@@ -19,7 +19,7 @@ Dependencies
    on GNU/Linux, Windows and probably MacOS X too (not tested).
 
    It has been confirmed running on:
-   * OpenOffice 3.1.1 (build9420) on Ubuntu “Karmic Koala” 9.10
+   * LibreOffice 3.4 on Ubuntu 11.10
 
 
 Command line usage

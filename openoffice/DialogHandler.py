@@ -7,6 +7,7 @@ License: GNU Lesser General Public License version 2.1
 Authors: Jean Christophe André <jcandre@hanoilug.org>
          Lê Quốc Thái <lqthai@hanoilug.org>
          Võ Đức Phương <vdphuong@hanoilug.org>
+         Hoàng Minh Thắng <hoangminhthang@ktqd.org>
 """
 
 import uno
@@ -29,7 +30,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         node.Name = "nodepath"
         node.Value = "/vn.gov.oss.openoffice.B2UConverter/General"
         self.node = node
-        self.cfg_names = ("Debug", "RemoveDiacritics", "VNIHacks",
+        self.cfg_names = ("Debug", "RemoveDiacritics", "NormalizeDiacritics", "VNIHacks",
             "LogFilename", "FolderConvertDefault", "FolderConvertPatterns")
         return
 
@@ -72,7 +73,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         settings = self.configreader()
         if not settings:
             return
-        for name in ("Debug", "RemoveDiacritics", "VNIHacks"):
+        for name in ("Debug", "RemoveDiacritics", "NormalizeDiacritics", "VNIHacks"):
             window.getControl(name).setState(int(settings[name]))
         for name in ("LogFilename", "FolderConvertDefault",
             "FolderConvertPatterns"):
@@ -85,7 +86,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
         if name != "GeneralDialog":
             return
         settings = []
-        for name in ("Debug", "RemoveDiacritics", "VNIHacks"):
+        for name in ("Debug", "RemoveDiacritics", "NormalizeDiacritics", "VNIHacks"):
             settings.append(bool(window.getControl(name).State))
         for name in ("LogFilename", "FolderConvertDefault",
             "FolderConvertPatterns"):
