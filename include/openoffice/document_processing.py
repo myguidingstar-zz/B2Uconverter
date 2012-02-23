@@ -296,14 +296,19 @@ class OOoDocumentParser(object):
                 cell = sheet.getCellByPosition(column, row)
                     
                 FORMULA = uno.Enum("com.sun.star.table.CellContentType", "FORMULA")
+                VALUE = uno.Enum("com.sun.star.table.CellContentType", "VALUE")
                 dataType = cell.getType()
+                if dataType == VALUE:
+                    cellvalue = cell.getValue()
                 if dataType == FORMULA:
-                    formular = cell.getFormula()
+                    cellformular = cell.getFormula()
 
                 self.processText(cell)
 
+                if dataType == VALUE:
+                    cell.setValue(cellvalue)
                 if dataType == FORMULA:
-                    cell.setFormula(formular)
+                    cell.setFormula(cellformular)
 
     def processSpreadsheetDocument(self, doc):
         # disable automatic-calculation during process
