@@ -78,17 +78,17 @@ class OOoVietnameseTextConverter(object):
             else:
                 new = self.textConverter.removeDiacritics(old)
         else:
-	        #normalize diacritics
-	        if self.normalizeDiacriticsFlag:
-	            if new and new != old:
-	                new = self.normalizeDiacritics(new,True)
-	            else:
-	                new = self.normalizeDiacritics(old,True)
-	        else:
-	            if new and new != old:
-	                new = self.normalizeDiacritics(new)
-	            else:
-	                new = self.normalizeDiacritics(old)    
+            #normalize diacritics
+            if self.normalizeDiacriticsFlag:
+                if new and new != old:
+                    new = self.normalizeDiacritics(new,True)
+                else:
+                    new = self.normalizeDiacritics(old,True)
+            else:
+                if new and new != old:
+                    new = self.normalizeDiacritics(new)
+                else:
+                    new = self.normalizeDiacritics(old)    
 
         # FIXME: using setString makes loose all properties!!!
         # FIXME: may be use text.getPropertyValues() & text.setPropertyValues ??
@@ -108,7 +108,7 @@ class OOoVietnameseTextConverter(object):
             #text.String = new
         for k,v in properties.items():
             text.setPropertyValue(k, v)
-	 
+     
     def mostUsedEncoding(self):
         if self.stats['vntime_tcvn'] > self.stats['vni']:
             return 'vntime_tcvn'
@@ -287,14 +287,23 @@ class OOoDocumentParser(object):
         cursor.gotoEndOfUsedArea(False)
         cursor.gotoStartOfUsedArea(True)
         rangeAddress = cursor.getRangeAddress()
-        rows = rangeAddress.EndRow - rangeAddress.StartRow + 1
+        rows = rangeAddress.EndRow - rangeAddress.StartRow + 2 #changed from 1 to 2 because of difference between sheet.getCellByPosition and cursor.getCellByPosition
         columns = rangeAddress.EndColumn - rangeAddress.StartColumn + 1
         logging.debug("Sheet columns=%d & rows=%d", columns, rows)
         for row in range(rows):
             for column in range(columns):
                 logging.debug("Sheet cell(col=%d,row=%d)", column, row)
-                cell = cursor.getCellByPosition(column, row)
-                self.processText(cell.Text)
+                cell = sheet.getCellByPosition(column, row)
+                    
+                FORMULA = uno.Enum("com.sun.star.table.CellContentType", "FORMULA")
+                dataType = cell.getType()
+                if dataType == FORMULA:
+                    formular = cell.getFormula()
+
+                self.processText(cell)
+
+                if dataType == FORMULA:
+                    cell.setFormula(formular)
 
     def processSpreadsheetDocument(self, doc):
         # disable automatic-calculation during process
