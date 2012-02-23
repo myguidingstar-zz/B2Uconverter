@@ -1,24 +1,28 @@
-#MENU_TYPE=addons
-MENU_TYPE=top
+VERSION=$(shell cat doc/VERSION)
 
-#IMAGES_TYPE=yellow-red
-IMAGES_TYPE=white-red
+all: top-build
 
-all: build
+make-executable:
+	chmod +x scripts/build-Addons.sh scripts/build-B2UConverter.sh
+description:
+	cd openoffice; sed s~{{VERSION}}~$(VERSION)~ description.xml.template > description.xml
+top-menu: make-executable
+	scripts/build-Addons.sh top > openoffice/Addons.xcu
+addons-menu: make-executable
+	scripts/build-Addons.sh addons > openoffice/Addons.xcu
 
-openoffice/Addons.xcu: scripts/build-Addons.xcu $(shell find include/addons-menu -type f)
-	python scripts/build-Addons.xcu $(MENU_TYPE) > openoffice/Addons.xcu
+openoffice/B2UConverter.py: make-executable
+	scripts/build-B2UConverter.sh > openoffice/B2UConverter.py
 
-openoffice/B2UConverter.py: scripts/build-B2UConverter.py $(shell find include -type f)
-	python scripts/build-B2UConverter.py > openoffice/B2UConverter.py
-
-B2UConverter.oxt: openoffice/Addons.xcu openoffice/B2UConverter.py $(shell find openoffice -type f)
+zip-it:
 	mkdir -p openoffice/images
-	cp -a include/images/$(IMAGES_TYPE)/* openoffice/images/
+	cp -a include/images/white-red/* openoffice/images/
 	rm -f B2UConverter.oxt
-	cd openoffice ; zip -q9rpD -x.svn ../B2UConverter.oxt .
+	cd openoffice ; zip -q9rpD -xdescription.xml.template ../B2UConverter-$(VERSION).oxt .
 
-build: B2UConverter.oxt
+top-build: description top-menu openoffice/B2UConverter.py zip-it
+
+addons-build: description addons-menu openoffice/B2UConverter.py zip-it
 
 uninstall:
 	unopkg remove vn.gov.oss.openoffice.b2uconverter
@@ -27,7 +31,8 @@ install: build uninstall
 	unopkg add B2UConverter.oxt
 
 clean:
+	rm -f openoffice/description.xml
 	rm -f openoffice/Addons.xcu
 	rm -f openoffice/B2UConverter.py
-	rm -f B2UConverter.oxt
+	rm -f B2UConverter-*.oxt
 
