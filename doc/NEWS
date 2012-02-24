@@ -2,6 +2,9 @@
 - version 10.02
 - fix bug cell's value/formula lost after converting
 - add a new function: diacritics normalization
+- rewrite build scripts in (simpler) bash because they were incompatible with python 3
+- rewrite Makefile with auto versioning
+- add high contrast icons
 
 * 2012-01-04
 
