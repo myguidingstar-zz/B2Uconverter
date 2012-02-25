@@ -1,11 +1,13 @@
 VERSION=$(shell cat doc/VERSION)
 
 all: top-build
-
+	echo 'push b2uconverter-update.xml and b2uconverter-news to http://myguidingstar.github.com/'
 make-executable:
 	chmod +x scripts/build-Addons.sh scripts/build-B2UConverter.sh
 description:
 	cd openoffice; sed s~{{VERSION}}~$(VERSION)~ description.xml.template > description.xml
+	sed s~{{VERSION}}~$(VERSION)~g b2uconverter-update.xml.template > b2uconverter-update.xml
+	cp doc/NEWS b2uconverter-news
 top-menu: make-executable
 	scripts/build-Addons.sh top > openoffice/Addons.xcu
 addons-menu: make-executable
@@ -37,4 +39,6 @@ clean:
 	rm -f openoffice/Addons.xcu
 	rm -f openoffice/B2UConverter.py
 	rm -f B2UConverter-*.oxt
+	rm -f b2uconverter-update.xml
+	rm -f b2uconverter-news
 

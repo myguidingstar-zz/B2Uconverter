@@ -9,13 +9,9 @@
   <OpenOffice.org-minimal-version value="2.2" d:name="OpenOffice.org 2.2" />
  </dependencies>
 
- <!-- If you uploaded your extension to the repository (which should be
-      the default!) you do not need to have this one.
  <update-information>
-  <src xlink:href="http://extensions.openoffice.org/extension/b2uconverter.xml" />
-  <src xlink:href="http://openoffice.oss.gov.vn/b2uconverter/update.xml" />
+  <src xlink:href="http://myguidingstar.github.com/b2uconverter-update.xml" />
  </update-information>
- -->
 
  <registration>
   <simple-license accept-by="admin" default-license-id="default" suppress-on-update="true" suppress-if-required="true">
@@ -31,11 +27,9 @@
   <name xlink:href="http://www.oss.gov.vn/" lang="en">Ministry of Science and Technology (VN)</name>
  </publisher>
 
- <!--
  <release-notes>
-  <src xlink:href="http://extensions.openoffice.org/testarea/desktop/publisher/release-notes_en.txt" lang="en" />
+  <src xlink:href="http://myguidingstar.github.com/b2uconverter-news" lang="en" />
  </release-notes>
- -->
 
  <display-name>
   <name lang="vi">Công cụ chuyển sang Unicode</name>

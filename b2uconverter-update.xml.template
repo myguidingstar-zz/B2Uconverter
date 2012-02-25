@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description xmlns="http://openoffice.org/extensions/update/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identifier value="vn.gov.oss.openoffice.b2uconverter"/>
+  <version value="{{VERSION}}" /> 
+  <update-download>
+	<src xlink:href="http://extensions.libreoffice.org/extension-center/b2uconverter/releases/{{VERSION}}/b2uconverter-{{VERSION}}.oxt"/>
+  </update-download>
+  <publisher>
+    <name xlink:href="http://myguidingstar.github.com/">By myguidingstar</name>
+  </publisher>
+  <release-notes>
+    <src xlink:href="http://myguidingstar.github.com/b2uconverter-news" lang="en" />
+  </release-notes>
+</description>
