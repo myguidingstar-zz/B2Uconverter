@@ -88,7 +88,7 @@ class OOoVietnameseTextConverter(object):
                 if new and new != old:
                     new = self.normalizeDiacritics(new)
                 else:
-                    new = self.normalizeDiacritics(old)    
+                    new = self.normalizeDiacritics(old)
 
         # FIXME: using setString makes loose all properties!!!
         # FIXME: may be use text.getPropertyValues() & text.setPropertyValues ??
@@ -108,7 +108,7 @@ class OOoVietnameseTextConverter(object):
             #text.String = new
         for k,v in properties.items():
             text.setPropertyValue(k, v)
-     
+
     def mostUsedEncoding(self):
         if self.stats['vntime_tcvn'] > self.stats['vni']:
             return 'vntime_tcvn'
@@ -294,7 +294,7 @@ class OOoDocumentParser(object):
             for column in range(columns):
                 logging.debug("Sheet cell(col=%d,row=%d)", column, row)
                 cell = sheet.getCellByPosition(column, row)
-                    
+
                 FORMULA = uno.Enum("com.sun.star.table.CellContentType", "FORMULA")
                 VALUE = uno.Enum("com.sun.star.table.CellContentType", "VALUE")
                 dataType = cell.getType()
@@ -366,11 +366,10 @@ class OOoDocumentParser(object):
             logging.warning("unknown document type")
 
         # convert document title
-        info = doc.getDocumentInfo()
         # FIXME: should detect if title has already been converted
         #        (by testing if it's valid Vietnamese word? argl...)
         try:
-            info.Title = self.textConverter.convertString(info.Title,
+            doc.Title = self.textConverter.convertString(doc.Title,
                             self.textPortionConverter.mostUsedEncoding())
         except:
             logging.info("unable to convert document title")
