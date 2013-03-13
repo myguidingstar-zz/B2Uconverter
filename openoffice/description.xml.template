@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
-
+<description xmlns   = "http://openoffice.org/extensions/description/2006"
+             xmlns:d = "http://openoffice.org/extensions/description/2006"
+             xmlns:l = "http://libreoffice.org/extensions/description/2011"
+             >
  <identifier value="vn.gov.oss.openoffice.b2uconverter" />
  <version value="{{VERSION}}" />
  <platform value="all" />
 
  <dependencies>
-  <OpenOffice.org-minimal-version value="2.2" d:name="OpenOffice.org 2.2" />
+   <l:LibreOffice-minimal-version value="4.0" d:name="LibreOffice.org 4.0" />
  </dependencies>
 
  <update-information>
   <src xlink:href="http://myguidingstar.github.com/b2uconverter-update.xml" />
  </update-information>
-
- <registration>
-  <simple-license accept-by="admin" default-license-id="default" suppress-on-update="true" suppress-if-required="true">
-   <license-text xlink:href="registration/LGPL-2.1_vi.txt" lang="vi" license-id="default" />
-   <license-text xlink:href="registration/LGPL-2.1_fr.txt" lang="fr" />
-   <license-text xlink:href="registration/LGPL-2.1_en.txt" lang="en" />
-  </simple-license>
- </registration>
 
  <publisher>
   <name xlink:href="http://www.oss.gov.vn/" lang="vi">Bộ Khoa học và Công nghệ (VN)</name>
