@@ -25,17 +25,17 @@ class OOoVietnameseTextConverter(object):
         self.stats = { 'vntime_tcvn': 0, 'vni': 0 }
 
     def normalizeDiacritics(self, source, diacriticsPosClassicOn=False):
-        TONE = '(['+u'\u0300'+u'\u0309'+u'\u0303'+u'\u0301'+u'\u0323'+'])'
-        result = unicodedata.normalize('NFD',source.replace(u'\u0110', u'\u00D0').replace(u'\u0111', u'\u00F0'))
-        result = re.sub('(?i)' + TONE + '([aeiouy' + u'\u0306'+u'\u0302'+u'\u031B]'+'+)', "\\2\\1", result)
-        result = re.sub('(?i)(?<=['+u'\u0306'+u'\u0302'+u'\u031B'+'])(.)' + TONE + '\\B', "\\2\\1", result)
+        TONE = '(['+'\u0300'+'\u0309'+'\u0303'+'\u0301'+'\u0323'+'])'
+        result = unicodedata.normalize('NFD',source.replace('\u0110', '\u00D0').replace('\u0111', '\u00F0'))
+        result = re.sub('(?i)' + TONE + '([aeiouy' + '\u0306'+'\u0302'+'\u031B]'+'+)', "\\2\\1", result)
+        result = re.sub('(?i)(?<=['+'\u0306'+'\u0302'+'\u031B'+'])(.)' + TONE + '\\B', "\\2\\1", result)
         result = re.sub('(?i)(?<=[ae])([iouy])' + TONE, "\\2\\1", result)
         result = re.sub('(?i)(?<=[oy])([iuy])' + TONE, "\\2\\1", result)
         result = re.sub('(?i)(?<!q)(u)([aeiou])' + TONE, "\\1\\3\\2", result)
         result = re.sub('(?i)(?<!g)(i)([aeiouy])' + TONE, "\\1\\3\\2", result)
         if diacriticsPosClassicOn:
             result = re.sub('(?i)(?<!q)([ou])([aeoy])' + TONE + '(?!\\w)', "\\1\\3\\2", result)
-        return unicodedata.normalize('NFC',result).replace(u'\u00D0', u'\u0110').replace(u'\u00F0', u'\u0111');
+        return unicodedata.normalize('NFC',result).replace('\u00D0', '\u0110').replace('\u00F0', '\u0111');
 
     def convertTextPortion(self, text):
         old = text.getString()
@@ -106,7 +106,7 @@ class OOoVietnameseTextConverter(object):
             textCurs.setString("")
             #text.setString(new)
             #text.String = new
-        for k,v in properties.items():
+        for k,v in list(properties.items()):
             text.setPropertyValue(k, v)
 
     def mostUsedEncoding(self):

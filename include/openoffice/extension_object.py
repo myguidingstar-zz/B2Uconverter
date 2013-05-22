@@ -81,7 +81,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         cfgvalues = ConfigReader.getPropertyValues(cfgnames)
         if not cfgvalues:
             raise RuntimeError("Unable to read the configuration.")
-        self._settings = dict(zip(cfgnames, cfgvalues))
+        self._settings = dict(list(zip(cfgnames, cfgvalues)))
         loglevel = (self._settings['Debug'] and logging.DEBUG or logging.INFO)
         logging.root.setLevel(loglevel)
 
@@ -89,7 +89,7 @@ class B2UConverterJob(unohelper.Base, XJobExecutor):
         self._readConfig()
         filename = self._settings.get('LogFilename')
         if not filename: filename = '~/.B2UConverter-OOo.log'
-        old_umask = os.umask(0077)
+        old_umask = os.umask(0o077)
         # TODO: check if it fails and take countermesure in this case
         logging.basicConfig(
             format='%(asctime)s %(levelname)s %(message)s',

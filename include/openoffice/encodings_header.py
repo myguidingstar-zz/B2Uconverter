@@ -16,7 +16,7 @@ if not 'charmap_build' in codecs.__dict__:
     # this code has been "stolen" from Python 2.5 codecs.py
     def _encoding_map_from_decoding_table(table):
         m = {}
-        for k,v in table.items():
+        for k,v in list(table.items()):
             if not v in m:
                 m[v] = k
             else:

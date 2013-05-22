@@ -103,7 +103,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
                 (self.node,))
             cfg_values = ConfigReader.getPropertyValues(self.cfg_names)
         except:
-            print "DEBUG: configreader exception"
+            print("DEBUG: configreader exception")
             raise
         for i, n in enumerate(self.cfg_names):
             settings[n] = cfg_values[i]
@@ -125,7 +125,7 @@ class DialogHandler(unohelper.Base, XServiceInfo, XContainerWindowEventHandler):
             ConfigWriter.setPropertyValues(self.cfg_names, cfg_values)
             ConfigWriter.commitChanges()
         except:
-            print "DEBUG: configwriter exception"
+            print("DEBUG: configwriter exception")
             raise
 
 # uno implementation

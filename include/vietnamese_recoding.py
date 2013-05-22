@@ -13,22 +13,22 @@ class VietnameseTextConverter(object):
 
     _diacritics = (
         #'âÂăĂđĐêÊôÔơƠưƯ'
-        u'\xe2\xc2\u0103\u0102\u0111\u0110\xea\xca\xf4\xd4\u01a1\u01a0\u01b0\u01af'
+        '\xe2\xc2\u0103\u0102\u0111\u0110\xea\xca\xf4\xd4\u01a1\u01a0\u01b0\u01af'
         #'áÁàÀảẢãÃạẠấẤầẦẩẨẫẪậẬắẮằẰẳẲẵẴặẶ'
-        u'\xe1\xc1\xe0\xc0\u1ea3\u1ea2\xe3\xc3\u1ea1\u1ea0\u1ea5\u1ea4\u1ea7\u1ea6\u1ea9\u1ea8\u1eab\u1eaa\u1ead\u1eac\u1eaf\u1eae\u1eb1\u1eb0\u1eb3\u1eb2\u1eb5\u1eb4\u1eb7\u1eb6'
+        '\xe1\xc1\xe0\xc0\u1ea3\u1ea2\xe3\xc3\u1ea1\u1ea0\u1ea5\u1ea4\u1ea7\u1ea6\u1ea9\u1ea8\u1eab\u1eaa\u1ead\u1eac\u1eaf\u1eae\u1eb1\u1eb0\u1eb3\u1eb2\u1eb5\u1eb4\u1eb7\u1eb6'
         #'éÉèÈẻẺẽẼẹẸếẾềỀểỂễỄệỆíÍìÌỉỈĩĨịỊ'
-        u'\xe9\xc9\xe8\xc8\u1ebb\u1eba\u1ebd\u1ebc\u1eb9\u1eb8\u1ebf\u1ebe\u1ec1\u1ec0\u1ec3\u1ec2\u1ec5\u1ec4\u1ec7\u1ec6\xed\xcd\xec\xcc\u1ec9\u1ec8\u0129\u0128\u1ecb\u1eca'
+        '\xe9\xc9\xe8\xc8\u1ebb\u1eba\u1ebd\u1ebc\u1eb9\u1eb8\u1ebf\u1ebe\u1ec1\u1ec0\u1ec3\u1ec2\u1ec5\u1ec4\u1ec7\u1ec6\xed\xcd\xec\xcc\u1ec9\u1ec8\u0129\u0128\u1ecb\u1eca'
         #'óÓòÒỏỎõÕọỌốỐồỒổỔỗỖộỘớỚờỜởỞỡỠợỢ'
-        u'\xf3\xd3\xf2\xd2\u1ecf\u1ece\xf5\xd5\u1ecd\u1ecc\u1ed1\u1ed0\u1ed3\u1ed2\u1ed5\u1ed4\u1ed7\u1ed6\u1ed9\u1ed8\u1edb\u1eda\u1edd\u1edc\u1edf\u1ede\u1ee1\u1ee0\u1ee3\u1ee2'
+        '\xf3\xd3\xf2\xd2\u1ecf\u1ece\xf5\xd5\u1ecd\u1ecc\u1ed1\u1ed0\u1ed3\u1ed2\u1ed5\u1ed4\u1ed7\u1ed6\u1ed9\u1ed8\u1edb\u1eda\u1edd\u1edc\u1edf\u1ede\u1ee1\u1ee0\u1ee3\u1ee2'
         #'úÚùÙủỦũŨụỤứỨừỪửỬữỮựỰỳỲỷỶỹỸỵỴýÝ'
-        u'\xfa\xda\xf9\xd9\u1ee7\u1ee6\u0169\u0168\u1ee5\u1ee4\u1ee9\u1ee8\u1eeb\u1eea\u1eed\u1eec\u1eef\u1eee\u1ef1\u1ef0\u1ef3\u1ef2\u1ef7\u1ef6\u1ef9\u1ef8\u1ef5\u1ef4\xfd\xdd'
+        '\xfa\xda\xf9\xd9\u1ee7\u1ee6\u0169\u0168\u1ee5\u1ee4\u1ee9\u1ee8\u1eeb\u1eea\u1eed\u1eec\u1eef\u1eee\u1ef1\u1ef0\u1ef3\u1ef2\u1ef7\u1ef6\u1ef9\u1ef8\u1ef5\u1ef4\xfd\xdd'
     )
     _diacritics_removed = (
-        u'aAaAdDeEoOoOuU'
-        u'aAaAaAaAaAaAaAaAaAaAaAaAaAaAaA'
-        u'eEeEeEeEeEeEeEeEeEeEiIiIiIiIiI'
-        u'oOoOoOoOoOoOoOoOoOoOoOoOoOoOoO'
-        u'uUuUuUuUuUuUuUuUuUuUyYyYyYyYyY'
+        'aAaAdDeEoOoOuU'
+        'aAaAaAaAaAaAaAaAaAaAaAaAaAaAaA'
+        'eEeEeEeEeEeEeEeEeEeEiIiIiIiIiI'
+        'oOoOoOoOoOoOoOoOoOoOoOoOoOoOoO'
+        'uUuUuUuUuUuUuUuUuUuUyYyYyYyYyY'
     )
 
     def __init__(self, decoderPrefix=None, vniHacks=False):
@@ -36,7 +36,7 @@ class VietnameseTextConverter(object):
         self.vniHacksFlag = vniHacks
 
     def removeDiacritics(self, str):
-        result = u''
+        result = ''
         for c in str:
             idx = self._diacritics.find(c)
             if idx >= 0:
@@ -45,26 +45,26 @@ class VietnameseTextConverter(object):
         return result
 
     def convertString(self, str, real, upper=False):
-        if not str: return u''
-        result = u''
+        if not str: return ''
+        result = ''
         prefixed_real = self.decoderPrefix + real
 
         logging.debug("convertString('%s')", str)
         # compensate for (supposedly) some VNI encoder's bug(s)
         if self.vniHacksFlag and real == 'vni':
             # two consecutive 'Â', 'â', 'å', 'ï', 'ù', 'õ'
-            for c in [u'\xC2', u'\xE2', u'\xE5', u'\xEF', u'\xF5', u'\xF9']:
+            for c in ['\xC2', '\xE2', '\xE5', '\xEF', '\xF5', '\xF9']:
                 while (str.find(c * 2) >= 0):
                     str = str.replace(c * 2, c)
             # 'âê' -> 'â'
-            while (str.find(u'\xE2\xEA') >= 0):
-                str = str.replace(u'\xE2\xEA', u'\xE2')
+            while (str.find('\xE2\xEA') >= 0):
+                str = str.replace('\xE2\xEA', '\xE2')
             # 'ÀÂ' -> 'À'
-            while (str.find(u'\xC0\xC2') >= 0):
-                str = str.replace(u'\xC0\xC2', u'\xC0')
+            while (str.find('\xC0\xC2') >= 0):
+                str = str.replace('\xC0\xC2', '\xC0')
             # 'àø' -> 'à'
-            while (str.find(u'\xE0\xF8') >= 0):
-                str = str.replace(u'\xE0\xF8', u'\xE0')
+            while (str.find('\xE0\xF8') >= 0):
+                str = str.replace('\xE0\xF8', '\xE0')
         # Vietnamese case: mix of byte & Unicode chars
         i = 0
         while (i < len(str)):
@@ -85,11 +85,11 @@ class VietnameseTextConverter(object):
         if real == 'vntime_tcvn':
             # luckily there is no Vietnamese word with two consecutive 'ư'
             if upper:
-                while (result.find(u'\u01AF\u01AF') >= 0):
-                    result = result.replace(u'\u01AF\u01AF', u'\u01AF')
+                while (result.find('\u01AF\u01AF') >= 0):
+                    result = result.replace('\u01AF\u01AF', '\u01AF')
             else:
-                while (result.find(u'\u01B0\u01B0') >= 0):
-                    result = result.replace(u'\u01B0\u01B0', u'\u01B0')
+                while (result.find('\u01B0\u01B0') >= 0):
+                    result = result.replace('\u01B0\u01B0', '\u01B0')
 
         logging.debug("convertString -> '%s'", result)
         return result
